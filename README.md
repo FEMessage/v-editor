@@ -17,6 +17,7 @@
 * **[Events](#events)**
 * **[Slots](#slots)**
 * **[Dev](#dev)**
+* **[Dev](#license)**
 
 ## Introduction
 
@@ -167,6 +168,12 @@ cd dist
 
 npm publish --access public
 ```
+
+[⬆ Back to Top](#table-of-contents)
+
+## License
+
+[MIT](./LICENSE)
 
 [⬆ Back to Top](#table-of-contents)
 
