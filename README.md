@@ -17,7 +17,7 @@
 * **[Events](#events)**
 * **[Slots](#slots)**
 * **[Dev](#dev)**
-* **[Dev](#license)**
+* **[License](#license)**
 
 ## Introduction
 
