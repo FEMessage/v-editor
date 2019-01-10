@@ -26,6 +26,8 @@ import E from 'wangeditor'
 import UploadToAli from '@femessage/upload-to-ali'
 import defaultEditorOptions from './defaultEditorOptions'
 
+const HTML_PATTERN = /^<[a-z][\s\S]*>$/i
+
 export default {
   name: 'VEditor',
   components: {
@@ -95,7 +97,9 @@ export default {
     value(val, oldVal) {
       //更新编辑器内容会导致光标偏移, 故只在blur之后更新
       if (this.enableUpdateValue) {
-        this.editor && this.editor.$textElem.html(val)
+        const editorValue =
+          val && HTML_PATTERN.test(val) ? val : `<p>${val}<br></p>`
+        this.editor && this.editor.$textElem.html(editorValue)
       }
     }
   },
@@ -133,8 +137,12 @@ export default {
 
     editor.create()
 
+    const editorValue =
+      this.value && HTML_PATTERN.test(this.value)
+        ? this.value
+        : `<p>${this.value}<br></p>`
     //设置默认值
-    editor.txt.html(this.value)
+    editor.txt.html(editorValue)
     //是否禁用编辑器
     document.querySelector('.w-e-toolbar').style['pointer-events'] = this
       .disabled
