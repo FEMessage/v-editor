@@ -124,8 +124,10 @@ export default {
       this.editorOptions.onchangeTimeout || defaultEditorOptions.onchangeTimeout // 单位 ms
 
     editor.customConfig.onchange = html => {
+      // 输入内容为空时，返回空字符串，而不是<p><br></p>
+      let value = editor && editor.$textElem[0].textContent.trim() ? html : ''
       // html 即变化之后的内容
-      this.$emit('input', html)
+      this.$emit('input', value)
     }
 
     editor.customConfig.onfocus = html => {
