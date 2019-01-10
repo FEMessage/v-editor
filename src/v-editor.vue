@@ -26,7 +26,11 @@ import E from 'wangeditor'
 import UploadToAli from '@femessage/upload-to-ali'
 import defaultEditorOptions from './defaultEditorOptions'
 
-const HTML_PATTERN = /^<[a-z][\s\S]*>$/i
+const HTML_PATTERN = /^<[a-z].*>$/i
+
+// 对齐wangEditor的样式
+const editorValue = val =>
+  val && HTML_PATTERN.test(val) ? val : `<div class="text-box">${val}<br></div>`
 
 export default {
   name: 'VEditor',
@@ -97,9 +101,7 @@ export default {
     value(val, oldVal) {
       //更新编辑器内容会导致光标偏移, 故只在blur之后更新
       if (this.enableUpdateValue) {
-        const editorValue =
-          val && HTML_PATTERN.test(val) ? val : `<p>${val}<br></p>`
-        this.editor && this.editor.$textElem.html(editorValue)
+        this.editor && this.editor.$textElem.html(editorValue(val))
       }
     }
   },
@@ -137,12 +139,8 @@ export default {
 
     editor.create()
 
-    const editorValue =
-      this.value && HTML_PATTERN.test(this.value)
-        ? this.value
-        : `<p>${this.value}<br></p>`
     //设置默认值
-    editor.txt.html(editorValue)
+    editor.txt.html(editorValue(this.value))
     //是否禁用编辑器
     document.querySelector('.w-e-toolbar').style['pointer-events'] = this
       .disabled
@@ -205,6 +203,10 @@ export default {
 <style lang="stylus">
 .v-editor {
   position: relative;
+  .text-box {
+    margin: 10px 0;
+    line-height: 1.5;
+  }
 
   .disabled-mask {
     position: absolute;
