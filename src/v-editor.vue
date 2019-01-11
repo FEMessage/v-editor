@@ -26,6 +26,12 @@ import E from 'wangeditor'
 import UploadToAli from '@femessage/upload-to-ali'
 import defaultEditorOptions from './defaultEditorOptions'
 
+const HTML_PATTERN = /^<[a-z].*>$/i
+
+// 对齐wangEditor的样式
+const editorValue = val =>
+  val && HTML_PATTERN.test(val) ? val : `<div class="text-box">${val}<br></div>`
+
 export default {
   name: 'VEditor',
   components: {
@@ -95,7 +101,7 @@ export default {
     value(val, oldVal) {
       //更新编辑器内容会导致光标偏移, 故只在blur之后更新
       if (this.enableUpdateValue) {
-        this.editor && this.editor.$textElem.html(val)
+        this.editor && this.editor.$textElem.html(editorValue(val))
       }
     }
   },
@@ -118,8 +124,10 @@ export default {
       this.editorOptions.onchangeTimeout || defaultEditorOptions.onchangeTimeout // 单位 ms
 
     editor.customConfig.onchange = html => {
+      // 输入内容为空时，返回空字符串，而不是<p><br></p>
+      let value = editor && editor.$textElem[0].textContent.trim() ? html : ''
       // html 即变化之后的内容
-      this.$emit('input', html)
+      this.$emit('input', value)
     }
 
     editor.customConfig.onfocus = html => {
@@ -134,7 +142,7 @@ export default {
     editor.create()
 
     //设置默认值
-    editor.txt.html(this.value)
+    editor.txt.html(editorValue(this.value))
     //是否禁用编辑器
     document.querySelector('.w-e-toolbar').style['pointer-events'] = this
       .disabled
@@ -197,6 +205,10 @@ export default {
 <style lang="stylus">
 .v-editor {
   position: relative;
+  .text-box {
+    margin: 10px 0;
+    line-height: 1.5;
+  }
 
   .disabled-mask {
     position: absolute;
