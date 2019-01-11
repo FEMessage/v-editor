@@ -11,13 +11,20 @@ var defaultEditorOptions = {
   if (typeof document !== 'undefined') {
     var head = document.head || document.getElementsByTagName('head')[0],
         style = document.createElement('style'),
-        css = ".v-editor { position: relative; } .v-editor .disabled-mask { position: absolute; background-color: rgba(0,0,0,0); margin: 0; top: 0; right: 0; bottom: 0; left: 0; z-index: 2000; cursor: not-allowed; } .v-editor .loading-mask { position: absolute; background-color: rgba(0,0,0,0.3); margin: 0; top: 0; right: 0; bottom: 0; left: 0; z-index: 2000; } .v-editor .loading-mask .loading-content { position: absolute; text-align: center; width: 100%; top: 50%; margin-top: -21px; } ";style.type = 'text/css';if (style.styleSheet) {
+        css = ".v-editor { position: relative; } .v-editor .text-box { margin: 10px 0; line-height: 1.5; } .v-editor .disabled-mask { position: absolute; background-color: rgba(0,0,0,0); margin: 0; top: 0; right: 0; bottom: 0; left: 0; z-index: 2000; cursor: not-allowed; } .v-editor .loading-mask { position: absolute; background-color: rgba(0,0,0,0.3); margin: 0; top: 0; right: 0; bottom: 0; left: 0; z-index: 2000; } .v-editor .loading-mask .loading-content { position: absolute; text-align: center; width: 100%; top: 50%; margin-top: -21px; } ";style.type = 'text/css';if (style.styleSheet) {
       style.styleSheet.cssText = css;
     } else {
       style.appendChild(document.createTextNode(css));
     }head.appendChild(style);
   }
 })();
+
+var HTML_PATTERN = /^<[a-z].*>$/i;
+
+// 对齐wangEditor的样式
+var editorValue = function editorValue(val) {
+  return val && HTML_PATTERN.test(val) ? val : '<div class="text-box">' + val + '<br></div>';
+};
 
 var Component = { render: function render() {
     var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "v-editor" }, [_vm.showLoading ? _c('div', { staticClass: "loading-mask" }, [_c('div', { staticClass: "loading-content" }, [_vm._t("loading", [_c('p', [_vm._v("文件上传中...")])])], 2)]) : _vm._e(), _vm._v(" "), _c('div', { ref: "editor", staticStyle: { "text-align": "left" } }), _vm._v(" "), _c('upload-to-ali', _vm._b({ directives: [{ name: "show", rawName: "v-show", value: false, expression: "false" }], ref: "uploadToAli", attrs: { "multiple": "multiple" }, on: { "loading": _vm.handleLoading, "loaded": _vm.handleUploadFileSuccess } }, 'upload-to-ali', _vm.uploadOptions, false))], 1);
@@ -89,7 +96,7 @@ var Component = { render: function render() {
     value: function value(val, oldVal) {
       //更新编辑器内容会导致光标偏移, 故只在blur之后更新
       if (this.enableUpdateValue) {
-        this.editor && this.editor.$textElem.html(val);
+        this.editor && this.editor.$textElem.html(editorValue(val));
       }
     }
   },
@@ -112,8 +119,10 @@ var Component = { render: function render() {
     editor.customConfig.onchangeTimeout = this.editorOptions.onchangeTimeout || defaultEditorOptions.onchangeTimeout; // 单位 ms
 
     editor.customConfig.onchange = function (html) {
+      // 输入内容为空时，返回空字符串，而不是<p><br></p>
+      var value = editor && editor.$textElem[0].textContent.trim() ? html : '';
       // html 即变化之后的内容
-      _this.$emit('input', html);
+      _this.$emit('input', value);
     };
 
     editor.customConfig.onfocus = function (html) {
@@ -128,7 +137,7 @@ var Component = { render: function render() {
     editor.create();
 
     //设置默认值
-    editor.txt.html(this.value);
+    editor.txt.html(editorValue(this.value));
     //是否禁用编辑器
     document.querySelector('.w-e-toolbar').style['pointer-events'] = this.disabled ? 'none' : '';
     editor.$textElem.attr('contenteditable', !this.disabled);
