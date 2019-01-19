@@ -632,14 +632,15 @@
 
 "@femessage/img-preview@^1.1.1":
   version "1.1.1"
-  resolved "http://registry.npm.taobao.org/@femessage/img-preview/download/@femessage/img-preview-1.1.1.tgz#5a0a670ee52c6d55aefa8ad26787d13dee881997"
-  integrity sha1-WgpnDuUsbVWu+orSZ4fRPe6IGZc=
+  resolved "https://registry.yarnpkg.com/@femessage/img-preview/-/img-preview-1.1.1.tgz#5a0a670ee52c6d55aefa8ad26787d13dee881997"
+  integrity sha512-BvQ5Le2vKaVvC1/5RNqjIfP3lpe1CCuE0ERUCJPEXTxQol0jkw4fmZYSGchdkR71K1QHhYlcW5IKOYfCBod/8A==
 
-"@femessage/upload-to-ali@^1.1.0":
-  version "1.1.0"
-  resolved "http://registry.npm.taobao.org/@femessage/upload-to-ali/download/@femessage/upload-to-ali-1.1.0.tgz#167cc17e34d6318be9b71feec6f6e502be7e8224"
-  integrity sha1-FnzBfjTWMYvptx/uxvblAr5+giQ=
+"@femessage/upload-to-ali@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@femessage/upload-to-ali/-/upload-to-ali-1.1.1.tgz#eafaa2d16e9ef76516d28f0e64bf33692ed708b2"
+  integrity sha512-hNfjOLJe9C+YnYegb6ESQye7mWNwXuABaBrEvr6H5AMxA/sj8L6Cn97nWdTHIcEkqTfg8w5Pm6Y6Q36faB+oCA==
   dependencies:
+    "@femessage/img-preview" "^1.1.1"
     ali-oss "^6.0.1"
     image-compressor.js "^1.1.4"
 
