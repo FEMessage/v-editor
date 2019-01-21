@@ -1,6 +1,6 @@
 {
   "name": "@femessage/v-editor",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "upload img and write rich text easily",
   "author": "https://github.com/FEMessage",
   "license": "MIT",
@@ -37,8 +37,6 @@
     "wangeditor": "^3.1.1"
   },
   "devDependencies": {
-    "@femessage/img-preview": "^1.1.1",
-    "@femessage/upload-to-ali": "^1.1.0",
     "@storybook/vue": "^3.4.10",
     "@vue/test-utils": "^1.0.0-beta.16",
     "babel-jest": "^23.0.1",
@@ -75,7 +73,6 @@
     "npm": ">= 3.0.0"
   },
   "peerDependencies": {
-    "@femessage/img-preview": "^1.1.1",
-    "@femessage/upload-to-ali": "^1.1.0"
+    "@femessage/upload-to-ali": "^1.1.1"
   }
 }
