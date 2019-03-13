@@ -44,7 +44,7 @@
 ## Feature
 
 * **轻量**：最小的富文本编辑器，[组件选型范围](https://mubu.com/doc/sA3r4QKBK0) 参考了（quill,tinymce-vue,medium editor）
-* **oss 上传**：整合了上传组件，只需配置 OSS 的基本信息([配置参考][upload-to-ali])，即可将图片上传到 oss，避免图片信息以 base64 编码形式保存在内容中，文本内容偏大
+* **oss 上传**：整合了上传组件，只需配置 OSS 的基本信息([配置参考][upload-to-ali])，即可将图片上传到 oss，支持截图粘贴上传
 
 [⬆ Back to Top](#table-of-contents)
 
@@ -100,19 +100,19 @@ export default {
 
 ## Props
 
-| 参数          | 说明                                                       | 类型    | 默认值                   |
-| ------------- | ---------------------------------------------------------- | ------- | ------------------------ |
-| uploadOptions | 可自定义[upload-to-ali]上的所有属性                        | Object  | {}                       |
-| editorOptions | 可自定义[wangEditor] 部分参数，例子如下：{debug:false, menus: ['head']} | Object  | **[defaultEditorOptions](#defaultEditorOptions)**  |
-| disabled      | 编辑器是否可编辑                                           | Boolean | false                    |
-| height        | 编辑器高度，单位**px**                                     | Number  | 400                      |
+| 参数          | 说明                                                                    | 类型    | 默认值                                            |
+| ------------- | ----------------------------------------------------------------------- | ------- | ------------------------------------------------- |
+| uploadOptions | 可自定义[upload-to-ali]上的所有属性                                     | Object  | {}                                                |
+| editorOptions | 可自定义[wangEditor] 部分参数，例子如下：{debug:false, menus: ['head']} | Object  | **[defaultEditorOptions](#defaultEditorOptions)** |
+| disabled      | 编辑器是否可编辑                                                        | Boolean | false                                             |
+| height        | 编辑器高度，单位**px**                                                  | Number  | 400                                               |
 
 ### defaultEditorOptions（默认编辑器参数）
 
 | 参数            | 说明                                                    | 类型    | 默认值                                                                                                                                                                  |
 | --------------- | ------------------------------------------------------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | debug           | debug 模式下，有 JS 错误会以 throw Error 方式提示出来。 | Boolean | false                                                                                                                                                                   |
-| onchangeTimeout | 自定义 onchange 触发的延迟时间，单位 **ms**             | Number  | 200                                                                                                                                                                    |
+| onchangeTimeout | 自定义 onchange 触发的延迟时间，单位 **ms**             | Number  | 200                                                                                                                                                                     |
 | menus           | 默认菜单配置                                            | Array   | ["head","bold","fontSize","fontName","italic","underline","strikeThrough","foreColor","backColor","link","list","justify","quote","image","table","code","undo","redo"] |
 
 [⬆ Back to Top](#table-of-contents)
@@ -161,7 +161,6 @@ yarn story
 publish to npm
 
 ```
-
 yarn dist
 
 cd dist

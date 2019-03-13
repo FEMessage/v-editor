@@ -3,13 +3,14 @@
     <div class="loading-mask"
          v-if="showLoading">
       <div class="loading-content">
-        <slot name='loading'>
+        <slot name="loading">
           <p>文件上传中...</p>
         </slot>
       </div>
     </div>
     <div ref="editor"
-         style="text-align:left">
+         style="text-align:left"
+         @paste="paste">
     </div>
     <upload-to-ali multiple
                    v-show="false"
@@ -196,11 +197,16 @@ export default {
       //外部监听upload-loading，增加显示loading ui 逻辑
       this.showLoading = false
       this.$emit('upload-loading', false)
+    },
+    paste(e) {
+      if (!e.clipboardData.files.length) return
+      this.$refs.uploadToAli.paste(e)
+      // 粘贴时会把图片的名字也粘贴到文本框中,所以用这种手段让图片的名字不显示
+      this.editor.cmd.do('undo')
     }
   }
 }
 </script>
-
 
 <style lang="stylus">
 .v-editor {
