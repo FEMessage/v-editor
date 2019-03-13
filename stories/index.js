@@ -124,3 +124,17 @@ storiesOf('v-editor', module)
       }
     }
   }))
+  .add('截图粘贴', () => ({
+    template: `<v-editor v-model="content"/>`,
+    data: () => {
+      return {
+        content: ''
+      }
+    },
+    watch: {
+      content(val) {
+        //打印填写内容
+        console.log(val)
+      }
+    }
+  }))
