@@ -190,7 +190,6 @@ export default {
             '<img src="' + item + '" style="max-width:100%;"/>'
           )
         })
-        console.log(urls)
       } else {
         //外部监听upload-error，增加错误上传的处理
         this.$emit('upload-error')
