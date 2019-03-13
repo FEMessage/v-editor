@@ -161,10 +161,6 @@ yarn story
 publish to npm
 
 ```
-yarn dist
-
-cd dist
-
 npm publish --access public
 ```
 
