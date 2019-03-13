@@ -199,12 +199,14 @@ export default {
       this.$emit('upload-loading', false)
     },
     paste(e) {
+      if (!e.clipboardData.files.length) return
       this.$refs.uploadToAli.paste(e)
+      // 粘贴时会把图片的名字也粘贴到文本框中,所以用这种手段让图片的名字不显示
+      this.editor.cmd.do('undo')
     }
   }
 }
 </script>
-
 
 <style lang="stylus">
 .v-editor {
