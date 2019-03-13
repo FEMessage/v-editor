@@ -33,7 +33,7 @@
   };
 
   var Component = { render: function render() {
-      var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "v-editor" }, [_vm.showLoading ? _c('div', { staticClass: "loading-mask" }, [_c('div', { staticClass: "loading-content" }, [_vm._t("loading", [_c('p', [_vm._v("文件上传中...")])])], 2)]) : _vm._e(), _vm._v(" "), _c('div', { ref: "editor", staticStyle: { "text-align": "left" } }), _vm._v(" "), _c('upload-to-ali', _vm._b({ directives: [{ name: "show", rawName: "v-show", value: false, expression: "false" }], ref: "uploadToAli", attrs: { "multiple": "multiple" }, on: { "loading": _vm.handleLoading, "loaded": _vm.handleUploadFileSuccess } }, 'upload-to-ali', _vm.uploadOptions, false))], 1);
+      var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "v-editor" }, [_vm.showLoading ? _c('div', { staticClass: "loading-mask" }, [_c('div', { staticClass: "loading-content" }, [_vm._t("loading", [_c('p', [_vm._v("文件上传中...")])])], 2)]) : _vm._e(), _vm._v(" "), _c('div', { ref: "editor", staticStyle: { "text-align": "left" }, on: { "paste": _vm.paste } }), _vm._v(" "), _c('upload-to-ali', _vm._b({ directives: [{ name: "show", rawName: "v-show", value: false, expression: "false" }], ref: "uploadToAli", attrs: { "multiple": "multiple" }, on: { "loading": _vm.handleLoading, "loaded": _vm.handleUploadFileSuccess } }, 'upload-to-ali', _vm.uploadOptions, false))], 1);
     }, staticRenderFns: [],
     name: 'VEditor',
     components: {
@@ -190,6 +190,10 @@
         //外部监听upload-loading，增加显示loading ui 逻辑
         this.showLoading = false;
         this.$emit('upload-loading', false);
+      },
+      paste: function paste(e) {
+        if (!e.clipboardData.files.length) return;
+        this.$refs.uploadToAli.paste(e);
       }
     }
   };
