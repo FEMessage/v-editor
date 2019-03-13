@@ -3,13 +3,14 @@
     <div class="loading-mask"
          v-if="showLoading">
       <div class="loading-content">
-        <slot name='loading'>
+        <slot name="loading">
           <p>文件上传中...</p>
         </slot>
       </div>
     </div>
     <div ref="editor"
-         style="text-align:left">
+         style="text-align:left"
+         @paste="paste">
     </div>
     <upload-to-ali multiple
                    v-show="false"
@@ -189,6 +190,7 @@ export default {
             '<img src="' + item + '" style="max-width:100%;"/>'
           )
         })
+        console.log(urls)
       } else {
         //外部监听upload-error，增加错误上传的处理
         this.$emit('upload-error')
@@ -196,6 +198,9 @@ export default {
       //外部监听upload-loading，增加显示loading ui 逻辑
       this.showLoading = false
       this.$emit('upload-loading', false)
+    },
+    paste(e) {
+      this.$refs.uploadToAli.paste(e)
     }
   }
 }
