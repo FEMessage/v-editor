@@ -131,6 +131,16 @@ export default {
       this.$emit('input', value)
     }
 
+    editor.customConfig.pasteTextHandle = content => {
+      let flag
+
+      this.$once('edge-case:pasteTextHandle', isHaveFiles => {
+        flag = isHaveFiles
+      })
+
+      if (flag) return content
+    }
+
     editor.customConfig.onfocus = html => {
       // 选中焦点时不处理watch value
       this.enableUpdateValue = false
@@ -199,7 +209,9 @@ export default {
       this.$emit('upload-loading', false)
     },
     paste(e) {
-      if (!e.clipboardData.files.length) return
+      const isHaveFiles = e.clipboardData.files.length > 0
+      this.$emit('edge-case:pasteTextHandle', isHaveFiles)
+      if (!isHaveFiles) return
       this.$refs.uploadToAli.paste(e)
     }
   }
