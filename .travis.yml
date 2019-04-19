@@ -1,0 +1,11 @@
+language: node_js
+node_js:
+- lts/*
+git:
+  depth: 3
+deploy:
+  on:
+    branch: master
+  provider: npm
+  email: levy9527@qq.com
+  # api_key: travis encrypt YOUR_AUTH_TOKEN --add deploy.api_key --com
