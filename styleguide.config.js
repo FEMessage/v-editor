@@ -14,7 +14,7 @@ module.exports = {
   ribbon: {
     url: 'https://github.com/FEMessage/v-editor'
   },
-  require: ['./styleguidist/element.js', './styleguidist/upload-to-ali.js'],
+  require: ['./styleguide/element.js', './styleguide/upload-to-ali.js'],
   sections: [
     {
       name: 'Components',
