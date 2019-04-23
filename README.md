@@ -1,8 +1,11 @@
 # v-editor
 
+[![Build Status](https://travis-ci.com/FEMessage/v-editor.svg?branch=master)](https://travis-ci.com/FEMessage/v-editor)
 [![NPM Download](https://img.shields.io/npm/dm/@femessage/v-editor.svg)](https://www.npmjs.com/package/@femessage/v-editor)
 [![NPM Version](https://img.shields.io/npm/v/@femessage/v-editor.svg)](https://www.npmjs.com/package/@femessage/v-editor)
-[![NPM License](https://img.shields.io/npm/l/@femessage/v-editor.svg)](https://github.com/FEMessage/v-editor/blob/master/LICENSE)[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/FEMessage/v-editor/pulls)
+[![NPM License](https://img.shields.io/npm/l/@femessage/v-editor.svg)](https://github.com/FEMessage/v-editor/blob/master/LICENSE)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/FEMessage/v-editor/pulls)
+[![Automated Release Notes by gren](https://img.shields.io/badge/%F0%9F%A4%96-release%20notes-00B2EE.svg)](https://github-tools.github.io/github-release-notes/)
 
 根据 [wangEditor][wangeditor] 以及 [upload-to-ali][] 封装的轻量级富文本编辑器。
 
@@ -12,7 +15,7 @@
 
 * **[Introduction](#introduction)**
 * **[Feature](#feature)**
-* **[Documentation](#documentation)**
+* **[Demo](#demo)**
 * **[Pre install](#pre-install)**
 * **[Install](#install)**
 * **[Quick Start](#quick-start)**
@@ -52,9 +55,9 @@
 
 [⬆ Back to Top](#table-of-contents)
 
-## Documentation
+## Demo
 
-* [online demo](https://femessage.github.io/v-editor/storybook/)
+* [doc and online demo](https://femessage.github.io/v-editor/)
 
 [⬆ Back to Top](#table-of-contents)
 
