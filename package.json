@@ -28,7 +28,6 @@
       "rollup --config build/rollup.config.js --format es --file dist/v-editor.esm.js",
     "build:unpkg":
       "rollup --config build/rollup.config.js --format iife --file dist/v-editor.min.js",
-    "prepublishOnly": "npm run build",
     "precommit": "pretty-quick --staged"
   },
   "dependencies": {
