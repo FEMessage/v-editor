@@ -1,3 +1,6 @@
+branches:
+  only:
+    - master
 language: node_js
 node_js:
 - lts/*
@@ -5,6 +8,7 @@ git:
   depth: 3
 install:
 - yarn --frozen-lockfile
+before_script: echo OSS_KEY=$OSS_KEY\\nOSS_SECRET=$OSS_SECRET\\nOSS_BUCKET=$=OSS_BUCKET\\nOSS_REGION=$OSS_REGION > .env
 script:
 - yarn build
 cache: yarn
