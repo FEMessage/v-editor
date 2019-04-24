@@ -18,3 +18,4 @@ deploy:
   provider: npm
   email: levy9527@qq.com
   api_key: $NPM_TOKEN
+  keep-history: true
