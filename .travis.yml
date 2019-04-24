@@ -15,13 +15,6 @@ cache: yarn
 deploy:
 - on:
     branch: master
-  provider: pages
-  skip-cleanup: true
-  keep-history: true
-  local-dir: docs
-  github-token: $GITHUB_TOKEN
-- on:
-    branch: master
   provider: npm
   email: levy9527@qq.com
   api_key: $NPM_TOKEN
