@@ -108,7 +108,7 @@ export default {
   },
   mounted() {
     //初始化editor
-    var editor = new E(this.$refs.editor)
+    const editor = new E(this.$refs.editor)
     // 允许自定义上传
     editor.customConfig.qiniu = true
     // 自定义菜单配置
@@ -125,10 +125,16 @@ export default {
       this.editorOptions.onchangeTimeout || defaultEditorOptions.onchangeTimeout // 单位 ms
 
     editor.customConfig.onchange = html => {
-      // 输入内容为空时，返回空字符串，而不是<p><br></p>
-      let value = editor && editor.$textElem[0].textContent.trim() ? html : ''
-      // html 即变化之后的内容
-      this.$emit('input', value)
+      // NOTE: 输入内容为空时，返回空字符串。空的quote和table都算内容为空
+      // WARNING: editor.txt.text()返回的是去掉标签的html内容
+      // 这意味着空table的时候返回一堆'&nbsp...'
+      // WARNING: 斜体和加粗会往内容中插入'zero width space'，会干扰空值判断
+      const noText = !editor.$textElem[0].textContent
+        .trim()
+        .replace(/\u200b/g, '')
+      // WARNING: 注意只有图片的情况
+      const noImg = !html.includes('img')
+      this.$emit('input', noText && noImg ? '' : html)
     }
 
     editor.customConfig.onfocus = html => {
