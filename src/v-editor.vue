@@ -69,6 +69,27 @@ export default {
       }
     },
     /**
+     * 设置menu的背景颜色
+     */
+    menuBackgroundColor: {
+      type: String,
+      default: '#f1f1f1'
+    },
+    /**
+     * 设置menu的item的颜色
+     */
+    menuItemColor: {
+      type: String,
+      default: '#999'
+    },
+    /**
+     * 设置menu的item的hover颜色
+     */
+    menuItemHoverColor: {
+      type: String,
+      default: '#333'
+    },
+    /**
      * 编辑器的高度
      * 默认高度为400px
      */
@@ -149,6 +170,24 @@ export default {
       .disabled
       ? 'none'
       : ''
+
+    const toolbar = this.$refs.editor.querySelector('.w-e-toolbar')
+    toolbar.style.backgroundColor = this.menuBackgroundColor
+    toolbar
+      .querySelectorAll('.w-e-menu i')
+      .forEach(i => (i.style.color = this.menuItemColor))
+    toolbar.querySelectorAll('.w-e-menu').forEach(item => {
+      const i = item.querySelector('i')
+      item.addEventListener(
+        'mouseenter',
+        () => (i.style.color = this.menuItemHoverColor)
+      )
+      item.addEventListener(
+        'mouseleave',
+        () => (i.style.color = this.menuItemColor)
+      )
+    })
+
     editor.$textElem.attr('contenteditable', !this.disabled)
 
     //设置编辑器的高度
