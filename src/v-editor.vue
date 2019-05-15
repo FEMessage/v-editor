@@ -124,15 +124,21 @@ export default {
     editor.customConfig.onchangeTimeout =
       this.editorOptions.onchangeTimeout || defaultEditorOptions.onchangeTimeout // 单位 ms
 
+    /**
+     * onchange里要处理空值校验的问题:
+     * 目标：v-editor视觉上内容为空(无文本无图片)时，value为''
+     * 默认情况下，v-editor视觉上内容为空时，value不为空，可能包括以下情况：
+     * 1. 空内容的斜体、加粗符号
+     * 2. 空内容的quote块
+     * 3. 空内容的table
+     */
     editor.customConfig.onchange = html => {
-      // NOTE: 输入内容为空时，返回空字符串。空的quote和table都算内容为空
-      // WARNING: editor.txt.text()返回的是去掉标签的html内容
-      // 这意味着空table的时候返回一堆'&nbsp...'
-      // WARNING: 斜体和加粗会往内容中插入'zero width space'，会干扰空值判断
+      // 不使用editor.txt.text()的原因是，该方法返回的是去掉标签的html内容，则空格是&nbsp，无法被trim
       const noText = !editor.$textElem[0].textContent
         .trim()
+        // 处理斜体和加粗符号('zero-width space')
         .replace(/\u200b/g, '')
-      // WARNING: 注意只有图片的情况
+
       const noImg = !html.includes('img')
       this.$emit('input', noText && noImg ? '' : html)
     }
