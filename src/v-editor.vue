@@ -115,9 +115,9 @@ export default {
   },
   watch: {
     disabled(val, oldVal) {
-      document.querySelector('.w-e-toolbar').style['pointer-events'] = val
-        ? 'none'
-        : ''
+      this.$refs.editor.querySelector('.w-e-toolbar').style[
+        'pointer-events'
+      ] = val ? 'none' : ''
       this.editor.$textElem.attr('contenteditable', !val)
     },
     value(val, oldVal) {
@@ -166,18 +166,16 @@ export default {
     //设置默认值
     editor.txt.html(editorValue(this.value))
     //是否禁用编辑器
-    document.querySelector('.w-e-toolbar').style['pointer-events'] = this
-      .disabled
-      ? 'none'
-      : ''
-
+    editor.$textElem.attr('contenteditable', !this.disabled)
+    
     const toolbar = this.$refs.editor.querySelector('.w-e-toolbar')
+    toolbar.style['pointer-events'] = this.disabled ? 'none' : ''
+
+    //设置toolbar的颜色
     toolbar.style.backgroundColor = this.menuBackgroundColor
-    toolbar
-      .querySelectorAll('.w-e-menu i')
-      .forEach(i => (i.style.color = this.menuItemColor))
     toolbar.querySelectorAll('.w-e-menu').forEach(item => {
       const i = item.querySelector('i')
+      i.style.color = this.menuItemColor
       item.addEventListener(
         'mouseenter',
         () => (i.style.color = this.menuItemHoverColor)
@@ -188,10 +186,8 @@ export default {
       )
     })
 
-    editor.$textElem.attr('contenteditable', !this.disabled)
-
     //设置编辑器的高度
-    document.querySelector('.w-e-text-container').style.height = `${
+    this.$refs.editor.querySelector('.w-e-text-container').style.height = `${
       this.height
     }px`
 
