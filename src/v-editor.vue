@@ -108,7 +108,7 @@ export default {
   },
   mounted() {
     //初始化editor
-    var editor = new E(this.$refs.editor)
+    const editor = new E(this.$refs.editor)
     // 允许自定义上传
     editor.customConfig.qiniu = true
     // 自定义菜单配置
@@ -124,11 +124,23 @@ export default {
     editor.customConfig.onchangeTimeout =
       this.editorOptions.onchangeTimeout || defaultEditorOptions.onchangeTimeout // 单位 ms
 
+    /**
+     * onchange里要处理空值校验的问题:
+     * 目标：v-editor视觉上内容为空(无文本无图片)时，value为''
+     * 默认情况下，v-editor视觉上内容为空时，value不为空，可能包括以下情况：
+     * 1. 空内容的斜体、加粗符号
+     * 2. 空内容的quote块
+     * 3. 空内容的table
+     */
     editor.customConfig.onchange = html => {
-      // 输入内容为空时，返回空字符串，而不是<p><br></p>
-      let value = editor && editor.$textElem[0].textContent.trim() ? html : ''
-      // html 即变化之后的内容
-      this.$emit('input', value)
+      // 不使用editor.txt.text()的原因是，该方法返回的是去掉标签的html内容，则空格是&nbsp，无法被trim
+      const noText = !editor.$textElem[0].textContent
+        .trim()
+        // 处理斜体和加粗符号('zero-width space')
+        .replace(/\u200b/g, '')
+
+      const noImg = !html.includes('img')
+      this.$emit('input', noText && noImg ? '' : html)
     }
 
     editor.customConfig.onfocus = html => {
