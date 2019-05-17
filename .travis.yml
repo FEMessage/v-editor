@@ -1,6 +1,6 @@
-branches:
-  only:
-    - master
+#branches:
+#  only:
+#    - master
 language: node_js
 node_js:
 - lts/*
@@ -8,20 +8,18 @@ git:
   depth: 3
 install:
 - yarn --frozen-lockfile
-before_script: echo OSS_KEY=$OSS_KEY\\nOSS_SECRET=$OSS_SECRET\\nOSS_BUCKET=$=OSS_BUCKET\\nOSS_REGION=$OSS_REGION > .env
+before_script: 
+- echo OSS_KEY=$OSS_KEY >> .env
+- echo OSS_SECRET=$OSS_SECRET >> .env
+- echo OSS_BUCKET=$OSS_BUCKET >> .env
+- echo OSS_REGION=$OSS_REGION >> .env
 script:
 - yarn build
 cache: yarn
 deploy:
 - on:
     branch: master
-  provider: pages
-  skip-cleanup: true
-  keep-history: true
-  local-dir: docs
-  github-token: $GITHUB_TOKEN
-- on:
-    branch: master
   provider: npm
   email: levy9527@qq.com
   api_key: $NPM_TOKEN
+  keep-history: true

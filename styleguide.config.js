@@ -1,6 +1,8 @@
 const {VueLoaderPlugin} = require('vue-loader')
 const path = require('path')
 const glob = require('glob')
+const env = require('dotenv').config().parsed
+console.log('env: ' + JSON.stringify(env))
 
 const demos = glob.sync('docs/!(basic).md')
 const demoSections = [
@@ -62,7 +64,7 @@ module.exports = {
     plugins: [
       new VueLoaderPlugin(),
       new (require('webpack')).DefinePlugin({
-        'process.env': JSON.stringify(require('dotenv').config().parsed)
+        'process.env': JSON.stringify(env)
       })
     ]
   }
