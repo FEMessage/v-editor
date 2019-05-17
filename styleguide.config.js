@@ -2,7 +2,7 @@ const {VueLoaderPlugin} = require('vue-loader')
 const path = require('path')
 const glob = require('glob')
 const env = require('dotenv').config().parsed
-console.log('env: ' + env)
+console.log('env: ' + JSON.stringify(env))
 
 const demos = glob.sync('docs/!(basic).md')
 const demoSections = [
