@@ -1,6 +1,6 @@
 {
   "name": "@femessage/v-editor",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "upload img and write rich text easily",
   "author": "https://github.com/FEMessage",
   "license": "MIT",
@@ -8,8 +8,16 @@
     "type": "git",
     "url": "https://github.com/FEMessage/v-editor.git"
   },
-  "keywords": ["vue", "sfc", "component"],
-  "files": ["src", "dist", "yarn.lock"],
+  "keywords": [
+    "vue",
+    "sfc",
+    "component"
+  ],
+  "files": [
+    "src",
+    "dist",
+    "yarn.lock"
+  ],
   "main": "dist/v-editor.umd.js",
   "module": "dist/v-editor.esm.js",
   "unpkg": "dist/v-editor.min.js",
@@ -19,14 +27,10 @@
   "scripts": {
     "dev": "vue-styleguidist server",
     "doc": "vue-styleguidist build",
-    "build":
-      "npm run build:unpkg & npm run build:es & npm run build:umd & npm run doc",
-    "build:umd":
-      "rollup --config build/rollup.config.js --format umd --file dist/v-editor.umd.js",
-    "build:es":
-      "rollup --config build/rollup.config.js --format es --file dist/v-editor.esm.js",
-    "build:unpkg":
-      "rollup --config build/rollup.config.js --format iife --file dist/v-editor.min.js",
+    "build": "npm run build:unpkg & npm run build:es & npm run build:umd & npm run doc",
+    "build:umd": "rollup --config build/rollup.config.js --format umd --file dist/v-editor.umd.js",
+    "build:es": "rollup --config build/rollup.config.js --format es --file dist/v-editor.esm.js",
+    "build:unpkg": "rollup --config build/rollup.config.js --format iife --file dist/v-editor.min.js",
     "precommit": "pretty-quick --staged",
     "stdver": "standard-version -m '[skip ci] chore(release): v%s'",
     "release": "gren release --override"
