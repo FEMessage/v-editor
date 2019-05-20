@@ -57,7 +57,7 @@
 
 ## Demo
 
-* [doc and online demo](https://femessage.github.io/v-editor/docs/)
+* [doc and online demo](https://femessage.github.io/v-editor/)
 
 [⬆ Back to Top](#table-of-contents)
 
