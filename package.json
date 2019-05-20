@@ -29,8 +29,7 @@
       "rollup --config build/rollup.config.js --format iife --file dist/v-editor.min.js",
     "precommit": "pretty-quick --staged",
     "stdver": "standard-version -m '[skip ci] chore(release): v%s'",
-    "release": "gren release --override",
-    "upgrade-cli": "npx vue-sfc-cli --upgrade"
+    "release": "gren release --override"
   },
   "dependencies": {
     "wangeditor": "^3.1.1"
