@@ -1,0 +1,57 @@
+{
+  "projectName": "v-editor",
+  "projectOwner": "FEMessage",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "commitConvention": "angular",
+  "contributors": [
+    {
+      "login": "kunzhijia",
+      "name": "kunzhijia",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/4848041?v=4",
+      "profile": "https://github.com/kunzhijia",
+      "contributions": [
+        "code",
+        "bug",
+        "doc"
+      ]
+    },
+    {
+      "login": "listars",
+      "name": "listars",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/20613509?v=4",
+      "profile": "https://github.com/listars",
+      "contributions": [
+        "bug",
+        "doc"
+      ]
+    },
+    {
+      "login": "donaldshen",
+      "name": "Donald Shen",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/19591950?v=4",
+      "profile": "https://donaldshen.github.io/portfolio",
+      "contributions": [
+        "bug",
+        "doc"
+      ]
+    },
+    {
+      "login": "levy9527",
+      "name": "levy",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/9384365?v=4",
+      "profile": "http://levy.work",
+      "contributions": [
+        "review",
+        "infra",
+        "ideas"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7
+}
