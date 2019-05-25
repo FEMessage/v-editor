@@ -2,10 +2,7 @@
 
 ```vue
 <template>
-  <div>
-    <v-editor v-model="content"/>
-    <input v-model="content"/>
-  </div>
+  <v-editor v-model="content"/>
 </template>
 
 <script>

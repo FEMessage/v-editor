@@ -13,19 +13,19 @@
 
 ## Table of Contents
 
-* **[Introduction](#introduction)**
-* **[Feature](#feature)**
-* **[Demo](#demo)**
-* **[Pre install](#pre-install)**
-* **[Install](#install)**
-* **[Quick Start](#quick-start)**
-* **[Props](#props)**
-* **[Methods](#methods)**
-* **[Events](#events)**
-* **[Slots](#slots)**
-* **[Dev](#dev)**
-* **[License](#license)**
-* **[Contributors](#contributors)**
+* [v-editor](#v-editor)
+  * [Table of Contents](#table-of-contents)
+  * [Introduction](#introduction)
+    * [组件大小](#组件大小)
+    * [OSS 文件上传](#oss-文件上传)
+  * [Feature](#feature)
+  * [Demo](#demo)
+  * [Pre install](#pre-install)
+  * [Install](#install)
+  * [Quick start](#quick-start)
+  * [Dev](#dev)
+  * [License](#license)
+  * [Contributors](#contributors)
 
 ## Introduction
 
@@ -106,70 +106,13 @@ export default {
 
 [⬆ Back to Top](#table-of-contents)
 
-## Props
-
-| 参数          | 说明                                                                    | 类型    | 默认值                                            |
-| ------------- | ----------------------------------------------------------------------- | ------- | ------------------------------------------------- |
-| uploadOptions | 可自定义[upload-to-ali]上的所有属性                                     | Object  | {}                                                |
-| editorOptions | 可自定义[wangEditor] 部分参数，例子如下：{debug:false, menus: ['head']} | Object  | **[defaultEditorOptions](#defaultEditorOptions)** |
-| disabled      | 编辑器是否可编辑                                                        | Boolean | false                                             |
-| height        | 编辑器高度，单位**px**                                                  | Number  | 400                                               |
-
-### defaultEditorOptions（默认编辑器参数）
-
-| 参数            | 说明                                                    | 类型    | 默认值                                                                                                                                                                  |
-| --------------- | ------------------------------------------------------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| debug           | debug 模式下，有 JS 错误会以 throw Error 方式提示出来。 | Boolean | false                                                                                                                                                                   |
-| onchangeTimeout | 自定义 onchange 触发的延迟时间，单位 **ms**             | Number  | 200                                                                                                                                                                     |
-| menus           | 默认菜单配置                                            | Array   | ["head","bold","fontSize","fontName","italic","underline","strikeThrough","foreColor","backColor","link","list","justify","quote","image","table","code","undo","redo"] |
-
-[⬆ Back to Top](#table-of-contents)
-
-## Methods
-
-| 方法      | 说明                                                           | 返回值      |
-| --------- | -------------------------------------------------------------- | ----------- |
-| getEditor | 返回的是 wangEditor 对象，用于调用[wangEditor api][wangeditor] | editor 对象 |
-
-[⬆ Back to Top](#table-of-contents)
-
-## Events
-
-| 事件           | 说明                             | 回调参数   |
-| -------------- | -------------------------------- | ---------- |
-| upload-loading | 可监听并增加上传 loading 交互    | 是否加载中 |
-| upload-error   | 可监听并增加上传错误时的提醒交互 | -          |
-
-[⬆ Back to Top](#table-of-contents)
-
-## Slots
-
-| 插槽    | 说明           |
-| ------- | -------------- |
-| loading | 自定义上传文本 |
-
-[⬆ Back to Top](#table-of-contents)
-
 ## Dev
 
-install dependency
-
-```
+```bash
+# 安装依赖
 yarn
-
-yarn add @femessage/upload-to-ali -P
-```
-
-run dev story
-
-```
-yarn story
-```
-
-publish to npm
-
-```
-npm publish --access public
+# 开启styleguidist server
+yarn dev
 ```
 
 [⬆ Back to Top](#table-of-contents)

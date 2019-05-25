@@ -176,8 +176,11 @@ export default {
     this.editor = editor
   },
   methods: {
+    /**
+     * 暴露当前编辑器，可以在外部调用编辑器的功能
+     * @public
+     */
     getEditor() {
-      //暴露当前编辑器，可以在外部调用编辑器的功能
       return this.editor
     },
     handleUpload() {
@@ -202,11 +205,16 @@ export default {
           )
         })
       } else {
-        //外部监听upload-error，增加错误上传的处理
+        /**
+         * 上传出错
+         */
         this.$emit('upload-error')
       }
       //外部监听upload-loading，增加显示loading ui 逻辑
       this.showLoading = false
+      /**
+       * 回调函数接受一个boolean，表明是否上传中
+       */
       this.$emit('upload-loading', false)
     },
     paste(e) {
