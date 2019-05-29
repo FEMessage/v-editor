@@ -6,7 +6,6 @@
     <template slot="loading">hello imgs...</template>
   </v-editor>
 </template>
-
 <script>
 export default {
   data() {
