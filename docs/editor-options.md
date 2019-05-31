@@ -2,9 +2,8 @@
 
 ```vue
 <template>
-  <v-editor v-model="content" :editorOptions="editorOptions"/>
+  <v-editor v-model="content" :editor-options="editorOptions"/>
 </template>
-
 <script>
 export default {
   data() {

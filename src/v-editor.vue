@@ -3,6 +3,7 @@
     <div class="loading-mask"
          v-if="showLoading">
       <div class="loading-content">
+        <!-- @slot 自定义上传文本 -->
         <slot name="loading">
           <p>文件上传中...</p>
         </slot>
@@ -40,8 +41,7 @@ export default {
   },
   props: {
     /**
-     * upload-to-ali的参数:
-     * 文档参看upload-to-ali;
+     * upload-to-ali的参数，参考[upload-to-ali文档](https://femessage.github.io/upload-to-ali)
      */
     uploadOptions: {
       type: Object,
@@ -59,8 +59,8 @@ export default {
       }
     },
     /**
-     * editor默认配置
-     * 文档查看 https://github.com/wangfupeng1988/wangEditor;
+     * editor配置，参考[wangEditor文档](https://github.com/wangfupeng1988/wangEditor)；
+     * [默认配置](https://github.com/FEMessage/v-editor/blob/dev/src/defaultEditorOptions.js)
      */
     editorOptions: {
       type: Object,
@@ -69,17 +69,14 @@ export default {
       }
     },
     /**
-     * 编辑器的高度
-     * 默认高度为400px
+     * 编辑器的高度，单位px
      */
     height: {
       type: Number,
       default: 400
     },
     /**
-     * 编辑器是否可编辑:
-     * false 可以编辑
-     * true 不可以编辑
+     * 编辑器是否可编辑
      */
     disabled: {
       type: Boolean,
@@ -176,6 +173,10 @@ export default {
     this.editor = editor
   },
   methods: {
+    /**
+     * 返回内部的wangEditor对象
+     * @public
+     */
     getEditor() {
       //暴露当前编辑器，可以在外部调用编辑器的功能
       return this.editor
@@ -202,11 +203,17 @@ export default {
           )
         })
       } else {
-        //外部监听upload-error，增加错误上传的处理
+        /**
+         * 可监听并增加上传错误时的提醒交互
+         */
         this.$emit('upload-error')
       }
       //外部监听upload-loading，增加显示loading ui 逻辑
       this.showLoading = false
+      /**
+       * 可监听并增加上传 loading 交互
+       * @property {boolean} loading - 是否加载中
+       */
       this.$emit('upload-loading', false)
     },
     paste(e) {

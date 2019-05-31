@@ -11,20 +11,18 @@
 
 ![view](./assets/view.png)
 
-## Table of Contents
+## Table of Contents <!-- omit in toc -->
 
-* **[Introduction](#introduction)**
-* **[Feature](#feature)**
-* **[Demo](#demo)**
-* **[Pre install](#pre-install)**
-* **[Install](#install)**
-* **[Quick Start](#quick-start)**
-* **[Props](#props)**
-* **[Methods](#methods)**
-* **[Events](#events)**
-* **[Slots](#slots)**
-* **[Dev](#dev)**
-* **[License](#license)**
+* [Introduction](#introduction)
+  * [组件大小](#组件大小)
+  * [OSS 文件上传](#oss-文件上传)
+* [Feature](#feature)
+* [Demo](#demo)
+* [Install](#install)
+* [Quick start](#quick-start)
+* [Dev](#dev)
+* [License](#license)
+* [Contributors](#contributors)
 
 ## Introduction
 
@@ -61,42 +59,32 @@
 
 [⬆ Back to Top](#table-of-contents)
 
-## Pre install
-
-```
-yarn add @femessage/upload-to-ali
-```
-
-[⬆ Back to Top](#table-of-contents)
-
 ## Install
 
-```
-yarn add @femessage/v-editor
+```sh
+# 上传图片功能依赖upload-to-ali组件
+yarn add @femessage/upload-to-ali @femessage/v-editor
 ```
 
 [⬆ Back to Top](#table-of-contents)
 
 ## Quick start
 
-```
+```vue
 //step1 确保oss配置
-
 //step2 在需要使用该渲染器的.vue文件中
 <template>
   <v-editor v-model="content"/>
 </template>
-
 <script>
 import VEditor from '@femessage/v-editor'
 export default {
-  name: 'my-page',
   components: {
     VEditor
   },
-  data(){
+  data() {
     return {
-      content:''
+      content: ''
     }
   }
 }
@@ -105,70 +93,13 @@ export default {
 
 [⬆ Back to Top](#table-of-contents)
 
-## Props
-
-| 参数          | 说明                                                                    | 类型    | 默认值                                            |
-| ------------- | ----------------------------------------------------------------------- | ------- | ------------------------------------------------- |
-| uploadOptions | 可自定义[upload-to-ali]上的所有属性                                     | Object  | {}                                                |
-| editorOptions | 可自定义[wangEditor] 部分参数，例子如下：{debug:false, menus: ['head']} | Object  | **[defaultEditorOptions](#defaultEditorOptions)** |
-| disabled      | 编辑器是否可编辑                                                        | Boolean | false                                             |
-| height        | 编辑器高度，单位**px**                                                  | Number  | 400                                               |
-
-### defaultEditorOptions（默认编辑器参数）
-
-| 参数            | 说明                                                    | 类型    | 默认值                                                                                                                                                                  |
-| --------------- | ------------------------------------------------------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| debug           | debug 模式下，有 JS 错误会以 throw Error 方式提示出来。 | Boolean | false                                                                                                                                                                   |
-| onchangeTimeout | 自定义 onchange 触发的延迟时间，单位 **ms**             | Number  | 200                                                                                                                                                                     |
-| menus           | 默认菜单配置                                            | Array   | ["head","bold","fontSize","fontName","italic","underline","strikeThrough","foreColor","backColor","link","list","justify","quote","image","table","code","undo","redo"] |
-
-[⬆ Back to Top](#table-of-contents)
-
-## Methods
-
-| 方法      | 说明                                                           | 返回值      |
-| --------- | -------------------------------------------------------------- | ----------- |
-| getEditor | 返回的是 wangEditor 对象，用于调用[wangEditor api][wangeditor] | editor 对象 |
-
-[⬆ Back to Top](#table-of-contents)
-
-## Events
-
-| 事件           | 说明                             | 回调参数   |
-| -------------- | -------------------------------- | ---------- |
-| upload-loading | 可监听并增加上传 loading 交互    | 是否加载中 |
-| upload-error   | 可监听并增加上传错误时的提醒交互 | -          |
-
-[⬆ Back to Top](#table-of-contents)
-
-## Slots
-
-| 插槽    | 说明           |
-| ------- | -------------- |
-| loading | 自定义上传文本 |
-
-[⬆ Back to Top](#table-of-contents)
-
 ## Dev
 
-install dependency
-
-```
+```sh
+# install dependency
 yarn
-
-yarn add @femessage/upload-to-ali -P
-```
-
-run dev story
-
-```
-yarn story
-```
-
-publish to npm
-
-```
-npm publish --access public
+# run vue-styleguidist
+yarn dev
 ```
 
 [⬆ Back to Top](#table-of-contents)
@@ -181,3 +112,16 @@ npm publish --access public
 
 [upload-to-ali]: https://github.com/FEMessage/upload-to-ali 'upload-to-ali'
 [wangeditor]: https://github.com/wangfupeng1988/wangEditor 'wangEditor'
+
+## Contributors
+
+Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+
+<!-- prettier-ignore -->
+<table><tr><td align="center"><a href="https://github.com/kunzhijia"><img src="https://avatars2.githubusercontent.com/u/4848041?v=4" width="100px;" alt="kunzhijia"/><br /><sub><b>kunzhijia</b></sub></a><br /><a href="https://github.com/FEMessage/v-editor/commits?author=kunzhijia" title="Code">💻</a> <a href="https://github.com/FEMessage/v-editor/issues?q=author%3Akunzhijia" title="Bug reports">🐛</a> <a href="https://github.com/FEMessage/v-editor/commits?author=kunzhijia" title="Documentation">📖</a></td><td align="center"><a href="https://github.com/listars"><img src="https://avatars2.githubusercontent.com/u/20613509?v=4" width="100px;" alt="listars"/><br /><sub><b>listars</b></sub></a><br /><a href="https://github.com/FEMessage/v-editor/issues?q=author%3Alistars" title="Bug reports">🐛</a> <a href="https://github.com/FEMessage/v-editor/commits?author=listars" title="Documentation">📖</a></td><td align="center"><a href="https://donaldshen.github.io/portfolio"><img src="https://avatars3.githubusercontent.com/u/19591950?v=4" width="100px;" alt="Donald Shen"/><br /><sub><b>Donald Shen</b></sub></a><br /><a href="https://github.com/FEMessage/v-editor/issues?q=author%3Adonaldshen" title="Bug reports">🐛</a> <a href="https://github.com/FEMessage/v-editor/commits?author=donaldshen" title="Documentation">📖</a></td><td align="center"><a href="http://levy.work"><img src="https://avatars3.githubusercontent.com/u/9384365?v=4" width="100px;" alt="levy"/><br /><sub><b>levy</b></sub></a><br /><a href="#review-levy9527" title="Reviewed Pull Requests">👀</a> <a href="#infra-levy9527" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="#ideas-levy9527" title="Ideas, Planning, & Feedback">🤔</a></td></tr></table>
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
