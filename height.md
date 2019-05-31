@@ -2,9 +2,8 @@
 
 ```vue
 <template>
-  <v-editor v-model="content" :height="height"></v-editor>
+  <v-editor v-model="content" :height="height" />
 </template>
-
 <script>
 export default {
   data() {

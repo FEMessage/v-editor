@@ -3,13 +3,10 @@
 ```vue
 <template>
   <div>
-    <v-editor v-model="content" :disabled="disabled" :height="height"></v-editor>
-    <div>
-      <button @click="disabled=!disabled">禁用:{{disabled}}</button>
-    </div>
+    <v-editor v-model="content" :disabled="disabled" :height="height" />
+    <button @click="disabled=!disabled">禁用:{{disabled}}</button>
   </div>
 </template>
-
 <script>
 export default {
   data() {
