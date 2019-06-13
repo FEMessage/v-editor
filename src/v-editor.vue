@@ -157,8 +157,11 @@ export default {
     toolbar.style['pointer-events'] = this.disabled ? 'none' : ''
     // 设置toolbar的颜色
     const borderColor = '#CAD1E8'
+    const borderRadius = '4px'
     toolbar.style.backgroundColor = '#F4F6FA'
     toolbar.style.borderColor = borderColor
+    toolbar.style.borderTopLeftRadius = borderRadius
+    toolbar.style.borderTopRightRadius = borderRadius
     const opacityIdle = 0.6
     const opacityFocus = 1
     toolbar.querySelectorAll('.w-e-menu').forEach(item => {
@@ -176,6 +179,8 @@ export default {
     const textContainer = this.$refs.editor.querySelector('.w-e-text-container')
     textContainer.style.borderColor = borderColor
     textContainer.style.height = `${this.height}px`
+    textContainer.style.borderBottomLeftRadius = borderRadius
+    textContainer.style.borderBottomRightRadius = borderRadius
 
     //监听上传图标的点击事件
     document
