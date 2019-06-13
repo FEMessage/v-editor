@@ -1,7 +1,6 @@
 <template>
   <div class="v-editor">
-    <div class="loading-mask"
-         v-if="showLoading">
+    <div class="loading-mask" v-if="showLoading">
       <div class="loading-content">
         <!-- @slot 自定义上传文本 -->
         <slot name="loading">
@@ -9,17 +8,15 @@
         </slot>
       </div>
     </div>
-    <div ref="editor"
-         style="text-align:left"
-         @paste="paste">
-    </div>
-    <upload-to-ali multiple
-                   v-show="false"
-                   ref="uploadToAli"
-                   v-bind="uploadOptions"
-                   @loading="handleLoading"
-                   @loaded="handleUploadFileSuccess"></upload-to-ali>
-
+    <div ref="editor" style="text-align:left" @paste="paste"></div>
+    <upload-to-ali
+      multiple
+      v-show="false"
+      ref="uploadToAli"
+      v-bind="uploadOptions"
+      @loading="handleLoading"
+      @loaded="handleUploadFileSuccess"
+    />
   </div>
 </template>
 
@@ -154,15 +151,31 @@ export default {
     //设置默认值
     editor.txt.html(editorValue(this.value))
     //是否禁用编辑器
-    this.$refs.editor.querySelector('.w-e-toolbar').style[
-      'pointer-events'
-    ] = this.disabled ? 'none' : ''
     editor.$textElem.attr('contenteditable', !this.disabled)
 
+    const toolbar = this.$refs.editor.querySelector('.w-e-toolbar')
+    toolbar.style['pointer-events'] = this.disabled ? 'none' : ''
+    // 设置toolbar的颜色
+    const borderColor = '#CAD1E8'
+    toolbar.style.backgroundColor = '#F4F6FA'
+    toolbar.style.borderColor = borderColor
+    const opacityIdle = 0.6
+    const opacityFocus = 1
+    toolbar.querySelectorAll('.w-e-menu').forEach(item => {
+      const i = item.querySelector('i')
+      i.style.color = '#2D303B'
+      i.style.opacity = opacityIdle
+      item.addEventListener(
+        'mouseenter',
+        () => (i.style.opacity = opacityFocus)
+      )
+      item.addEventListener('mouseleave', () => (i.style.opacity = opacityIdle))
+    })
+
     //设置编辑器的高度
-    this.$refs.editor.querySelector('.w-e-text-container').style.height = `${
-      this.height
-    }px`
+    const textContainer = this.$refs.editor.querySelector('.w-e-text-container')
+    textContainer.style.borderColor = borderColor
+    textContainer.style.height = `${this.height}px`
 
     //监听上传图标的点击事件
     document
