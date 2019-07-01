@@ -5,36 +5,33 @@
 [![](https://img.shields.io/npm/l/@femessage/v-editor.svg#align=left&display=inline&height=20&originHeight=20&originWidth=78&status=done&width=78)](https://github.com/FEMessage/v-editor/blob/master/LICENSE)
 [![](https://img.shields.io/badge/PRs-welcome-brightgreen.svg#align=left&display=inline&height=20&originHeight=20&originWidth=90&status=done&width=90)](https://github.com/FEMessage/v-editor/pulls) [![](https://img.shields.io/badge/%F0%9F%A4%96-release%20notes-00B2EE.svg#align=left&display=inline&height=20&originHeight=20&originWidth=104&status=done&width=104)](https://github-tools.github.io/github-release-notes/)
 
-Lightweight rich text editor packaged according to [wang]()[Editor](https://github.com/wangfupeng1988/wangEditor) and [upload-to-ali](https://github.com/FEMessage/upload-to-ali).
+Lightweight rich text editor based on [wang]()[Editor](https://github.com/wangfupeng1988/wangEditor) and [upload-to-ali](https://github.com/FEMessage/upload-to-ali).
 
 ![view.png](https://cdn.nlark.com/yuque/0/2019/png/224563/1561712220041-fd0c73d2-b536-4195-b87e-8e5a4f200ac5.png#align=left&display=inline&height=355&name=view.png&originHeight=355&originWidth=939&size=14023&status=done&width=939)
 
-<a name="Idxrc"></a>
 
 ## Table of Contents
 
 - [Introduction](#introduction)
-  - [Component size](#%E7%BB%84%E4%BB%B6%E5%A4%A7%E5%B0%8F)
-  - [OSS file Upload](#oss-%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0)
+  - [Component Size](#component-size)
+  - [OSS File Upload](#oss-file-upload)
 - [Feature](#feature)
 - [Demo](#demo)
 - [Install](#install)
-- [Quick start](#quick-start)
+- [Quick Start](#quick-start)
 - [Dev](#dev)
 - [License](#license)
 - [Contributors](#contributors)
 
-<a name="Qi3m6"></a>
-
 ## Introduction
 
-The company's internal demand for rich text components is relatively simple: simple graphic arrangement.<br />Therefore, the selection of rich text components is mainly considered:
-
-<a name="CdOpx"></a>
+Our demand for rich text components is relatively simple: simple graphic arrangement.<br />Therefore, the key points are:
 
 ### Component size
 
-Tend to the most lightweight rich text editor.<br />Selection and comparison of the industry's more famous (open source star is relatively high) components: quill, wangEditor, tinymce-vue, medium editor.
+Perfering the most lightweight rich text editor.
+
+Considering and comparing the most famous (open source star is relatively high) text-editor: quill, wangEditor, tinymce-vue, medium editor.
 
 ![diff.png](https://cdn.nlark.com/yuque/0/2019/png/224563/1561712281847-fea73ef8-4627-49ae-8e94-ae5aaee880d2.png#align=left&display=inline&height=1352&name=diff.png&originHeight=1352&originWidth=1680&size=85609&status=done&width=1680)<br />[⬆Back to Top](#table-of-contents)
 
@@ -44,7 +41,6 @@ Tend to the most lightweight rich text editor.<br />Selection and comparison of 
 
 Equipped with the [upload-to-ai][upload-to-ali] component, the rich text component can automatically upload the picture to oss, avoiding the image information to be stored in the content in base64 encoding, effectively compress text information.<br />[⬆Back to Top](#table-of-contents)
 
-<a name="sVEZZ"></a>
 
 ## Feature
 
