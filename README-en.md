@@ -73,7 +73,8 @@ yarn add @femessage/upload-to-ali @femessage/v-editor
 ## Quick start
 
 ```html
-//step1 Ensure oss config //step2 In the .vue file that needs to use the
+<!-- step1 Ensure oss config -->
+<!-- step2 In the .vue file that needs to use the -->
 renderer
 <template>
   <v-editor v-model="content" />
