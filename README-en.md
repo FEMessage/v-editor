@@ -92,8 +92,7 @@ renderer
 
 ## License
 
-[MIT](./LICENSE)<br />[⬆ Back to Top](#table-of-contents)<br />[upload-to-ali]: [https://github.com/FEMessage/upload-to-ali](https://github.com/FEMessage/upload-to-ali) 'upload-to-ali'<br />[wangeditor]: [https://github.com/wangfupeng1988/wangEditor](https://github.com/wangfupeng1988/wangEditor) 'wangEditor'
-
+[MIT](./LICENSE)<br />[⬆ Back to Top](#table-of-contents)
 
 ## Contributors
 
