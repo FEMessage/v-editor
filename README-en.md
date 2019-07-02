@@ -32,23 +32,31 @@ Perfering the most lightweight rich text editor.
 
 Considering and comparing the most famous (open source star is relatively high) text-editor: quill, wangEditor, tinymce-vue, medium editor.
 
-![diff.png](https://cdn.nlark.com/yuque/0/2019/png/224563/1561712281847-fea73ef8-4627-49ae-8e94-ae5aaee880d2.png#align=left&display=inline&height=1352&name=diff.png&originHeight=1352&originWidth=1680&size=85609&status=done&width=1680)<br />[⬆Back to Top](#table-of-contents)
+![diff.png](https://cdn.nlark.com/yuque/0/2019/png/224563/1561712281847-fea73ef8-4627-49ae-8e94-ae5aaee880d2.png#align=left&display=inline&height=1352&name=diff.png&originHeight=1352&originWidth=1680&size=85609&status=done&width=1680)
+
+[⬆Back to Top](#table-of-contents)
 
 
 ### File Upload
 
-Cooperate with the [upload-to-ai](https://github.com/FEMessage/upload-to-ali) component, the rich text component can automatically upload the picture to ali oss, avoiding the image information to be stored in the content in base64 encoding.<br />[⬆Back to Top](#table-of-contents)
+Cooperate with the [upload-to-ai](https://github.com/FEMessage/upload-to-ali) component, the rich text component can automatically upload the picture to ali oss, avoiding the image information to be stored in the content in base64 encoding.
+
+[⬆Back to Top](#table-of-contents)
 
 
 ## Feature
 
 - **Lightweight** : The smallest rich text editor, [Component Selection range](https://mubu.com/doc/sA3r4QKBK0) Reference (quill, tinymce-vue, medium editor)
-- **File Upload** : Integrated upload components, just configure the basic information of OSS ([Configuration Reference][upload-to-ali]), you can upload the picture to oss, support screenshot paste upload<br />[⬆Back to Top](#table-of-contents)
+- **File Upload** : Integrated upload components, just configure the basic information of OSS ([Configuration Reference][upload-to-ali]), you can upload the picture to oss, support screenshot paste upload
+
+[⬆Back to Top](#table-of-contents)
 
 
 ## Demo
 
-- [Doc and online demo](https://femessage.github.io/v-editor/)<br />[⬆Back to Top](#table-of-contents)
+- [Doc and online demo](https://femessage.github.io/v-editor/)
+
+[⬆Back to Top](#table-of-contents)
 
 
 ## Install
@@ -92,7 +100,9 @@ renderer
 
 ## License
 
-[MIT](./LICENSE)<br />[⬆ Back to Top](#table-of-contents)
+[MIT](./LICENSE)
+
+[⬆ Back to Top](#table-of-contents)
 
 ## Contributors
 
