@@ -37,7 +37,7 @@ Considering and comparing the most famous (open source star is relatively high) 
 
 ### File Upload
 
-Cooperate with the [upload-to-ai][https://github.com/FEMessage/upload-to-ali] component, the rich text component can automatically upload the picture to ali oss, avoiding the image information to be stored in the content in base64 encoding.<br />[⬆Back to Top](#table-of-contents)
+Cooperate with the [upload-to-ai](https://github.com/FEMessage/upload-to-ali) component, the rich text component can automatically upload the picture to ali oss, avoiding the image information to be stored in the content in base64 encoding.<br />[⬆Back to Top](#table-of-contents)
 
 
 ## Feature
