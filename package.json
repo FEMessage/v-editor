@@ -17,8 +17,8 @@
     "./sfc": "src/v-editor.vue"
   },
   "scripts": {
-    "test": "jest",
     "dev": "vue-styleguidist server",
+    "test": "jest",
     "doc": "vue-styleguidist build",
     "build":
       "npm run build:unpkg & npm run build:es & npm run build:umd & npm run doc",
