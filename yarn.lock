@@ -733,15 +733,17 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@femessage/img-preview@^1.1.1":
-  version "1.1.1"
-  resolved "https://registry.npmjs.org/@femessage/img-preview/-/img-preview-1.1.1.tgz#5a0a670ee52c6d55aefa8ad26787d13dee881997"
+"@femessage/img-preview@^1.2.0":
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/@femessage/img-preview/-/img-preview-1.2.3.tgz#f37f4a84799a6339f865ffee0ccc0dcd73506f15"
+  integrity sha512-TlK5GVH2Usc7ELvuQ+CZoShgnT56UP4boT6cQiDBKr2IjEKJoSXcACmIT3Iq3AO4WQoCfLXEMLSUKCY/wAalGg==
 
 "@femessage/upload-to-ali@^1.4.0":
-  version "1.4.0"
-  resolved "https://registry.npmjs.org/@femessage/upload-to-ali/-/upload-to-ali-1.4.0.tgz#ebac1b50b6c8e7db3c1bc39cbf90a23f96f86a9a"
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/@femessage/upload-to-ali/-/upload-to-ali-1.7.1.tgz#c07b2c8c9d579a7c5f09f7aff89f2e17ea39a5f3"
+  integrity sha512-DzSIbZIQlzsopA/h4aMKTgXTXPqU85WDwgkaILlZs/3oHDSlqsvkXD+XfIW2AY2czGmusddtxCD3ZwbYfSY/Yg==
   dependencies:
-    "@femessage/img-preview" "^1.1.1"
+    "@femessage/img-preview" "^1.2.0"
     ali-oss "^6.0.1"
     image-compressor.js "^1.1.4"
 
