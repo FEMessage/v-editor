@@ -11,6 +11,8 @@
 
 ![view](./assets/view.png)
 
+[English](./README-en.md)
+
 ## Table of Contents <!-- omit in toc -->
 
 * [Introduction](#introduction)
@@ -20,7 +22,6 @@
 * [Demo](#demo)
 * [Install](#install)
 * [Quick start](#quick-start)
-* [Dev](#dev)
 * [License](#license)
 * [Contributors](#contributors)
 
@@ -42,7 +43,7 @@
 
 ### OSS 文件上传
 
-搭载 [upload-to-ai][upload-to-ali] 组件，富文本组件能自动将图片上传到 oss，避免图片信息以 base64 编码形式保存在内容中，有效压缩文本信息。
+配合 [upload-to-ai][upload-to-ali] 组件，富文本组件能自动将图片上传到 oss，避免图片信息以 base64 编码形式保存在内容中。
 
 [⬆ Back to Top](#table-of-contents)
 
@@ -93,16 +94,6 @@ export default {
 
 [⬆ Back to Top](#table-of-contents)
 
-## Dev
-
-```sh
-# install dependency
-yarn
-# run vue-styleguidist
-yarn dev
-```
-
-[⬆ Back to Top](#table-of-contents)
 
 ## License
 
