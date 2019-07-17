@@ -15,15 +15,15 @@
 
 ## Table of Contents <!-- omit in toc -->
 
-* [Introduction](#Introduction)
+* [Introduction](#introduction)
   * [组件大小](#组件大小)
-  * [OSS 文件上传](#OSS-文件上传)
-* [Feature](#Feature)
-* [Demo](#Demo)
-* [Install](#Install)
-* [Quick start](#Quick-start)
-* [License](#License)
-* [Contributors](#Contributors)
+  * [OSS 文件上传](#oss-文件上传)
+* [Feature](#feature)
+* [Demo](#demo)
+* [Install](#install)
+* [Quick start](#quick-start)
+* [License](#license)
+* [Contributors](#contributors)
 
 ## Introduction
 
