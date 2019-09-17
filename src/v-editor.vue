@@ -92,12 +92,6 @@ export default {
         'pointer-events'
       ] = val ? 'none' : ''
       this.editor.$textElem.attr('contenteditable', !val)
-    },
-    value(val, oldVal) {
-      //更新编辑器内容会导致光标偏移, 故只在blur之后更新
-      if (this.enableUpdateValue) {
-        this.editor && this.editor.$textElem.html(editorValue(val))
-      }
     }
   },
   mounted() {
@@ -127,15 +121,6 @@ export default {
      * 3. 空内容的table
      */
     editor.customConfig.onchange = this.emitValue
-
-    editor.customConfig.onfocus = html => {
-      // 选中焦点时不处理watch value
-      this.enableUpdateValue = false
-    }
-    editor.customConfig.onblur = html => {
-      // 失去焦点时watch value
-      this.enableUpdateValue = true
-    }
 
     editor.create()
 
