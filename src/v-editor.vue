@@ -25,7 +25,7 @@ import E from 'wangeditor'
 import UploadToAli from '@femessage/upload-to-ali'
 import defaultEditorOptions from './defaultEditorOptions'
 
-const HTML_PATTERN = /^<[a-z].*>$/i
+const HTML_PATTERN = /^<[a-z\s]+class="text-box"/i
 
 // 对齐wangEditor的样式
 const editorValue = val =>
@@ -126,16 +126,7 @@ export default {
      * 2. 空内容的quote块
      * 3. 空内容的table
      */
-    editor.customConfig.onchange = html => {
-      // 不使用editor.txt.text()的原因是，该方法返回的是去掉标签的html内容，则空格是&nbsp，无法被trim
-      const noText = !editor.$textElem[0].textContent
-        .trim()
-        // 处理斜体和加粗符号('zero-width space')
-        .replace(/\u200b/g, '')
-
-      const noImg = !html.includes('img')
-      this.$emit('input', noText && noImg ? '' : html)
-    }
+    editor.customConfig.onchange = this.emitValue
 
     editor.customConfig.onfocus = html => {
       // 选中焦点时不处理watch value
@@ -148,8 +139,6 @@ export default {
 
     editor.create()
 
-    //设置默认值
-    editor.txt.html(editorValue(this.value))
     //是否禁用编辑器
     editor.$textElem.attr('contenteditable', !this.disabled)
 
@@ -189,6 +178,10 @@ export default {
 
     //保存实例，用于后续处理
     this.editor = editor
+
+    //设置默认值
+    editor.txt.html(this.value)
+    this.emitValue(this.value)
   },
   methods: {
     /**
@@ -240,6 +233,16 @@ export default {
       const isCopyFromWeb = types.some(type => type === 'text/html')
       if (!files.length || isCopyFromWeb) return
       this.$refs.uploadToAli.paste(e)
+    },
+    emitValue(html = '') {
+      // 不使用editor.txt.text()的原因是，该方法返回的是去掉标签的html内容，则空格是&nbsp，无法被trim
+      const noText = !this.editor.$textElem[0].textContent
+        .trim()
+        // 处理斜体和加粗符号('zero-width space')
+        .replace(/\u200b/g, '')
+
+      const noImg = !html.includes('img')
+      this.$emit('input', noText && noImg ? '' : editorValue(html))
     }
   }
 }
