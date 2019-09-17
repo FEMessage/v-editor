@@ -235,7 +235,10 @@ export default {
       this.$emit('upload-loading', false)
     },
     paste(e) {
-      if (!e.clipboardData.files.length) return
+      const {clipboardData} = e
+      const {files, types} = clipboardData
+      const isCopyFromWeb = types.some(type => type === 'text/html')
+      if (!files.length || isCopyFromWeb) return
       this.$refs.uploadToAli.paste(e)
     }
   }
