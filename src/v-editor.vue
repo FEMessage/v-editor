@@ -82,7 +82,6 @@ export default {
   },
   data() {
     return {
-      enableUpdateValue: true,
       showLoading: false
     }
   },
