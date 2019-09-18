@@ -117,7 +117,7 @@ export default {
     editor.customConfig.onchangeTimeout =
       this.editorOptions.onchangeTimeout || defaultEditorOptions.onchangeTimeout // 单位 ms
 
-    // 详细注释以及解释可以参考 emitValue
+    // 详细注释以及解释可以参考 method: `emitValue`
     editor.customConfig.onchange = this.emitValue
 
     // editor 聚焦时不触发 watch value
