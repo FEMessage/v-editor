@@ -24,6 +24,7 @@
 import E from 'wangeditor'
 import UploadToAli from '@femessage/upload-to-ali'
 import defaultEditorOptions from './defaultEditorOptions'
+import mixinFocusHack from './mixins/focusHack'
 
 const HTML_PATTERN = /^<[a-z\s]+class="text-box"/i
 
@@ -33,6 +34,7 @@ const editorValue = val =>
 
 export default {
   name: 'VEditor',
+  mixins: [mixinFocusHack],
   components: {
     UploadToAli
   },
@@ -150,6 +152,8 @@ export default {
         () => (i.style.opacity = opacityFocus)
       )
       item.addEventListener('mouseleave', () => (i.style.opacity = opacityIdle))
+
+      this.addToolbarItemClickEvent(item)
     })
 
     //设置编辑器的高度
@@ -214,6 +218,7 @@ export default {
        * @property {boolean} loading - 是否加载中
        */
       this.$emit('upload-loading', false)
+      this.enableUpdateValue = false
     },
     paste(e) {
       const {clipboardData} = e
