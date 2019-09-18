@@ -25,7 +25,7 @@ import E from 'wangeditor'
 import UploadToAli from '@femessage/upload-to-ali'
 import defaultEditorOptions from './defaultEditorOptions'
 
-const HTML_PATTERN = /^<[a-z].*>$/i
+const HTML_PATTERN = /^<[a-z\s]+class="text-box"/i
 
 // 对齐wangEditor的样式
 const editorValue = val =>
@@ -82,7 +82,6 @@ export default {
   },
   data() {
     return {
-      enableUpdateValue: true,
       showLoading: false
     }
   },
@@ -92,12 +91,6 @@ export default {
         'pointer-events'
       ] = val ? 'none' : ''
       this.editor.$textElem.attr('contenteditable', !val)
-    },
-    value(val, oldVal) {
-      //更新编辑器内容会导致光标偏移, 故只在blur之后更新
-      if (this.enableUpdateValue) {
-        this.editor && this.editor.$textElem.html(editorValue(val))
-      }
     }
   },
   mounted() {
@@ -118,38 +111,11 @@ export default {
     editor.customConfig.onchangeTimeout =
       this.editorOptions.onchangeTimeout || defaultEditorOptions.onchangeTimeout // 单位 ms
 
-    /**
-     * onchange里要处理空值校验的问题:
-     * 目标：v-editor视觉上内容为空(无文本无图片)时，value为''
-     * 默认情况下，v-editor视觉上内容为空时，value不为空，可能包括以下情况：
-     * 1. 空内容的斜体、加粗符号
-     * 2. 空内容的quote块
-     * 3. 空内容的table
-     */
-    editor.customConfig.onchange = html => {
-      // 不使用editor.txt.text()的原因是，该方法返回的是去掉标签的html内容，则空格是&nbsp，无法被trim
-      const noText = !editor.$textElem[0].textContent
-        .trim()
-        // 处理斜体和加粗符号('zero-width space')
-        .replace(/\u200b/g, '')
-
-      const noImg = !html.includes('img')
-      this.$emit('input', noText && noImg ? '' : html)
-    }
-
-    editor.customConfig.onfocus = html => {
-      // 选中焦点时不处理watch value
-      this.enableUpdateValue = false
-    }
-    editor.customConfig.onblur = html => {
-      // 失去焦点时watch value
-      this.enableUpdateValue = true
-    }
+    // 详细注释以及解释可以参考 emitValue 行号大约为 225
+    editor.customConfig.onchange = this.emitValue
 
     editor.create()
 
-    //设置默认值
-    editor.txt.html(editorValue(this.value))
     //是否禁用编辑器
     editor.$textElem.attr('contenteditable', !this.disabled)
 
@@ -189,6 +155,10 @@ export default {
 
     //保存实例，用于后续处理
     this.editor = editor
+
+    //设置默认值
+    editor.txt.html(this.value)
+    this.emitValue(this.value)
   },
   methods: {
     /**
@@ -240,6 +210,31 @@ export default {
       const isCopyFromWeb = types.some(type => type === 'text/html')
       if (!files.length || isCopyFromWeb) return
       this.$refs.uploadToAli.paste(e)
+    },
+
+    /**
+     * emitValue 里要处理空值校验的问题:
+     * 目标： v-editor 视觉上内容为空(无文本无图片)时，向上输出的 value 为 ''
+     * 默认情况下，v-editor 视觉上内容为空时，value 不为空，可能包括以下情况：
+     * 1. 空内容的斜体、加粗符号
+     * 2. 空内容的 quote 块
+     * 3. 空内容的 table
+     *      table是通过menu插入的表格。
+     *      wangEditor源码里默认生成的table每一个格子里都有一个空格&nbsp
+     */
+    emitValue(html = '') {
+      /**
+       * 不使用 editor.txt.text() 的原因是
+       * 该方法返回的是去掉标签的html内容
+       * 但空格是&nbsp，无法被trim
+       */
+      const noText = !this.editor.$textElem[0].textContent
+        .trim()
+        // 处理斜体和加粗符号('zero-width space')
+        .replace(/\u200b/g, '')
+
+      const noImg = !html.includes('img')
+      this.$emit('input', noText && noImg ? '' : editorValue(html))
     }
   }
 }
