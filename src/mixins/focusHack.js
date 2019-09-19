@@ -1,3 +1,8 @@
+/**
+ * 一些小说明:
+ * `editor.$textElem[0]` 指的是实际可编辑的输入框
+ */
+
 const menuItemsStore = []
 
 export default {
