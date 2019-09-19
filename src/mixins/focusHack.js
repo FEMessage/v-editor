@@ -45,11 +45,11 @@ export default {
     },
 
     handleTextElementBlur() {
-      this.enableUpdateValue = false
+      this.enableUpdateValue = true
     },
 
     handleTextElementFocus() {
-      this.enableUpdateValue = true
+      this.enableUpdateValue = false
     }
   }
 }
