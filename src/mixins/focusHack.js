@@ -3,13 +3,13 @@
  * `editor.$textElem[0]` 指的是实际可编辑的输入框
  */
 
-const menuItems = []
+const toolbarItems = []
 
 export default {
   beforeDestory() {
     // 清除每个 menuItem 的点击事件监听器
-    if (menuItems.length) {
-      menuItems.forEach(item => {
+    if (toolbarItems.length) {
+      toolbarItems.forEach(item => {
         item.removeEventListener('click', this.handleMenuItemClick)
       })
     }
@@ -47,7 +47,7 @@ export default {
 
     addToolbarItemClickEvent(item) {
       item.addEventListener('click', this.handleMenuItemClick)
-      menuItems.push(item)
+      toolbarItems.push(item)
     },
 
     handleTextElementBlur() {
