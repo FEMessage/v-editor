@@ -7,6 +7,7 @@ const menuItems = []
 
 export default {
   beforeDestory() {
+    // 清除每个 menuItem 的点击事件监听器
     if (menuItems.length) {
       menuItems.forEach(item => {
         item.removeEventListener('click', this.handleMenuItemClick)
