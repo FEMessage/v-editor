@@ -141,12 +141,15 @@ export default {
     toolbar.style.borderColor = borderColor
     toolbar.style.borderTopLeftRadius = borderRadius
     toolbar.style.borderTopRightRadius = borderRadius
-    const opacityIdle = 0.6
-    const opacityFocus = 1
+
     toolbar.querySelectorAll('.w-e-menu').forEach(item => {
+      const opacityIdle = 0.6
+      const opacityFocus = 1
+
       const i = item.querySelector('i')
       i.style.color = '#2D303B'
       i.style.opacity = opacityIdle
+
       item.addEventListener(
         'mouseenter',
         () => (i.style.opacity = opacityFocus)
