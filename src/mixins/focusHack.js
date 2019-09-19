@@ -3,12 +3,12 @@
  * `editor.$textElem[0]` 指的是实际可编辑的输入框
  */
 
-const menuItemsStore = []
+const menuItems = []
 
 export default {
   beforeDestory() {
-    if (menuItemsStore.length) {
-      menuItemsStore.forEach(item => {
+    if (menuItems.length) {
+      menuItems.forEach(item => {
         item.removeEventListener('click', this.handleMenuItemClick)
       })
     }
@@ -46,7 +46,7 @@ export default {
 
     addToolbarItemClickEvent(item) {
       item.addEventListener('click', this.handleMenuItemClick)
-      menuItemsStore.push(item)
+      menuItems.push(item)
     },
 
     handleTextElementBlur() {
