@@ -153,7 +153,7 @@ export default {
       )
       item.addEventListener('mouseleave', () => (i.style.opacity = opacityIdle))
 
-      this.addToolbarItemClickEvent(item)
+      this.initToolbarItemFocusHack(item)
     })
 
     //设置编辑器的高度

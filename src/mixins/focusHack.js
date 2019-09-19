@@ -40,14 +40,14 @@ export default {
       )
     },
 
+    initToolbarItemFocusHack(item) {
+      item.addEventListener('click', this.handleMenuItemClick)
+      toolbarItems.push(item)
+    },
+
     handleMenuItemClick() {
       this.editor.$textElem[0].focus()
       this.enableUpdateValue = false
-    },
-
-    addToolbarItemClickEvent(item) {
-      item.addEventListener('click', this.handleMenuItemClick)
-      toolbarItems.push(item)
     },
 
     handleTextElementBlur() {
