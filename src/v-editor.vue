@@ -24,6 +24,7 @@
 import E from 'wangeditor'
 import UploadToAli from '@femessage/upload-to-ali'
 import defaultEditorOptions from './defaultEditorOptions'
+import mixinFocusHack from './mixins/focusHack'
 
 const HTML_PATTERN = /^<[a-z\s]+class="text-box"/i
 
@@ -33,6 +34,7 @@ const editorValue = val =>
 
 export default {
   name: 'VEditor',
+  mixins: [mixinFocusHack],
   components: {
     UploadToAli
   },
@@ -82,6 +84,7 @@ export default {
   },
   data() {
     return {
+      enableUpdateValue: true,
       showLoading: false
     }
   },
@@ -91,6 +94,11 @@ export default {
         'pointer-events'
       ] = val ? 'none' : ''
       this.editor.$textElem.attr('contenteditable', !val)
+    },
+    value(val) {
+      if (this.enableUpdateValue) {
+        this.editor && this.editor.txt.html(val)
+      }
     }
   },
   mounted() {
@@ -111,8 +119,13 @@ export default {
     editor.customConfig.onchangeTimeout =
       this.editorOptions.onchangeTimeout || defaultEditorOptions.onchangeTimeout // 单位 ms
 
-    // 详细注释以及解释可以参考 emitValue 行号大约为 225
+    // 详细注释以及解释可以参考 method: `emitValue`
     editor.customConfig.onchange = this.emitValue
+
+    // editor 聚焦时不触发 watch value
+    editor.customConfig.onfocus = () => (this.enableUpdateValue = false)
+    // editor 失焦时不触发 watch value
+    editor.customConfig.onblur = () => (this.enableUpdateValue = true)
 
     editor.create()
 
@@ -128,17 +141,22 @@ export default {
     toolbar.style.borderColor = borderColor
     toolbar.style.borderTopLeftRadius = borderRadius
     toolbar.style.borderTopRightRadius = borderRadius
-    const opacityIdle = 0.6
-    const opacityFocus = 1
+
     toolbar.querySelectorAll('.w-e-menu').forEach(item => {
+      const opacityIdle = 0.6
+      const opacityFocus = 1
+
       const i = item.querySelector('i')
       i.style.color = '#2D303B'
       i.style.opacity = opacityIdle
+
       item.addEventListener(
         'mouseenter',
         () => (i.style.opacity = opacityFocus)
       )
       item.addEventListener('mouseleave', () => (i.style.opacity = opacityIdle))
+
+      this.initToolbarItemFocusHack(item)
     })
 
     //设置编辑器的高度
@@ -159,6 +177,8 @@ export default {
     //设置默认值
     editor.txt.html(this.value)
     this.emitValue(this.value)
+
+    this.initFocusHack()
   },
   methods: {
     /**
@@ -203,6 +223,7 @@ export default {
        * @property {boolean} loading - 是否加载中
        */
       this.$emit('upload-loading', false)
+      this.enableUpdateValue = false
     },
     paste(e) {
       const {clipboardData} = e
