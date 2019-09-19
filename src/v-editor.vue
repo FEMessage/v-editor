@@ -174,6 +174,8 @@ export default {
     //设置默认值
     editor.txt.html(this.value)
     this.emitValue(this.value)
+
+    this.initTextElementFocusEvent()
   },
   methods: {
     /**
