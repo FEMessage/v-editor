@@ -19,7 +19,7 @@ export default {
   },
 
   methods: {
-    initTextElementFocusEvent() {
+    initTextElementEvent() {
       // 初始使之失焦以使得编辑框 `聚焦` 或 `失焦` 时得到理想效果
       this.editor.$textElem[0].blur()
 

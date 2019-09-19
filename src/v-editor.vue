@@ -175,7 +175,7 @@ export default {
     editor.txt.html(this.value)
     this.emitValue(this.value)
 
-    this.initTextElementFocusEvent()
+    this.initTextElementEvent()
   },
   methods: {
     /**
