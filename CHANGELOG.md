@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.8](https://github.com/FEMessage/v-editor/compare/v1.2.7...v1.2.8) (2019-10-12)
+
+
+
 ### [1.2.7](https://github.com/FEMessage/v-editor/compare/v1.2.6...v1.2.7) (2019-09-19)
 
 
