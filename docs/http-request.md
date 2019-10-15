@@ -11,9 +11,8 @@ export default {
     return {
       content: '',
       uploadOptions: {
-        beforeUpload: () => console.log('onBefore'),
-        httpRequest: this.myUpload,
-        tip: 'refliued'
+        beforeUpload: () => console.log('before upload'),
+        httpRequest: this.myUpload
       }
     }
   },
