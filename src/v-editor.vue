@@ -226,7 +226,7 @@ export default {
       this.$emit('upload-loading', false)
       this.enableUpdateValue = false
     },
-    handleUploadFileFail(error) {
+    handleUploadFileFail() {
       this.showLoading = false
     },
     paste(e) {
