@@ -16,6 +16,7 @@
       v-bind="uploadOptions"
       @loading="handleLoading"
       @loaded="handleUploadFileSuccess"
+      @fail="handleUploadFileFail"
     />
   </div>
 </template>
@@ -224,6 +225,9 @@ export default {
        */
       this.$emit('upload-loading', false)
       this.enableUpdateValue = false
+    },
+    handleUploadFileFail() {
+      this.showLoading = false
     },
     paste(e) {
       const {clipboardData} = e
