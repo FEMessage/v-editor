@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.9](https://github.com/FEMessage/v-editor/compare/v1.2.8...v1.2.9) (2019-10-15)
+
+
+### Bug Fixes
+
+* 上传失败后关闭上传中提示 ([#48](https://github.com/FEMessage/v-editor/issues/48)) ([7c0fe12](https://github.com/FEMessage/v-editor/commit/7c0fe12))
+
+
+
 ### [1.2.8](https://github.com/FEMessage/v-editor/compare/v1.2.7...v1.2.8) (2019-10-12)
 
 
