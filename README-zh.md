@@ -7,9 +7,9 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/FEMessage/v-editor/pulls)
 [![Automated Release Notes by gren](https://img.shields.io/badge/%F0%9F%A4%96-release%20notes-00B2EE.svg)](https://github-tools.github.io/github-release-notes/)
 
-根据 [wangEditor][https://github.com/wangfupeng1988/wangEditor] 以及 [upload-to-ali][https://github.com/FEMessage/upload-to-ali] 封装的轻量级富文本编辑器。
+根据 [wangEditor][https://github.com/wangfupeng1988/wangeditor] 以及 [upload-to-ali][https://github.com/femessage/upload-to-ali] 封装的轻量级富文本编辑器。
 
-![view.png](https://cdn.nlark.com/yuque/0/2019/png/224563/1561712220041-fd0c73d2-b536-4195-b87e-8e5a4f200ac5.png#align=left&display=inline&height=355&name=view.png&originHeight=355&originWidth=939&size=14023&status=done&width=939)
+![view.png](https://i.loli.net/2019/11/15/lyOexikTSA9qVJB.png)
 
 ## Table of Contents <!-- omit in toc -->
 
@@ -35,7 +35,7 @@
 
 选型对比了业界比较出名（开源 star 比较高）的组件：quill，wangEditor,tinymce-vue,medium editor。
 
-![diff.png](https://cdn.nlark.com/yuque/0/2019/png/224563/1561712281847-fea73ef8-4627-49ae-8e94-ae5aaee880d2.png#align=left&display=inline&height=1352&name=diff.png&originHeight=1352&originWidth=1680&size=85609&status=done&width=1680)
+![diff.png](https://i.loli.net/2019/11/15/UDTol9AGPw2B7Fy.png)
 
 [⬆ Back to Top](#table-of-contents)
 
