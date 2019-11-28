@@ -7,61 +7,61 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/FEMessage/v-editor/pulls)
 [![Automated Release Notes by gren](https://img.shields.io/badge/%F0%9F%A4%96-release%20notes-00B2EE.svg)](https://github-tools.github.io/github-release-notes/)
 
-Lightweight rich text editor based on [wangEditor](https://github.com/wangfupeng1988/wangEditor) and [upload-to-ali](https://github.com/FEMessage/upload-to-ali).
+根据 [wangEditor][https://github.com/wangfupeng1988/wangeditor] 以及 [upload-to-ali][https://github.com/femessage/upload-to-ali] 封装的轻量级富文本编辑器。
 
 ![view.png](https://i.loli.net/2019/11/15/lyOexikTSA9qVJB.png)
 
-[中文文档](./README-zh.md)
-
-## Table of Contents
+## Table of Contents <!-- omit in toc -->
 
 * [Introduction](#introduction)
-  * [Component Size](#component-size)
-  * [File Upload](#file-upload)
+  * [组件大小](#组件大小)
+  * [OSS 文件上传](#oss-文件上传)
 * [Feature](#feature)
 * [Demo](#demo)
 * [Install](#install)
-* [Quick Start](#quick-start)
+* [Quick start](#quick-start)
 * [License](#license)
 * [Contributors](#contributors)
 
 ## Introduction
 
-Our demand for rich text components is relatively simple: simple graphic arrangement.<br />Therefore, the key points are:
+公司内部对于富文本组件的需求比较简单：简单的图文编排。
 
-### Component size
+因此选型富文本组件主要考虑：
 
-Perfering the most lightweight rich text editor.
+### 组件大小
 
-Considering and comparing the most famous (open source star is relatively high) text-editor: quill, wangEditor, tinymce-vue, medium editor.
+倾向于最轻量的富文本编辑器。
+
+选型对比了业界比较出名（开源 star 比较高）的组件：quill，wangEditor,tinymce-vue,medium editor。
 
 ![diff.png](https://i.loli.net/2019/11/15/UDTol9AGPw2B7Fy.png)
 
-[⬆Back to Top](#table-of-contents)
+[⬆ Back to Top](#table-of-contents)
 
-### File Upload
+### OSS 文件上传
 
-Cooperate with the [upload-to-ai](https://github.com/FEMessage/upload-to-ali) component, the rich text component can automatically upload the picture to ali oss, avoiding the image information to be stored in the content in base64 encoding.
+配合 [upload-to-ai][upload-to-ali] 组件，富文本组件能自动将图片上传到 oss，避免图片信息以 base64 编码形式保存在内容中。
 
-[⬆Back to Top](#table-of-contents)
+[⬆ Back to Top](#table-of-contents)
 
 ## Feature
 
-* **Lightweight** : The smallest rich text editor, [Component Selection range](https://mubu.com/doc/sA3r4QKBK0) Reference (quill, tinymce-vue, medium editor)
-* **File Upload** : Integrated upload components, just configure the basic information of OSS ([Configuration Reference][upload-to-ali]), you can upload the picture to oss, support screenshot paste upload
+* **轻量**：最小的富文本编辑器，[组件选型范围](https://mubu.com/doc/sA3r4QKBK0) 参考了（quill,tinymce-vue,medium editor）
+* **oss 上传**：整合了上传组件，只需配置 OSS 的基本信息([配置参考][upload-to-ali])，即可将图片上传到 oss，支持截图粘贴上传
 
-[⬆Back to Top](#table-of-contents)
+[⬆ Back to Top](#table-of-contents)
 
 ## Demo
 
-* [Doc and online demo](https://femessage.github.io/v-editor/)
+* [doc and online demo](https://femessage.github.io/v-editor/)
 
-[⬆Back to Top](#table-of-contents)
+[⬆ Back to Top](#table-of-contents)
 
 ## Install
 
 ```sh
-# Upload image function depends on upload-to-ali component
+# 上传图片功能依赖upload-to-ali组件
 yarn add @femessage/upload-to-ali @femessage/v-editor
 ```
 
@@ -69,27 +69,24 @@ yarn add @femessage/upload-to-ali @femessage/v-editor
 
 ## Quick start
 
-```html
-<!-- step1 Ensure oss config -->
-<!-- step2 In the .vue file that needs to use the -->
-renderer
+```vue
+//step1 确保oss配置
+//step2 在需要使用该渲染器的.vue文件中
 <template>
-  <v-editor v-model="content" />
+  <v-editor v-model="content"/>
 </template>
-
 <script>
-  import VEditor from '@femessage/v-editor'
-
-  export default {
-    components: {
-      VEditor
-    },
-    data() {
-      return {
-        content: ''
-      }
+import VEditor from '@femessage/v-editor'
+export default {
+  components: {
+    VEditor
+  },
+  data() {
+    return {
+      content: ''
     }
   }
+}
 </script>
 ```
 
@@ -109,7 +106,6 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 
 <!-- prettier-ignore -->
 <table><tr><td align="center"><a href="https://github.com/kunzhijia"><img src="https://avatars2.githubusercontent.com/u/4848041?v=4" width="100px;" alt="kunzhijia"/><br /><sub><b>kunzhijia</b></sub></a><br /><a href="https://github.com/FEMessage/v-editor/commits?author=kunzhijia" title="Code">💻</a> <a href="https://github.com/FEMessage/v-editor/issues?q=author%3Akunzhijia" title="Bug reports">🐛</a> <a href="https://github.com/FEMessage/v-editor/commits?author=kunzhijia" title="Documentation">📖</a></td><td align="center"><a href="https://github.com/listars"><img src="https://avatars2.githubusercontent.com/u/20613509?v=4" width="100px;" alt="listars"/><br /><sub><b>listars</b></sub></a><br /><a href="https://github.com/FEMessage/v-editor/issues?q=author%3Alistars" title="Bug reports">🐛</a> <a href="https://github.com/FEMessage/v-editor/commits?author=listars" title="Documentation">📖</a></td><td align="center"><a href="https://donaldshen.github.io/portfolio"><img src="https://avatars3.githubusercontent.com/u/19591950?v=4" width="100px;" alt="Donald Shen"/><br /><sub><b>Donald Shen</b></sub></a><br /><a href="https://github.com/FEMessage/v-editor/issues?q=author%3Adonaldshen" title="Bug reports">🐛</a> <a href="https://github.com/FEMessage/v-editor/commits?author=donaldshen" title="Documentation">📖</a></td><td align="center"><a href="http://levy.work"><img src="https://avatars3.githubusercontent.com/u/9384365?v=4" width="100px;" alt="levy"/><br /><sub><b>levy</b></sub></a><br /><a href="#review-levy9527" title="Reviewed Pull Requests">👀</a> <a href="#infra-levy9527" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="#ideas-levy9527" title="Ideas, Planning, & Feedback">🤔</a></td></tr></table>
-
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
