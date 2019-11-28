@@ -273,6 +273,10 @@ export default {
     line-height: 1.5;
   }
 
+  .w-e-toolbar {
+    flex-wrap: wrap;
+  }
+
   .disabled-mask {
     position: absolute;
     background-color: rgba(0, 0, 0, 0);
