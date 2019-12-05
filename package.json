@@ -33,13 +33,13 @@
     "release": "gren release --override"
   },
   "dependencies": {
-    "@femessage/upload-to-ali": "^2.0.0",
     "wangeditor": "^3.1.1"
   },
   "devDependencies": {
     "@babel/core": "^7.4.3",
     "@babel/plugin-transform-runtime": "^7.4.3",
     "@babel/preset-env": "^7.4.3",
+    "@femessage/upload-to-ali": "^2.0.1",
     "babel-loader": "^8.0.5",
     "dotenv": "^7.0.0",
     "element-ui": "^2.7.2",
