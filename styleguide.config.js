@@ -2,8 +2,7 @@ const {VueLoaderPlugin} = require('vue-loader')
 const path = require('path')
 const glob = require('glob')
 const env = Object.assign({}, require('dotenv').config().parsed, {
-  OSS_KEY: process.env.OSS_KEY,
-  OSS_SECRET: process.env.OSS_SECRET,
+  UPLOAD_ACTION: process.env.UPLOAD_ACTION,
   OSS_BUCKET: process.env.OSS_BUCKET,
   OSS_REGION: process.env.OSS_REGION
 })
