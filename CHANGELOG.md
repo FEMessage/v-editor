@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.11](https://github.com/FEMessage/v-editor/compare/v1.2.10...v1.2.11) (2019-12-07)
+
+
+### Bug Fixes
+
+* 修复工具栏超出宽度后未换行的问题 ([#53](https://github.com/FEMessage/v-editor/issues/53)) ([cb21008](https://github.com/FEMessage/v-editor/commit/cb21008))
+
+
+
 ### [1.2.10](https://github.com/FEMessage/v-editor/compare/v1.2.9...v1.2.10) (2019-11-28)
 
 
