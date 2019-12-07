@@ -10,6 +10,7 @@
     </div>
     <div ref="editor" style="text-align:left" @paste="paste"></div>
     <upload-to-ali
+      v-model="imgs"
       multiple
       v-show="false"
       ref="uploadToAli"
@@ -85,6 +86,7 @@ export default {
   },
   data() {
     return {
+      imgs: [],
       enableUpdateValue: true,
       showLoading: false
     }
