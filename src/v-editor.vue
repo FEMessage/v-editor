@@ -27,6 +27,7 @@ import E from 'wangeditor'
 import UploadToAli from '@femessage/upload-to-ali'
 import defaultEditorOptions from './defaultEditorOptions'
 import mixinFocusHack from './mixins/focusHack'
+import mdParser from './mdParser'
 
 const HTML_PATTERN = /^<[a-z\s]+class="text-box"/i
 
@@ -75,6 +76,13 @@ export default {
     height: {
       type: Number,
       default: 400
+    },
+    /**
+     * 使用 markdown 语法
+     */
+    markdown: {
+      type: Boolean,
+      default: false
     },
     /**
      * 编辑器是否可编辑
@@ -250,6 +258,13 @@ export default {
      *      wangEditor源码里默认生成的table每一个格子里都有一个空格&nbsp
      */
     emitValue(html = '') {
+      /**
+       * 转换 markdown 到 richtext
+       */
+      if (this.markdown) {
+        mdParser(html, this.editor)
+      }
+
       /**
        * 不使用 editor.txt.text() 的原因是
        * 该方法返回的是去掉标签的html内容
