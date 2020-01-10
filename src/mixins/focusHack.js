@@ -46,7 +46,7 @@ export default {
     },
 
     handleMenuItemClick() {
-      this.editor.$textElem[0].focus()
+      // this.editor.$textElem[0].focus()
       this.enableUpdateValue = false
     },
 
