@@ -35,7 +35,8 @@ module.exports = {
     },
     {
       name: 'Demo',
-      sections: demoSections
+      sections: demoSections,
+      sectionDepth: 2
     }
   ],
   webpackConfig: {

@@ -27,6 +27,7 @@ import E from 'wangeditor'
 import UploadToAli from '@femessage/upload-to-ali'
 import defaultEditorOptions from './defaultEditorOptions'
 import mixinFocusHack from './mixins/focusHack'
+import mdParser from './mdParser'
 
 const HTML_PATTERN = /^<[a-z\s]+class="text-box"/i
 
@@ -75,6 +76,13 @@ export default {
     height: {
       type: Number,
       default: 400
+    },
+    /**
+     * 使用 markdown 语法
+     */
+    markdown: {
+      type: Boolean,
+      default: true
     },
     /**
      * 编辑器是否可编辑
@@ -182,6 +190,14 @@ export default {
     this.emitValue(this.value)
 
     this.initFocusHack()
+    if (this.markdown) {
+      document.addEventListener('keyup', this.markdownSupport)
+    }
+  },
+  beforeDestroy() {
+    if (this.markdown) {
+      document.removeEventListener('keyup', this.markdownSupport)
+    }
   },
   methods: {
     /**
@@ -237,6 +253,11 @@ export default {
       const isCopyFromWeb = types.some(type => type === 'text/html')
       if (!files.length || isCopyFromWeb) return
       this.$refs.uploadToAli.paste(e)
+    },
+    markdownSupport(e) {
+      if (e.code === 'Space') {
+        mdParser(this.editor.txt.html(), this.editor)
+      }
     },
 
     /**
