@@ -190,10 +190,14 @@ export default {
     this.emitValue(this.value)
 
     this.initFocusHack()
-    document.addEventListener('keyup', this.markdownSupport)
+    if (this.markdown) {
+      document.addEventListener('keyup', this.markdownSupport)
+    }
   },
   beforeDestroy() {
-    document.removeEventListener('keyup', this.markdownSupport)
+    if (this.markdown) {
+      document.removeEventListener('keyup', this.markdownSupport)
+    }
   },
   methods: {
     /**
