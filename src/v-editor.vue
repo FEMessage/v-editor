@@ -255,7 +255,7 @@ export default {
       this.$refs.uploadToAli.paste(e)
     },
     markdownSupport(e) {
-      if (e.keyCode === 32) {
+      if (e.code === 'Space') {
         mdParser(this.editor.txt.html(), this.editor)
       }
     },
