@@ -6,6 +6,8 @@ const OL = [`\\d\\.${SPACE}`, 'insertOrderedList']
 
 const p = symbol => `\\<(?:div|p)\\>${symbol}(.*?)\\<\\/(?:div|p)\\>`
 
+const rexTest = (rex, html) => RegExp(p(rex)).test(html)
+
 const replacer = (editor, reg) => {
   const ele = editor.selection.getSelectionContainerElem()[0]
   ele.innerHTML = ele.innerHTML.replace(reg, '<br>')
@@ -18,7 +20,11 @@ const replacer = (editor, reg) => {
  * @param {Object} editor 编辑器实例
  */
 const mdParser = (html, editor) => {
-  if (RegExp(p(HEAD)).test(html)) {
+  const isHEAD = rexTest(HEAD, html)
+  const isUL = rexTest(UL[0], html)
+  const isOL = rexTest(OL[0], html)
+
+  if (isHEAD) {
     const reg = RegExp(p(HEAD))
     const match = reg.exec(html)
 
@@ -27,10 +33,10 @@ const mdParser = (html, editor) => {
 
     editor.menus.menus.head._command(`h${size}`)
     replacer(editor, /#{1,4}(?:&nbsp;|\s)/g)
-  } else if (RegExp(p(UL[0])).test(html)) {
+  } else if (isUL) {
     replacer(editor, RegExp(`${UL[0]}`, 'g'))
     editor.menus.menus.list._command(UL[1])
-  } else if (RegExp(p(OL[0])).test(html)) {
+  } else if (isOL) {
     replacer(editor, RegExp(`${OL[0]}`, 'g'))
     editor.menus.menus.list._command(OL[1])
   }
