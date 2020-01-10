@@ -1,6 +1,6 @@
 const SPACE = '(?:&nbsp;|\\s)'
 
-const HEAD = `(#){1,4}${SPACE}`
+const HEAD = `(#){1,5}${SPACE}`
 const UL = [`-${SPACE}`, 'insertUnorderedList']
 const OL = [`\\d\\.${SPACE}`, 'insertOrderedList']
 const IMG = [`!\\[(\\S*)\\]\\((.*?)\\)${SPACE}`, '<img src="$2" alt="$1">']
@@ -44,7 +44,7 @@ const mdParser = (html, editor) => {
     match[0].replace(/#{1,}/g, text => (size = text.length))
 
     editor.menus.menus.head._command(`h${size}`)
-    replacer(editor, /#{1,4}(?:&nbsp;|\s)/g)
+    replacer(editor, /#{1,5}(?:&nbsp;|\s)/g)
   } else if (isUL) {
     replacer(editor, RegExp(`${UL[0]}`, 'g'))
     editor.menus.menus.list._command(UL[1])
