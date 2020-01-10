@@ -31,6 +31,9 @@ const mdParser = (html, editor) => {
 
     editor.cmd.do('insertHTML', ele.innerHTML.replace(RegExp(IMG[0]), IMG[1]))
     ele.innerHTML = ele.innerHTML.replace(RegExp(IMG[0], 'g'), '&nbsp;')
+
+    const selection = window.getSelection()
+    selection.modify('move', 'forward', 'word')
   }
 
   if (isHEAD) {
