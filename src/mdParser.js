@@ -3,6 +3,7 @@ const SPACE = '(?:&nbsp;|\\s)'
 const HEAD = `(#){1,4}${SPACE}`
 const UL = [`-${SPACE}`, 'insertUnorderedList']
 const OL = [`\\d\\.${SPACE}`, 'insertOrderedList']
+const IMG = [`!\\[(\\S*)\\]\\((.*?)\\)${SPACE}`, '<img src="$2" alt="$1">']
 
 const p = symbol => `\\<(?:div|p)\\>${symbol}(.*?)\\<\\/(?:div|p)\\>`
 
@@ -23,6 +24,14 @@ const mdParser = (html, editor) => {
   const isHEAD = rexTest(HEAD, html)
   const isUL = rexTest(UL[0], html)
   const isOL = rexTest(OL[0], html)
+  const isIMG = rexTest(IMG[0], html)
+
+  if (isIMG) {
+    const ele = editor.selection.getSelectionContainerElem()[0]
+
+    editor.cmd.do('insertHTML', ele.innerHTML.replace(RegExp(IMG[0]), IMG[1]))
+    ele.innerHTML = ele.innerHTML.replace(RegExp(IMG[0], 'g'), '&nbsp;')
+  }
 
   if (isHEAD) {
     const reg = RegExp(p(HEAD))
