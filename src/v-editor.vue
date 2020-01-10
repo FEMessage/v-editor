@@ -82,7 +82,7 @@ export default {
      */
     markdown: {
       type: Boolean,
-      default: false
+      default: true
     },
     /**
      * 编辑器是否可编辑
