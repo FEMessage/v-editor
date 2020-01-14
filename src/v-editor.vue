@@ -29,12 +29,6 @@ import defaultEditorOptions from './defaultEditorOptions'
 // import mixinFocusHack from './mixins/focusHack'
 import {inputDebounce} from './utils'
 
-const HTML_PATTERN = /^<[a-z\s]+class="text-box"/i
-
-// 对齐wangEditor的样式
-const editorValue = val =>
-  val && HTML_PATTERN.test(val) ? val : `<div class="text-box">${val}<br></div>`
-
 export default {
   name: 'VEditor',
   // mixins: [mixinFocusHack],
@@ -88,7 +82,7 @@ export default {
     }
   },
   watch: {
-    disabled(val, oldVal) {
+    disabled(val) {
       this.$refs.editor.querySelector('.w-e-toolbar').style[
         'pointer-events'
       ] = val ? 'none' : ''
@@ -126,7 +120,7 @@ export default {
         this.editorEvents(editor)
         this.editor = editor
       } catch (error) {
-        console.error(errro)
+        console.error(error)
       }
     },
     editorEvents(e) {
@@ -148,7 +142,7 @@ export default {
     },
     handleUploadFileSuccess(urls) {
       // 将文件上传后的URL地址插入到编辑器文本中
-      if (!!urls) {
+      if (urls) {
         // 插入图片到editor
         urls.forEach(item => {
           this.editor.cmd.do(
