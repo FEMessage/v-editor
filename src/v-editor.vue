@@ -1,15 +1,15 @@
 <template>
   <div class="v-editor">
-    <div class="loading-mask" v-if="showLoading">
-      <div class="loading-content">
-        <!-- @slot 自定义上传文本 -->
-        <slot name="loading">
+    <!-- <div class="loading-mask" v-if="showLoading">
+    <div class="loading-content">-->
+    <!-- @slot 自定义上传文本 -->
+    <!-- <slot name="loading">
           <p>文件上传中...</p>
         </slot>
       </div>
-    </div>
-    <div ref="editor" style="text-align:left" @paste="paste"></div>
-    <upload-to-ali
+    </div>-->
+    <div ref="editor" @paste="paste"></div>
+    <!-- <upload-to-ali
       v-model="imgs"
       multiple
       v-show="false"
@@ -18,16 +18,16 @@
       @loading="handleLoading"
       @loaded="handleUploadFileSuccess"
       @fail="handleUploadFileFail"
-    />
+    />-->
   </div>
 </template>
 
 <script>
-import E from 'wangeditor'
-import UploadToAli from '@femessage/upload-to-ali'
+import ClassicEditor from './CKEditor'
+// import UploadToAli from '@femessage/upload-to-ali'
 import defaultEditorOptions from './defaultEditorOptions'
-import mixinFocusHack from './mixins/focusHack'
-import mdParser from './mdParser'
+// import mixinFocusHack from './mixins/focusHack'
+import {inputDebounce} from './utils'
 
 const HTML_PATTERN = /^<[a-z\s]+class="text-box"/i
 
@@ -37,10 +37,7 @@ const editorValue = val =>
 
 export default {
   name: 'VEditor',
-  mixins: [mixinFocusHack],
-  components: {
-    UploadToAli
-  },
+  // mixins: [mixinFocusHack],
   props: {
     /**
      * upload-to-ali的参数，参考[upload-to-ali文档](https://femessage.github.io/upload-to-ali)
@@ -66,9 +63,7 @@ export default {
      */
     editorOptions: {
       type: Object,
-      default: () => {
-        return defaultEditorOptions
-      }
+      default: () => ({})
     },
     /**
      * 编辑器的高度，单位px
@@ -76,13 +71,6 @@ export default {
     height: {
       type: Number,
       default: 400
-    },
-    /**
-     * 使用 markdown 语法
-     */
-    markdown: {
-      type: Boolean,
-      default: true
     },
     /**
      * 编辑器是否可编辑
@@ -113,100 +101,39 @@ export default {
     }
   },
   mounted() {
-    //初始化editor
-    const editor = new E(this.$refs.editor)
-    // 允许自定义上传
-    editor.customConfig.qiniu = true
-    // 自定义菜单配置
-    editor.customConfig.menus =
-      this.editorOptions.menus || defaultEditorOptions.menus
-    //debug模式下，有 JS 错误会以throw Error方式提示出来。默认值为false，即不会抛出异常。
-    editor.customConfig.debug = this.editorOptions.debug
-
-    //配置编辑区域的 z-index
-    editor.customConfig.zIndex = 100
-
-    // 自定义 onchange 触发的延迟时间，默认为 200 ms
-    editor.customConfig.onchangeTimeout =
-      this.editorOptions.onchangeTimeout || defaultEditorOptions.onchangeTimeout // 单位 ms
-
-    // 详细注释以及解释可以参考 method: `emitValue`
-    editor.customConfig.onchange = this.emitValue
-
-    // editor 聚焦时不触发 watch value
-    editor.customConfig.onfocus = () => (this.enableUpdateValue = false)
-    // editor 失焦时不触发 watch value
-    editor.customConfig.onblur = () => (this.enableUpdateValue = true)
-
-    editor.create()
-
-    //是否禁用编辑器
-    editor.$textElem.attr('contenteditable', !this.disabled)
-
-    const toolbar = this.$refs.editor.querySelector('.w-e-toolbar')
-    toolbar.style['pointer-events'] = this.disabled ? 'none' : ''
-    // 设置toolbar的颜色
-    const borderColor = '#CAD1E8'
-    const borderRadius = '4px'
-    toolbar.style.backgroundColor = '#F4F6FA'
-    toolbar.style.borderColor = borderColor
-    toolbar.style.borderTopLeftRadius = borderRadius
-    toolbar.style.borderTopRightRadius = borderRadius
-
-    toolbar.querySelectorAll('.w-e-menu').forEach(item => {
-      const opacityIdle = 0.6
-      const opacityFocus = 1
-
-      const i = item.querySelector('i')
-      i.style.color = '#2D303B'
-      i.style.opacity = opacityIdle
-
-      item.addEventListener(
-        'mouseenter',
-        () => (i.style.opacity = opacityFocus)
-      )
-      item.addEventListener('mouseleave', () => (i.style.opacity = opacityIdle))
-
-      this.initToolbarItemFocusHack(item)
-    })
-
-    //设置编辑器的高度
-    const textContainer = this.$refs.editor.querySelector('.w-e-text-container')
-    textContainer.style.borderColor = borderColor
-    textContainer.style.height = `${this.height}px`
-    textContainer.style.borderBottomLeftRadius = borderRadius
-    textContainer.style.borderBottomRightRadius = borderRadius
-
-    //监听上传图标的点击事件
-    document
-      .getElementById(editor.imgMenuId)
-      .addEventListener('click', this.handleUpload)
-
-    //保存实例，用于后续处理
-    this.editor = editor
-
-    //设置默认值
-    editor.txt.html(this.value)
-    this.emitValue(this.value)
-
-    this.initFocusHack()
-    if (this.markdown) {
-      document.addEventListener('keyup', this.markdownSupport)
-    }
+    this.initEditor()
   },
   beforeDestroy() {
-    if (this.markdown) {
-      document.removeEventListener('keyup', this.markdownSupport)
-    }
+    this.editor = null
   },
   methods: {
-    /**
-     * 返回内部的wangEditor对象
-     * @public
-     */
-    getEditor() {
-      //暴露当前编辑器，可以在外部调用编辑器的功能
-      return this.editor
+    async initEditor() {
+      const editorOptions = Object.assign(
+        {},
+        defaultEditorOptions,
+        {
+          initialData: this.value
+        },
+        this.editorOptions
+      )
+      try {
+        const editor = await ClassicEditor.create(
+          this.$refs.editor,
+          editorOptions
+        )
+        editor.isReadOnly = this.disabled
+
+        this.editorEvents(editor)
+        this.editor = editor
+      } catch (error) {
+        console.error(errro)
+      }
+    },
+    editorEvents(e) {
+      const editor = e || this.editor
+      // 监听内容变化
+      const emitValue = () => this.$emit('input', editor.getData())
+      editor.model.document.on('change:data', inputDebounce(emitValue))
     },
     handleUpload() {
       //如果禁用则不进行上传操作
@@ -253,36 +180,6 @@ export default {
       const isCopyFromWeb = types.some(type => type === 'text/html')
       if (!files.length || isCopyFromWeb) return
       this.$refs.uploadToAli.paste(e)
-    },
-    markdownSupport(e) {
-      if (e.code === 'Space') {
-        mdParser(this.editor.txt.html(), this.editor)
-      }
-    },
-
-    /**
-     * emitValue 里要处理空值校验的问题:
-     * 目标： v-editor 视觉上内容为空(无文本无图片)时，向上输出的 value 为 ''
-     * 默认情况下，v-editor 视觉上内容为空时，value 不为空，可能包括以下情况：
-     * 1. 空内容的斜体、加粗符号
-     * 2. 空内容的 quote 块
-     * 3. 空内容的 table
-     *      table是通过menu插入的表格。
-     *      wangEditor源码里默认生成的table每一个格子里都有一个空格&nbsp
-     */
-    emitValue(html = '') {
-      /**
-       * 不使用 editor.txt.text() 的原因是
-       * 该方法返回的是去掉标签的html内容
-       * 但空格是&nbsp，无法被trim
-       */
-      const noText = !this.editor.$textElem[0].textContent
-        .trim()
-        // 处理斜体和加粗符号('zero-width space')
-        .replace(/\u200b/g, '')
-
-      const noImg = !html.includes('img')
-      this.$emit('input', noText && noImg ? '' : editorValue(html))
     }
   }
 }
@@ -291,44 +188,5 @@ export default {
 <style lang="stylus">
 .v-editor {
   position: relative;
-  .text-box {
-    margin: 10px 0;
-    line-height: 1.5;
-  }
-
-  .w-e-toolbar {
-    flex-wrap: wrap;
-  }
-
-  .disabled-mask {
-    position: absolute;
-    background-color: rgba(0, 0, 0, 0);
-    margin: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 2000;
-    cursor: not-allowed;
-  }
-
-  .loading-mask {
-    position: absolute;
-    background-color: rgba(0, 0, 0, 0.3);
-    margin: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 2000;
-
-    .loading-content {
-      position: absolute;
-      text-align: center;
-      width: 100%;
-      top: 50%;
-      margin-top: -21px;
-    }
-  }
 }
 </style>
