@@ -9,7 +9,7 @@
       </div>
     </div>-->
     <div ref="editor" @paste="paste"></div>
-    <!-- <upload-to-ali
+    <upload-to-ali
       v-model="imgs"
       multiple
       v-show="false"
@@ -18,20 +18,21 @@
       @loading="handleLoading"
       @loaded="handleUploadFileSuccess"
       @fail="handleUploadFileFail"
-    />-->
+    />
   </div>
 </template>
 
 <script>
-import ClassicEditor from './CKEditor'
-// import UploadToAli from '@femessage/upload-to-ali'
+import ClassicEditor from '@ckeditor/ckeditor5-editor-classic/src/classiceditor'
+import UploadToAli from '@femessage/upload-to-ali'
 import defaultEditorOptions from './defaultEditorOptions'
-// import mixinFocusHack from './mixins/focusHack'
 import {inputDebounce} from './utils'
 
 export default {
   name: 'VEditor',
-  // mixins: [mixinFocusHack],
+  components: {
+    UploadToAli
+  },
   props: {
     /**
      * upload-to-ali的参数，参考[upload-to-ali文档](https://femessage.github.io/upload-to-ali)
@@ -78,26 +79,15 @@ export default {
     return {
       imgs: [],
       enableUpdateValue: true,
-      showLoading: false
-    }
-  },
-  watch: {
-    disabled(val) {
-      this.$refs.editor.querySelector('.w-e-toolbar').style[
-        'pointer-events'
-      ] = val ? 'none' : ''
-      this.editor.$textElem.attr('contenteditable', !val)
-    },
-    value(val) {
-      if (this.enableUpdateValue) {
-        this.editor && this.editor.txt.html(val)
-      }
+      showLoading: false,
+      editor: null
     }
   },
   mounted() {
     this.initEditor()
   },
   beforeDestroy() {
+    this.editor.destroy()
     this.editor = null
   },
   methods: {
@@ -107,6 +97,7 @@ export default {
         defaultEditorOptions,
         {
           initialData: this.value
+          // uploadOptions: this.uploadOptions
         },
         this.editorOptions
       )
@@ -129,45 +120,6 @@ export default {
       const emitValue = () => this.$emit('input', editor.getData())
       editor.model.document.on('change:data', inputDebounce(emitValue))
     },
-    handleUpload() {
-      //如果禁用则不进行上传操作
-      if (this.disabled) return
-
-      this.$refs.uploadToAli.selectFiles()
-    },
-    handleLoading() {
-      //外部监听upload-loading，增加显示loading ui 逻辑
-      this.showLoading = true
-      this.$emit('upload-loading', true)
-    },
-    handleUploadFileSuccess(urls) {
-      // 将文件上传后的URL地址插入到编辑器文本中
-      if (urls) {
-        // 插入图片到editor
-        urls.forEach(item => {
-          this.editor.cmd.do(
-            'insertHtml',
-            '<img src="' + item + '" style="max-width:100%;"/>'
-          )
-        })
-      } else {
-        /**
-         * 可监听并增加上传错误时的提醒交互
-         */
-        this.$emit('upload-error')
-      }
-      //外部监听upload-loading，增加显示loading ui 逻辑
-      this.showLoading = false
-      /**
-       * 可监听并增加上传 loading 交互
-       * @property {boolean} loading - 是否加载中
-       */
-      this.$emit('upload-loading', false)
-      this.enableUpdateValue = false
-    },
-    handleUploadFileFail() {
-      this.showLoading = false
-    },
     paste(e) {
       const {clipboardData} = e
       const {files, types} = clipboardData
@@ -179,7 +131,7 @@ export default {
 }
 </script>
 
-<style lang="stylus">
+<style lang="less">
 .v-editor {
   position: relative;
 }

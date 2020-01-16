@@ -35,7 +35,8 @@
     "precommit": "pretty-quick --staged",
     "stdver": "standard-version -m '[skip ci] chore(release): v%s'",
     "release": "gren release --override",
-    "lint": "eslint \"**/*.@(js|vue)\" --fix"
+    "lint": "eslint \"**/*.@(js|vue)\" --fix",
+    "webpack": "webpack --mode production"
   },
   "dependencies": {
     "@ckeditor/ckeditor5-adapter-ckfinder": "^16.0.0",
@@ -46,7 +47,6 @@
     "@ckeditor/ckeditor5-core": "^16.0.0",
     "@ckeditor/ckeditor5-dev-utils": "^12.0.0",
     "@ckeditor/ckeditor5-dev-webpack-plugin": "^8.0.0",
-    "@ckeditor/ckeditor5-easy-image": "^16.0.0",
     "@ckeditor/ckeditor5-editor-classic": "^16.0.0",
     "@ckeditor/ckeditor5-essentials": "^16.0.0",
     "@ckeditor/ckeditor5-font": "^16.0.0",
@@ -61,6 +61,7 @@
     "@ckeditor/ckeditor5-paste-from-office": "^16.0.0",
     "@ckeditor/ckeditor5-table": "^16.0.0",
     "@ckeditor/ckeditor5-theme-lark": "^16.0.0",
+    "crypto-browserify": "^3.12.0",
     "lodash-es": "^4.17.15"
   },
   "devDependencies": {
@@ -71,6 +72,7 @@
     "@femessage/upload-to-ali": "^2.0.1",
     "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.5",
+    "css-loader": "^3.4.2",
     "dotenv": "^7.0.0",
     "element-ui": "^2.7.2",
     "eslint": "^6.6.0",
@@ -82,26 +84,30 @@
     "glob": "^7.1.3",
     "husky": "1.3.1",
     "jest": "^24.8.0",
+    "less": "^3.10.3",
+    "less-loader": "^5.0.0",
     "lint-staged": "^8.1.0",
     "minimist": "^1.2.0",
     "postcss-loader": "^3.0.0",
     "prettier": "1.18.2",
     "raw-loader": "^4.0.0",
-    "rollup": "^1.9.0",
+    "regenerator-runtime": "^0.13.3",
+    "rollup": "^1.11.0",
     "rollup-plugin-babel": "^4.3.2",
     "rollup-plugin-commonjs": "^9.3.4",
     "rollup-plugin-terser": "^4.0.4",
     "rollup-plugin-vue": "^4.7.2",
     "standard-version": "^6.0.1",
+    "style-loader": "^1.1.2",
     "stylelint": "^13.0.0",
     "stylelint-config-standard": "^19.0.0",
-    "stylus": "^0.54.5",
-    "stylus-loader": "^3.0.2",
+    "uglifyjs-webpack-plugin": "^2.2.0",
     "vue": "^2.5.16",
-    "vue-loader": "^15.7.0",
+    "vue-loader": "^15.8.3",
     "vue-styleguidist": "3.11.4",
     "vue-template-compiler": "^2.5.16",
-    "webpack": "^4.29.6"
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10"
   },
   "publishConfig": {
     "access": "public"

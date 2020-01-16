@@ -1,5 +1,5 @@
 const {VueLoaderPlugin} = require('vue-loader')
-const {bundler, styles} = require('@ckeditor/ckeditor5-dev-utils')
+const {styles} = require('@ckeditor/ckeditor5-dev-utils')
 const CKEditorWebpackPlugin = require('@ckeditor/ckeditor5-dev-webpack-plugin')
 const path = require('path')
 const glob = require('glob')
@@ -48,11 +48,22 @@ module.exports = {
           test: /\.vue$/,
           loader: 'vue-loader'
         },
-        {
-          test: /\.js?$/,
-          exclude: /node_modules/,
-          loader: 'babel-loader'
-        },
+        // {
+        //   test: /\.js?$/,
+        //   exclude: /node_modules/,
+        //   loader: 'babel-loader'
+        // },
+        // {
+        //   test: /ckeditor5-[^\/\\]+[\/\\].+\.js$/,
+        //   use: [
+        //     {
+        //       loader: 'babel-loader',
+        //       options: {
+        //         presets: [require('@babel/preset-env')]
+        //       }
+        //     }
+        //   ]
+        // },
         {
           test: /\.css$/,
           loaders: [
@@ -70,8 +81,8 @@ module.exports = {
           ]
         },
         {
-          test: /\.styl(us)?$/,
-          loaders: ['vue-style-loader', 'css-loader', 'stylus-loader']
+          test: /\.less$/,
+          loaders: ['vue-style-loader', 'css-loader', 'less-loader']
         },
         {
           test: /\.(woff2?|eot|[ot]tf)(\?.*)?$/,
@@ -91,10 +102,6 @@ module.exports = {
       }),
       new (require('webpack')).DefinePlugin({
         'process.env': JSON.stringify(env)
-      }),
-      new (require('webpack')).BannerPlugin({
-        banner: bundler.getLicenseBanner(),
-        raw: true
       })
     ]
   }
