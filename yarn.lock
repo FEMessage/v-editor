@@ -1191,10 +1191,10 @@
   resolved "https://registry.npm.taobao.org/@femessage/img-preview/download/@femessage/img-preview-1.2.4.tgz#8efcaccf0bcd8bed58e926d7382a80dffe2bb2e2"
   integrity sha1-jvyszwvNi+1Y6SbXOCqA3/4rsuI=
 
-"@femessage/upload-to-ali@^2.0.1":
-  version "2.0.1"
-  resolved "https://registry.npm.taobao.org/@femessage/upload-to-ali/download/@femessage/upload-to-ali-2.0.1.tgz?cache=0&sync_timestamp=1575539661118&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40femessage%2Fupload-to-ali%2Fdownload%2F%40femessage%2Fupload-to-ali-2.0.1.tgz#7e2875b0029a8ab92492db72af2d6d17c4ee4bc5"
-  integrity sha1-fih1sAKairkkkttyry1tF8TuS8U=
+"@femessage/upload-to-ali@^2.1.2":
+  version "2.1.2"
+  resolved "https://registry.npm.taobao.org/@femessage/upload-to-ali/download/@femessage/upload-to-ali-2.1.2.tgz#bc236a7c33eec4066e9c08b64953bec53bc5f35d"
+  integrity sha1-vCNqfDPuxAZunAi2SVO+xTvF810=
   dependencies:
     "@femessage/img-preview" "^1.2.0"
     compressorjs "^1.0.6"

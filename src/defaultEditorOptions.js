@@ -17,6 +17,7 @@ import ImageStyle from '@ckeditor/ckeditor5-image/src/imagestyle'
 import ImageToolbar from '@ckeditor/ckeditor5-image/src/imagetoolbar'
 import ImageUpload from '@ckeditor/ckeditor5-image/src/imageupload'
 import ImageResize from '@ckeditor/ckeditor5-image/src/imageresize'
+import FileRepository from '@ckeditor/ckeditor5-upload/src/filerepository'
 
 import Indent from '@ckeditor/ckeditor5-indent/src/indent'
 import Link from '@ckeditor/ckeditor5-link/src/link'
@@ -27,8 +28,6 @@ import Paragraph from '@ckeditor/ckeditor5-paragraph/src/paragraph'
 import PasteFromOffice from '@ckeditor/ckeditor5-paste-from-office/src/pastefromoffice'
 import Table from '@ckeditor/ckeditor5-table/src/table'
 import TableToolbar from '@ckeditor/ckeditor5-table/src/tabletoolbar'
-
-// import ImageUploadAdapter from './plugin/imageUpload'
 
 export default {
   plugins: [
@@ -49,6 +48,7 @@ export default {
     ImageToolbar,
     ImageUpload,
     ImageResize,
+    FileRepository,
     Indent,
     Link,
     List,
@@ -57,8 +57,7 @@ export default {
     Paragraph,
     PasteFromOffice,
     Table,
-    TableToolbar,
-    // ImageUploadAdapter
+    TableToolbar
   ],
   toolbar: [
     'undo',
@@ -98,8 +97,5 @@ export default {
   },
   table: {
     contentToolbar: ['tableColumn', 'tableRow', 'mergeTableCells']
-  },
-  // uploadOptions: {
-  //   uploadUrl: process.env.UPLOAD_ACTION
-  // }
+  }
 }

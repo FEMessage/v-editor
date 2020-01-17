@@ -8,16 +8,12 @@
         </slot>
       </div>
     </div>-->
-    <div ref="editor" @paste="paste"></div>
+    <div ref="editor"></div>
     <upload-to-ali
-      v-model="imgs"
-      multiple
       v-show="false"
       ref="uploadToAli"
+      value=""
       v-bind="uploadOptions"
-      @loading="handleLoading"
-      @loaded="handleUploadFileSuccess"
-      @fail="handleUploadFileFail"
     />
   </div>
 </template>
@@ -27,6 +23,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-editor-classic/src/classiceditor'
 import UploadToAli from '@femessage/upload-to-ali'
 import defaultEditorOptions from './defaultEditorOptions'
 import {inputDebounce} from './utils'
+import ImageUploadAdapter from './plugin/imageUpload'
 
 export default {
   name: 'VEditor',
@@ -77,7 +74,6 @@ export default {
   },
   data() {
     return {
-      imgs: [],
       enableUpdateValue: true,
       showLoading: false,
       editor: null
@@ -96,6 +92,7 @@ export default {
         {},
         defaultEditorOptions,
         {
+          extraPlugins: [ImageUploadAdapter(this.$refs.uploadToAli)],
           initialData: this.value
           // uploadOptions: this.uploadOptions
         },
@@ -119,13 +116,6 @@ export default {
       // 监听内容变化
       const emitValue = () => this.$emit('input', editor.getData())
       editor.model.document.on('change:data', inputDebounce(emitValue))
-    },
-    paste(e) {
-      const {clipboardData} = e
-      const {files, types} = clipboardData
-      const isCopyFromWeb = types.some(type => type === 'text/html')
-      if (!files.length || isCopyFromWeb) return
-      this.$refs.uploadToAli.paste(e)
     }
   }
 }
