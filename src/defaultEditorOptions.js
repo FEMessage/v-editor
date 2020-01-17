@@ -29,6 +29,9 @@ import PasteFromOffice from '@ckeditor/ckeditor5-paste-from-office/src/pastefrom
 import Table from '@ckeditor/ckeditor5-table/src/table'
 import TableToolbar from '@ckeditor/ckeditor5-table/src/tabletoolbar'
 
+// 本地插件
+import FullScreen from './plugin/FullScreen'
+import ImageUploader from './plugin/imageUploader'
 import ExtraFormat from './plugin/extraFormat'
 
 export default {
@@ -60,11 +63,14 @@ export default {
     PasteFromOffice,
     Table,
     TableToolbar,
+    FullScreen,
+    ImageUploader,
     ExtraFormat
   ],
   toolbar: [
     'undo',
     'redo',
+    'fullScreen',
     '|',
     'heading',
     'fontSize',

@@ -14,7 +14,6 @@
 import ClassicEditor from '@ckeditor/ckeditor5-editor-classic/src/classiceditor'
 import UploadToAli from '@femessage/upload-to-ali'
 import defaultEditorOptions from './defaultEditorOptions'
-import ImageUploader from './plugin/imageUploader'
 import {debounce} from 'lodash-es'
 
 export default {
@@ -81,21 +80,18 @@ export default {
   },
   methods: {
     async initEditor() {
-      const editorOptions = Object.assign(
-        {},
-        defaultEditorOptions,
-        {
-          extraPlugins: [ImageUploader(this.$refs.uploadToAli)],
-          initialData: this.value,
-          autosave: {
-            save: debounce(editor => {
-              this.$emit('autosave', editor.getData())
-            }, 10000)
-          }
-          // uploadOptions: this.uploadOptions
+      const editorOptions = {
+        uploader: this.$refs.uploadToAli,
+        ...defaultEditorOptions,
+        initialData: this.value,
+        autosave: {
+          save: debounce(editor => {
+            this.$emit('autosave', editor.getData())
+          }, 10000)
         },
-        this.editorOptions
-      )
+        ...this.editorOptions
+        // uploadOptions: this.uploadOptions
+      }
       try {
         const editor = await ClassicEditor.create(
           this.$refs.editor,
@@ -128,5 +124,20 @@ export default {
 <style lang="less">
 .v-editor {
   position: relative;
+
+  .full-screen {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 10000;
+
+    .ck-editor__main {
+      .ck-editor__editable {
+        height: calc(100vh - 41px);
+        overflow: auto;
+      }
+    }
+  }
 }
 </style>
