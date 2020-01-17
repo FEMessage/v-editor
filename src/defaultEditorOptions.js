@@ -1,4 +1,5 @@
 import Essentials from '@ckeditor/ckeditor5-essentials/src/essentials'
+import Autosave from '@ckeditor/ckeditor5-autosave/src/autosave'
 import Autoformat from '@ckeditor/ckeditor5-autoformat/src/autoformat'
 import CKFinder from '@ckeditor/ckeditor5-ckfinder/src/ckfinder'
 
@@ -28,9 +29,12 @@ import PasteFromOffice from '@ckeditor/ckeditor5-paste-from-office/src/pastefrom
 import Table from '@ckeditor/ckeditor5-table/src/table'
 import TableToolbar from '@ckeditor/ckeditor5-table/src/tabletoolbar'
 
+import ExtraFormat from './plugin/extraFormat'
+
 export default {
   plugins: [
     Essentials,
+    Autosave,
     Autoformat,
     Font,
     Bold,
@@ -55,7 +59,8 @@ export default {
     Paragraph,
     PasteFromOffice,
     Table,
-    TableToolbar
+    TableToolbar,
+    ExtraFormat
   ],
   toolbar: [
     'undo',
@@ -75,8 +80,6 @@ export default {
     'bulletedList',
     'numberedList',
     'todoList',
-    'indent',
-    'outdent',
     '|',
     'link',
     'blockQuote',

@@ -975,6 +975,15 @@
     "@ckeditor/ckeditor5-core" "^16.0.0"
     "@ckeditor/ckeditor5-typing" "^16.0.0"
 
+"@ckeditor/ckeditor5-autosave@^16.0.0":
+  version "16.0.0"
+  resolved "https://registry.npm.taobao.org/@ckeditor/ckeditor5-autosave/download/@ckeditor/ckeditor5-autosave-16.0.0.tgz#c21a3dbc4b931c0a873d6e85e148cf61d01245b8"
+  integrity sha1-who9vEuTHAqHPW6F4UjPYdASRbg=
+  dependencies:
+    "@ckeditor/ckeditor5-core" "^16.0.0"
+    "@ckeditor/ckeditor5-utils" "^16.0.0"
+    lodash-es "^4.17.10"
+
 "@ckeditor/ckeditor5-basic-styles@^16.0.0":
   version "16.0.0"
   resolved "https://registry.npm.taobao.org/@ckeditor/ckeditor5-basic-styles/download/@ckeditor/ckeditor5-basic-styles-16.0.0.tgz#4ef4b475a9e559f2247058db27f1fbcbe59049f5"

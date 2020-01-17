@@ -14,8 +14,8 @@
 import ClassicEditor from '@ckeditor/ckeditor5-editor-classic/src/classiceditor'
 import UploadToAli from '@femessage/upload-to-ali'
 import defaultEditorOptions from './defaultEditorOptions'
-import {inputDebounce} from './utils'
 import ImageUploader from './plugin/imageUploader'
+import {debounce} from 'lodash-es'
 
 export default {
   name: 'VEditor',
@@ -86,7 +86,12 @@ export default {
         defaultEditorOptions,
         {
           extraPlugins: [ImageUploader(this.$refs.uploadToAli)],
-          initialData: this.value
+          initialData: this.value,
+          autosave: {
+            save: debounce(editor => {
+              this.$emit('autosave', editor.getData())
+            }, 10000)
+          }
           // uploadOptions: this.uploadOptions
         },
         this.editorOptions
@@ -108,7 +113,7 @@ export default {
       const editor = e || this.editor
       // 监听内容变化
       const emitValue = () => this.$emit('input', editor.getData())
-      editor.model.document.on('change:data', inputDebounce(emitValue))
+      editor.model.document.on('change:data', debounce(emitValue, 300))
       editor.editing.view.document.on('focus', e => {
         this.$emit('focus', e)
       })
