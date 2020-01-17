@@ -17,7 +17,6 @@ import ImageStyle from '@ckeditor/ckeditor5-image/src/imagestyle'
 import ImageToolbar from '@ckeditor/ckeditor5-image/src/imagetoolbar'
 import ImageUpload from '@ckeditor/ckeditor5-image/src/imageupload'
 import ImageResize from '@ckeditor/ckeditor5-image/src/imageresize'
-import FileRepository from '@ckeditor/ckeditor5-upload/src/filerepository'
 
 import Indent from '@ckeditor/ckeditor5-indent/src/indent'
 import Link from '@ckeditor/ckeditor5-link/src/link'
@@ -48,7 +47,6 @@ export default {
     ImageToolbar,
     ImageUpload,
     ImageResize,
-    FileRepository,
     Indent,
     Link,
     List,

@@ -1,11 +1,11 @@
 const CKEditorWebpackPlugin = require('@ckeditor/ckeditor5-dev-webpack-plugin')
 const {bundler, styles} = require('@ckeditor/ckeditor5-dev-utils')
 const {VueLoaderPlugin} = require('vue-loader')
+const TerserPlugin = require('terser-webpack-plugin')
 const webpack = require('webpack')
 const path = require('path')
 
 module.exports = {
-  devtool: 'source-map',
   entry: [
     require.resolve('regenerator-runtime/runtime.js'),
     path.resolve(__dirname, 'src', 'index.js')
@@ -14,8 +14,21 @@ module.exports = {
     library: 'VEditor',
     path: path.resolve(__dirname, 'dist'),
     filename: 'v-editor.umd.js',
-		libraryTarget: 'umd',
-		libraryExport: 'default'
+    libraryTarget: 'umd',
+    libraryExport: 'default'
+  },
+  optimization: {
+    minimizer: [
+      new TerserPlugin({
+        sourceMap: true,
+        terserOptions: {
+          output: {
+            comments: /^!/
+          }
+        },
+        extractComments: false
+      })
+    ]
   },
   plugins: [
     new CKEditorWebpackPlugin({
@@ -56,10 +69,6 @@ module.exports = {
       {
         test: /\.vue$/,
         loader: 'vue-loader'
-      },
-      {
-        test: /\.jsx?$/,
-        loader: 'babel-loader'
       },
       {
         test: /\.css$/,

@@ -45,30 +45,18 @@ module.exports = {
     module: {
       rules: [
         {
-          test: /\.vue$/,
-          loader: 'vue-loader'
+          test: /ckeditor5-[^/\\]+[/\\]theme[/\\]icons[/\\][^/\\]+\.svg$/,
+          use: ['raw-loader']
         },
-        // {
-        //   test: /\.js?$/,
-        //   exclude: /node_modules/,
-        //   loader: 'babel-loader'
-        // },
-        // {
-        //   test: /ckeditor5-[^\/\\]+[\/\\].+\.js$/,
-        //   use: [
-        //     {
-        //       loader: 'babel-loader',
-        //       options: {
-        //         presets: [require('@babel/preset-env')]
-        //       }
-        //     }
-        //   ]
-        // },
         {
-          test: /\.css$/,
-          loaders: [
-            'style-loader',
-            'css-loader',
+          test: /ckeditor5-[^/\\]+[/\\]theme[/\\].+\.css$/,
+          use: [
+            {
+              loader: 'style-loader',
+              options: {
+                injectType: 'singletonStyleTag'
+              }
+            },
             {
               loader: 'postcss-loader',
               options: styles.getPostCssConfig({
@@ -81,16 +69,21 @@ module.exports = {
           ]
         },
         {
+          test: /\.vue$/,
+          loader: 'vue-loader'
+        },
+        {
+          test: /\.css$/,
+          exclude: /ckeditor5-[^/\\]+[/\\]theme[/\\].+\.css$/,
+          loaders: ['style-loader', 'css-loader']
+        },
+        {
           test: /\.less$/,
           loaders: ['vue-style-loader', 'css-loader', 'less-loader']
         },
         {
           test: /\.(woff2?|eot|[ot]tf)(\?.*)?$/,
           loader: 'file-loader'
-        },
-        {
-          test: /ckeditor5-[^/\\]+[/\\]theme[/\\]icons[/\\][^/\\]+\.svg$/,
-          use: 'raw-loader'
         }
       ]
     },

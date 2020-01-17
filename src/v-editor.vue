@@ -23,7 +23,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-editor-classic/src/classiceditor'
 import UploadToAli from '@femessage/upload-to-ali'
 import defaultEditorOptions from './defaultEditorOptions'
 import {inputDebounce} from './utils'
-import ImageUploadAdapter from './plugin/imageUpload'
+import ImageUploader from './plugin/imageUploader'
 
 export default {
   name: 'VEditor',
@@ -92,7 +92,7 @@ export default {
         {},
         defaultEditorOptions,
         {
-          extraPlugins: [ImageUploadAdapter(this.$refs.uploadToAli)],
+          extraPlugins: [ImageUploader(this.$refs.uploadToAli)],
           initialData: this.value
           // uploadOptions: this.uploadOptions
         },
