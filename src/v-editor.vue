@@ -15,6 +15,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-editor-classic/src/classiceditor'
 import UploadToAli from '@femessage/upload-to-ali'
 import defaultEditorOptions from './defaultEditorOptions'
 import {debounce} from 'lodash-es'
+import ImageUploader from './plugin/imageUploader'
 
 export default {
   name: 'VEditor',
@@ -81,16 +82,16 @@ export default {
   methods: {
     async initEditor() {
       const editorOptions = {
-        uploader: this.$refs.uploadToAli,
+        extraPlugins: [ImageUploader(this.$refs.uploadToAli)],
         ...defaultEditorOptions,
         initialData: this.value,
+
         autosave: {
           save: debounce(editor => {
             this.$emit('autosave', editor.getData())
           }, 10000)
         },
         ...this.editorOptions
-        // uploadOptions: this.uploadOptions
       }
       try {
         const editor = await ClassicEditor.create(
