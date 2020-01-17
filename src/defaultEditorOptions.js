@@ -75,11 +75,8 @@ export default {
     'bulletedList',
     'numberedList',
     'todoList',
-    {
-      type: 'dropdown',
-      title: 'Indents',
-      items: ['indent', 'outdent']
-    },
+    'indent',
+    'outdent',
     '|',
     'link',
     'blockQuote',
@@ -89,6 +86,9 @@ export default {
     'insertTable',
     'mediaEmbed'
   ],
+  fontSize: {
+    options: [10, 12, 14, 'default', 18, 22, 24]
+  },
   image: {
     resizeUnit: 'px',
     toolbar: ['imageStyle:full', 'imageStyle:side', '|', 'imageTextAlternative']
