@@ -1,13 +1,5 @@
 <template>
   <div class="v-editor">
-    <!-- <div class="loading-mask" v-if="showLoading">
-    <div class="loading-content">-->
-    <!-- @slot 自定义上传文本 -->
-    <!-- <slot name="loading">
-          <p>文件上传中...</p>
-        </slot>
-      </div>
-    </div>-->
     <div ref="editor"></div>
     <upload-to-ali
       v-show="false"
@@ -36,22 +28,18 @@ export default {
      */
     uploadOptions: {
       type: Object,
-      default: () => {
-        return {}
-      }
+      default: () => ({})
     },
     /**
      * 编辑的内容，返回一段HTML，支持v-model
      */
     value: {
       type: String,
-      default: () => {
-        return ''
-      }
+      default: () => ({})
     },
     /**
-     * editor配置，参考[wangEditor文档](https://github.com/wangfupeng1988/wangEditor)；
-     * [默认配置](https://github.com/FEMessage/v-editor/blob/dev/src/defaultEditorOptions.js)
+     * editor配置
+     *
      */
     editorOptions: {
       type: Object,
@@ -77,6 +65,11 @@ export default {
       enableUpdateValue: true,
       showLoading: false,
       editor: null
+    }
+  },
+  watch: {
+    disabled(value) {
+      this.editor.isReadOnly = value
     }
   },
   mounted() {
@@ -116,6 +109,12 @@ export default {
       // 监听内容变化
       const emitValue = () => this.$emit('input', editor.getData())
       editor.model.document.on('change:data', inputDebounce(emitValue))
+      editor.editing.view.document.on('focus', e => {
+        this.$emit('focus', e)
+      })
+      editor.editing.view.document.on('blur', e => {
+        this.$emit('blur', e)
+      })
     }
   }
 }
