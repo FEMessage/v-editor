@@ -8,19 +8,19 @@ const path = require('path')
 module.exports = {
   entry: [
     require.resolve('regenerator-runtime/runtime.js'),
-    path.resolve(__dirname, 'src', 'index.js')
+    path.resolve('src', 'index.js')
   ],
   output: {
     library: 'VEditor',
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve('dist'),
     filename: 'v-editor.umd.js',
     libraryTarget: 'umd',
     libraryExport: 'default'
   },
   optimization: {
+    usedExports: true,
     minimizer: [
       new TerserPlugin({
-        sourceMap: true,
         terserOptions: {
           output: {
             comments: /^!/

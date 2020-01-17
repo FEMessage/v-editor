@@ -5,7 +5,7 @@
       v-show="false"
       ref="uploadToAli"
       value=""
-      v-bind="uploadOptions"
+      upload-options="uploadOptions"
     />
   </div>
 </template>

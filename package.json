@@ -36,7 +36,7 @@
     "stdver": "standard-version -m '[skip ci] chore(release): v%s'",
     "release": "gren release --override",
     "lint": "eslint \"**/*.@(js|vue)\" --fix",
-    "webpack": "webpack --mode production"
+    "webpack": "webpack --mode production --config build/webpack.config.js"
   },
   "dependencies": {
     "@ckeditor/ckeditor5-adapter-ckfinder": "^16.0.0",
