@@ -134,7 +134,7 @@ export default {
     z-index: 10000;
 
     .ck-editor__main {
-      .ck-editor__editable {
+      & > .ck-content {
         height: calc(100vh - 41px);
         overflow: auto;
       }
