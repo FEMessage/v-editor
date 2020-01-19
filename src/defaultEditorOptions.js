@@ -31,7 +31,7 @@ import TableToolbar from '@ckeditor/ckeditor5-table/src/tabletoolbar'
 
 // 本地插件
 import FullScreen from './plugin/FullScreen'
-import ExtraFormat from './plugin/extraFormat'
+import ExtraFormat from './plugin/ExtraFormat'
 
 export default {
   plugins: [
@@ -68,7 +68,6 @@ export default {
   toolbar: [
     'undo',
     'redo',
-    'fullScreen',
     '|',
     'heading',
     'fontSize',
@@ -91,7 +90,8 @@ export default {
     '|',
     'imageUpload',
     'insertTable',
-    'mediaEmbed'
+    'mediaEmbed',
+    'fullScreen'
   ],
   fontSize: {
     options: [10, 12, 14, 'default', 18, 22, 24]
