@@ -5,7 +5,7 @@
       v-show="false"
       ref="uploadToAli"
       value=""
-      upload-options="uploadOptions"
+      v-bind="uploadOptions"
     />
   </div>
 </template>
@@ -76,8 +76,10 @@ export default {
     this.initEditor()
   },
   beforeDestroy() {
-    this.editor.destroy()
-    this.editor = null
+    if (this.editor) {
+      this.editor.destroy()
+      this.editor = null
+    }
   },
   methods: {
     async initEditor() {
