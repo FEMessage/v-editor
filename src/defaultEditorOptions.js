@@ -91,6 +91,7 @@ export default {
     'imageUpload',
     'insertTable',
     'mediaEmbed',
+    '|',
     'fullScreen'
   ],
   fontSize: {
