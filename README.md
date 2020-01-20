@@ -27,7 +27,7 @@ Lightweight rich text editor based on [ckeditor5](https://github.com/ckeditor/ck
 
 ## Introduction
 
-Our demand for rich text components is relatively simple: simple graphic arrangement.<br />Therefore, the key points are:
+Therefore, the key points are:
 
 ### File Upload
 
