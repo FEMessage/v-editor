@@ -40,6 +40,7 @@ module.exports = {
     }),
     new VueLoaderPlugin()
   ],
+  externals: ['@femessage/upload-to-ali'],
   module: {
     rules: [
       {
