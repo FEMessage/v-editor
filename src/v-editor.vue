@@ -130,6 +130,10 @@ export default {
 .v-editor {
   position: relative;
 
+  .ck .ck-heading-dropdown {
+    max-width: 65px;
+  }
+
   .full-screen {
     position: fixed;
     top: 0;
