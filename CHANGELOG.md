@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/FEMessage/v-editor/compare/v1.3.0...v2.0.0) (2020-01-20)
+
+
+### Features
+
+* 更换编辑器内核，更好地支持 markdown ([#60](https://github.com/FEMessage/v-editor/issues/60)) ([c21a184](https://github.com/FEMessage/v-editor/commit/c21a184))
+
+
+### BREAKING CHANGES
+
+* 更换编辑器内核，更好地支持 markdown (#60)
+
+
+
 ## [1.3.0](https://github.com/FEMessage/v-editor/compare/v1.2.11...v1.3.0) (2020-01-10)
 
 
