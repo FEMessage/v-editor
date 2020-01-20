@@ -7,9 +7,9 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/FEMessage/v-editor/pulls)
 [![Automated Release Notes by gren](https://img.shields.io/badge/%F0%9F%A4%96-release%20notes-00B2EE.svg)](https://github-tools.github.io/github-release-notes/)
 
-Lightweight rich text editor based on [wangEditor](https://github.com/wangfupeng1988/wangEditor) and [upload-to-ali](https://github.com/FEMessage/upload-to-ali).
+Lightweight rich text editor based on [ckeditor5](https://github.com/ckeditor/ckeditor5) and [upload-to-ali](https://github.com/FEMessage/upload-to-ali).
 
-![view.png](https://i.loli.net/2019/11/15/lyOexikTSA9qVJB.png)
+![view.png](https://i.loli.net/2020/01/20/qrKB9Jz7MemWFPR.png)
 
 [中文文档](./README-zh.md)
 
@@ -27,17 +27,7 @@ Lightweight rich text editor based on [wangEditor](https://github.com/wangfupeng
 
 ## Introduction
 
-Our demand for rich text components is relatively simple: simple graphic arrangement.<br />Therefore, the key points are:
-
-### Component size
-
-Perfering the most lightweight rich text editor.
-
-Considering and comparing the most famous (open source star is relatively high) text-editor: quill, wangEditor, tinymce-vue, medium editor.
-
-![diff.png](https://i.loli.net/2019/11/15/UDTol9AGPw2B7Fy.png)
-
-[⬆Back to Top](#table-of-contents)
+Therefore, the key points are:
 
 ### File Upload
 
@@ -47,7 +37,6 @@ Cooperate with the [upload-to-ai](https://github.com/FEMessage/upload-to-ali) co
 
 ## Feature
 
-* **Lightweight** : The smallest rich text editor, [Component Selection range](https://mubu.com/doc/sA3r4QKBK0) Reference (quill, tinymce-vue, medium editor)
 * **File Upload** : Integrated upload components, just configure the basic information of OSS ([Configuration Reference][upload-to-ali]), you can upload the picture to oss, support screenshot paste upload
 
 [⬆Back to Top](#table-of-contents)
