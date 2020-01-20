@@ -1,4 +1,6 @@
 const {VueLoaderPlugin} = require('vue-loader')
+const {styles} = require('@ckeditor/ckeditor5-dev-utils')
+const CKEditorWebpackPlugin = require('@ckeditor/ckeditor5-dev-webpack-plugin')
 const path = require('path')
 const glob = require('glob')
 const env = Object.assign({}, require('dotenv').config().parsed, {
@@ -43,21 +45,41 @@ module.exports = {
     module: {
       rules: [
         {
+          test: /ckeditor5-[^/\\]+[/\\]theme[/\\]icons[/\\][^/\\]+\.svg$/,
+          use: ['raw-loader']
+        },
+        {
+          test: /ckeditor5-[^/\\]+[/\\]theme[/\\].+\.css$/,
+          use: [
+            {
+              loader: 'style-loader',
+              options: {
+                injectType: 'singletonStyleTag'
+              }
+            },
+            {
+              loader: 'postcss-loader',
+              options: styles.getPostCssConfig({
+                themeImporter: {
+                  themePath: require.resolve('@ckeditor/ckeditor5-theme-lark')
+                },
+                minify: true
+              })
+            }
+          ]
+        },
+        {
           test: /\.vue$/,
           loader: 'vue-loader'
         },
         {
-          test: /\.js?$/,
-          exclude: /node_modules/,
-          loader: 'babel-loader'
-        },
-        {
           test: /\.css$/,
+          exclude: /ckeditor5-[^/\\]+[/\\]theme[/\\].+\.css$/,
           loaders: ['style-loader', 'css-loader']
         },
         {
-          test: /\.styl(us)?$/,
-          loaders: ['vue-style-loader', 'css-loader', 'stylus-loader']
+          test: /\.less$/,
+          loaders: ['vue-style-loader', 'css-loader', 'less-loader']
         },
         {
           test: /\.(woff2?|eot|[ot]tf)(\?.*)?$/,
@@ -67,6 +89,10 @@ module.exports = {
     },
     plugins: [
       new VueLoaderPlugin(),
+      new CKEditorWebpackPlugin({
+        language: 'zh-cn',
+        additionalLanguages: 'all'
+      }),
       new (require('webpack')).DefinePlugin({
         'process.env': JSON.stringify(env)
       })
