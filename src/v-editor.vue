@@ -103,6 +103,7 @@ export default {
           editorOptions
         )
         editor.isReadOnly = this.disabled
+        editor.ui.view.element.classList.add('markdown-body')
 
         this.editorEvents(editor)
         this.editor = editor
@@ -126,12 +127,13 @@ export default {
 }
 </script>
 
+<style src="github-markdown-css/github-markdown.css"></style>
 <style lang="less">
 .v-editor {
   position: relative;
 
   .ck .ck-heading-dropdown {
-    max-width: 65px;
+    max-width: 80px;
   }
 
   .full-screen {
