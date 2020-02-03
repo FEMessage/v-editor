@@ -9,21 +9,21 @@
 
 Lightweight rich text editor based on [ckeditor5](https://github.com/ckeditor/ckeditor5) and [upload-to-ali](https://github.com/FEMessage/upload-to-ali).
 
-![view.png](https://i.loli.net/2020/01/20/qrKB9Jz7MemWFPR.png)
+![view.png](https://i.loli.net/2020/02/03/5J8Holf2vqrGSwu.png)
 
 [中文文档](./README-zh.md)
 
 ## Table of Contents
 
-* [Introduction](#introduction)
-  * [Component Size](#component-size)
-  * [File Upload](#file-upload)
-* [Feature](#feature)
-* [Demo](#demo)
-* [Install](#install)
-* [Quick Start](#quick-start)
-* [License](#license)
-* [Contributors](#contributors)
+- [Introduction](#introduction)
+  - [Component Size](#component-size)
+  - [File Upload](#file-upload)
+- [Feature](#feature)
+- [Demo](#demo)
+- [Install](#install)
+- [Quick Start](#quick-start)
+- [License](#license)
+- [Contributors](#contributors)
 
 ## Introduction
 
@@ -37,13 +37,13 @@ Cooperate with the [upload-to-ai](https://github.com/FEMessage/upload-to-ali) co
 
 ## Feature
 
-* **File Upload** : Integrated upload components, just configure the basic information of OSS ([Configuration Reference][upload-to-ali]), you can upload the picture to oss, support screenshot paste upload
+- **File Upload** : Integrated upload components, just configure the basic information of OSS ([Configuration Reference][upload-to-ali]), you can upload the picture to oss, support screenshot paste upload
 
 [⬆Back to Top](#table-of-contents)
 
 ## Demo
 
-* [Doc and online demo](https://femessage.github.io/v-editor/)
+- [Doc and online demo](https://femessage.github.io/v-editor/)
 
 [⬆Back to Top](#table-of-contents)
 
