@@ -1,6 +1,6 @@
-自动保存
+如果 8 秒内没有任何操作，会触发自动保存
 
-Autosave
+It autosave if no any operate in 8s
 
 ```vue
 <template>
