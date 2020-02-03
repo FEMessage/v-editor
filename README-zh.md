@@ -9,19 +9,19 @@
 
 根据 [ckeditor5](https://github.com/ckeditor/ckeditor5) 以及 [upload-to-ali](https://github.com/femessage/upload-to-ali) 封装的轻量级富文本编辑器。
 
-![view.png](https://i.loli.net/2020/01/20/qrKB9Jz7MemWFPR.png)
+![view.png](https://i.loli.net/2020/02/03/5J8Holf2vqrGSwu.png)
 
 ## Table of Contents <!-- omit in toc -->
 
-* [Introduction](#introduction)
-  * [组件大小](#组件大小)
-  * [OSS 文件上传](#oss-文件上传)
-* [Feature](#feature)
-* [Demo](#demo)
-* [Install](#install)
-* [Quick start](#quick-start)
-* [License](#license)
-* [Contributors](#contributors)
+- [Introduction](#introduction)
+  - [组件大小](#组件大小)
+  - [OSS 文件上传](#oss-文件上传)
+- [Feature](#feature)
+- [Demo](#demo)
+- [Install](#install)
+- [Quick start](#quick-start)
+- [License](#license)
+- [Contributors](#contributors)
 
 ## Introduction
 
@@ -35,13 +35,13 @@
 
 ## Feature
 
-* **oss 上传**：整合了上传组件，只需配置 OSS 的基本信息([配置参考][upload-to-ali])，即可将图片上传到 oss，支持截图粘贴上传
+- **oss 上传**：整合了上传组件，只需配置 OSS 的基本信息([配置参考][upload-to-ali])，即可将图片上传到 oss，支持截图粘贴上传
 
 [⬆ Back to Top](#table-of-contents)
 
 ## Demo
 
-* [doc and online demo](https://femessage.github.io/v-editor/)
+- [doc and online demo](https://femessage.github.io/v-editor/)
 
 [⬆ Back to Top](#table-of-contents)
 
@@ -57,10 +57,9 @@ yarn add @femessage/upload-to-ali @femessage/v-editor
 ## Quick start
 
 ```vue
-//step1 确保oss配置
-//step2 在需要使用该渲染器的.vue文件中
+//step1 确保oss配置 //step2 在需要使用该渲染器的.vue文件中
 <template>
-  <v-editor v-model="content"/>
+  <v-editor v-model="content" />
 </template>
 <script>
 import VEditor from '@femessage/v-editor'
