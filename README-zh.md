@@ -7,37 +7,25 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/FEMessage/v-editor/pulls)
 [![Automated Release Notes by gren](https://img.shields.io/badge/%F0%9F%A4%96-release%20notes-00B2EE.svg)](https://github-tools.github.io/github-release-notes/)
 
-根据 [wangEditor][https://github.com/wangfupeng1988/wangeditor] 以及 [upload-to-ali][https://github.com/femessage/upload-to-ali] 封装的轻量级富文本编辑器。
+根据 [ckeditor5](https://github.com/ckeditor/ckeditor5) 以及 [upload-to-ali](https://github.com/femessage/upload-to-ali) 封装的轻量级富文本编辑器。
 
-![view.png](https://i.loli.net/2019/11/15/lyOexikTSA9qVJB.png)
+![view.png](https://i.loli.net/2020/02/03/5J8Holf2vqrGSwu.png)
 
 ## Table of Contents <!-- omit in toc -->
 
-* [Introduction](#introduction)
-  * [组件大小](#组件大小)
-  * [OSS 文件上传](#oss-文件上传)
-* [Feature](#feature)
-* [Demo](#demo)
-* [Install](#install)
-* [Quick start](#quick-start)
-* [License](#license)
-* [Contributors](#contributors)
+- [Introduction](#introduction)
+  - [组件大小](#组件大小)
+  - [OSS 文件上传](#oss-文件上传)
+- [Feature](#feature)
+- [Demo](#demo)
+- [Install](#install)
+- [Quick start](#quick-start)
+- [License](#license)
+- [Contributors](#contributors)
 
 ## Introduction
 
-公司内部对于富文本组件的需求比较简单：简单的图文编排。
-
 因此选型富文本组件主要考虑：
-
-### 组件大小
-
-倾向于最轻量的富文本编辑器。
-
-选型对比了业界比较出名（开源 star 比较高）的组件：quill，wangEditor,tinymce-vue,medium editor。
-
-![diff.png](https://i.loli.net/2019/11/15/UDTol9AGPw2B7Fy.png)
-
-[⬆ Back to Top](#table-of-contents)
 
 ### OSS 文件上传
 
@@ -47,14 +35,13 @@
 
 ## Feature
 
-* **轻量**：最小的富文本编辑器，[组件选型范围](https://mubu.com/doc/sA3r4QKBK0) 参考了（quill,tinymce-vue,medium editor）
-* **oss 上传**：整合了上传组件，只需配置 OSS 的基本信息([配置参考][upload-to-ali])，即可将图片上传到 oss，支持截图粘贴上传
+- **oss 上传**：整合了上传组件，只需配置 OSS 的基本信息([配置参考][upload-to-ali])，即可将图片上传到 oss，支持截图粘贴上传
 
 [⬆ Back to Top](#table-of-contents)
 
 ## Demo
 
-* [doc and online demo](https://femessage.github.io/v-editor/)
+- [doc and online demo](https://femessage.github.io/v-editor/)
 
 [⬆ Back to Top](#table-of-contents)
 
@@ -70,10 +57,9 @@ yarn add @femessage/upload-to-ali @femessage/v-editor
 ## Quick start
 
 ```vue
-//step1 确保oss配置
-//step2 在需要使用该渲染器的.vue文件中
+//step1 确保oss配置 //step2 在需要使用该渲染器的.vue文件中
 <template>
-  <v-editor v-model="content"/>
+  <v-editor v-model="content" />
 </template>
 <script>
 import VEditor from '@femessage/v-editor'

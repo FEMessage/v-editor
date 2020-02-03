@@ -14,7 +14,8 @@
 import ClassicEditor from '@ckeditor/ckeditor5-editor-classic/src/classiceditor'
 import UploadToAli from '@femessage/upload-to-ali'
 import defaultEditorOptions from './defaultEditorOptions'
-import {debounce, merge} from 'lodash-es'
+import debounce from 'lodash-es/debounce'
+import merge from 'lodash-es/merge'
 import ImageUploader from './plugin/ImageUploader'
 
 export default {
@@ -103,6 +104,7 @@ export default {
           editorOptions
         )
         editor.isReadOnly = this.disabled
+        editor.ui.view.element.classList.add('markdown-body')
 
         this.editorEvents(editor)
         this.editor = editor
@@ -126,12 +128,13 @@ export default {
 }
 </script>
 
+<style src="github-markdown-css/github-markdown.css"></style>
 <style lang="less">
 .v-editor {
   position: relative;
 
   .ck .ck-heading-dropdown {
-    max-width: 65px;
+    max-width: 80px;
   }
 
   .full-screen {

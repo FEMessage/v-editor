@@ -5603,6 +5603,11 @@ github-api@^3.0.0:
     js-base64 "^2.1.9"
     utf8 "^2.1.1"
 
+github-markdown-css@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.npm.taobao.org/github-markdown-css/download/github-markdown-css-3.0.1.tgz#d08db1060d2e182025e0d07d547cfe2afed30205"
+  integrity sha1-0I2xBg0uGCAl4NB9VHz+Kv7TAgU=
+
 github-slugger@^1.2.0:
   version "1.2.0"
   resolved "https://registry.npmjs.org/github-slugger/-/github-slugger-1.2.0.tgz#8ada3286fd046d8951c3c952a8d7854cfd90fd9a"

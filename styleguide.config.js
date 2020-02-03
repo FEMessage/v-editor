@@ -45,10 +45,6 @@ module.exports = {
     module: {
       rules: [
         {
-          test: /ckeditor5-[^/\\]+[/\\]theme[/\\]icons[/\\][^/\\]+\.svg$/,
-          use: ['raw-loader']
-        },
-        {
           test: /ckeditor5-[^/\\]+[/\\]theme[/\\].+\.css$/,
           use: [
             {
@@ -67,6 +63,10 @@ module.exports = {
               })
             }
           ]
+        },
+        {
+          test: /\.svg$/,
+          use: ['raw-loader']
         },
         {
           test: /\.vue$/,
