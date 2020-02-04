@@ -35,6 +35,11 @@ export default class ExtraFormat extends Plugin {
       /^!\[(\S*)\]\((.*?)\)\s$/,
       writer => {
         const [, imageAlt, imageUrl] = writer.match
+
+        if (!imageUrl) {
+          return false
+        }
+
         const doc = this.editor.model.document
 
         const imageElement = new ModelElement('image', {
