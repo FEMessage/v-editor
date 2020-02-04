@@ -137,6 +137,10 @@ export default {
     max-width: 80px;
   }
 
+  .ck-content .image {
+    margin: 1em 0;
+  }
+
   .full-screen {
     position: fixed;
     top: 0;
