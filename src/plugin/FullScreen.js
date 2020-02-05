@@ -26,10 +26,12 @@ export default class FullScreen extends Plugin {
       })
 
       // 点击按钮
-      view.on('execute', e => {
-        e.source.icon = editor.ui.view.element.classList.contains('full-screen')
-          ? maxIcon
-          : minIcon
+      view.on('execute', () => {
+        view.set({
+          icon: editor.ui.view.element.classList.contains('full-screen')
+            ? maxIcon
+            : minIcon
+        })
         // ckeditor 是挂载在传入 dom 后面的，有意思
         editor.ui.view.element.classList.toggle('full-screen')
       })
