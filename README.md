@@ -22,6 +22,7 @@ Lightweight rich text editor based on [ckeditor5](https://github.com/ckeditor/ck
 - [Demo](#demo)
 - [Install](#install)
 - [Quick Start](#quick-start)
+- [Links](#Links)
 - [License](#license)
 - [Contributors](#contributors)
 
@@ -81,6 +82,12 @@ renderer
   }
 </script>
 ```
+
+[⬆ Back to Top](#table-of-contents)
+
+## Links
+
+- [plugins' create guide](https://www.yuque.com/docs/share/d52c00bf-d379-45c6-955f-8eb218a4dabf?translate=en)
 
 [⬆ Back to Top](#table-of-contents)
 
