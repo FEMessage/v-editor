@@ -20,6 +20,7 @@
 - [Demo](#demo)
 - [Install](#install)
 - [Quick start](#quick-start)
+- [Links](#Links)
 - [License](#license)
 - [Contributors](#contributors)
 
@@ -75,6 +76,12 @@ export default {
 }
 </script>
 ```
+
+[⬆ Back to Top](#table-of-contents)
+
+## Links
+
+- [插件开发指南](https://www.yuque.com/docs/share/d52c00bf-d379-45c6-955f-8eb218a4dabf)
 
 [⬆ Back to Top](#table-of-contents)
 
