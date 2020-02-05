@@ -87,7 +87,7 @@ renderer
 
 ## Links
 
-- [plugins' create guide](https://www.yuque.com/docs/share/d52c00bf-d379-45c6-955f-8eb218a4dabf?translate=en)
+- [how to create a plugin](https://www.yuque.com/docs/share/d52c00bf-d379-45c6-955f-8eb218a4dabf?translate=en)
 
 [⬆ Back to Top](#table-of-contents)
 
