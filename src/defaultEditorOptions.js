@@ -32,6 +32,7 @@ import TableToolbar from '@ckeditor/ckeditor5-table/src/tabletoolbar'
 // 本地插件
 import FullScreen from './plugin/FullScreen'
 import ExtraFormat from './plugin/ExtraFormat'
+import AttachmentUpload from './plugin/AttachmentUpload'
 
 export default {
   plugins: [
@@ -63,7 +64,8 @@ export default {
     Table,
     TableToolbar,
     FullScreen,
-    ExtraFormat
+    ExtraFormat,
+    AttachmentUpload
   ],
   toolbar: [
     'undo',
@@ -89,6 +91,7 @@ export default {
     'horizontalLine',
     '|',
     'imageUpload',
+    'AttachmentUpload',
     'insertTable',
     'mediaEmbed',
     '|',
