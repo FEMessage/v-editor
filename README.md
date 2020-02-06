@@ -15,29 +15,19 @@ Lightweight rich text editor based on [ckeditor5](https://github.com/ckeditor/ck
 
 ## Table of Contents
 
-- [Introduction](#introduction)
-  - [Component Size](#component-size)
-  - [File Upload](#file-upload)
 - [Feature](#feature)
 - [Demo](#demo)
 - [Install](#install)
 - [Quick Start](#quick-start)
+- [Links](#Links)
 - [License](#license)
 - [Contributors](#contributors)
 
-## Introduction
-
-Therefore, the key points are:
-
-### File Upload
-
-Cooperate with the [upload-to-ai](https://github.com/FEMessage/upload-to-ali) component, the rich text component can automatically upload the picture to ali oss, avoiding the image information to be stored in the content in base64 encoding.
-
-[⬆Back to Top](#table-of-contents)
-
 ## Feature
 
-- **File Upload** : Integrated upload components, just configure the basic information of OSS ([Configuration Reference][upload-to-ali]), you can upload the picture to oss, support screenshot paste upload
+- **File Upload** : Integrated upload components, just configure the basic information of OSS ([Configuration Reference](https://github.com/FEMessage/upload-to-ali/blob/dev/README.md#dotenv)), you can upload the picture or file to oss, support screenshot paste upload
+- **Add Net Image**: Can quickly add a net picture using the markdown picture syntax(`![]()`), or you can paste it directly
+- **Fullscreen Editing**: Allows the editor to cover the window
 
 [⬆Back to Top](#table-of-contents)
 
@@ -81,6 +71,12 @@ renderer
   }
 </script>
 ```
+
+[⬆ Back to Top](#table-of-contents)
+
+## Links
+
+- [how to create a plugin](https://www.yuque.com/docs/share/d52c00bf-d379-45c6-955f-8eb218a4dabf?translate=en)
 
 [⬆ Back to Top](#table-of-contents)
 
