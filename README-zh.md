@@ -13,9 +13,6 @@
 
 ## Table of Contents <!-- omit in toc -->
 
-- [Introduction](#introduction)
-  - [组件大小](#组件大小)
-  - [OSS 文件上传](#oss-文件上传)
 - [Feature](#feature)
 - [Demo](#demo)
 - [Install](#install)
@@ -24,19 +21,11 @@
 - [License](#license)
 - [Contributors](#contributors)
 
-## Introduction
-
-因此选型富文本组件主要考虑：
-
-### OSS 文件上传
-
-配合 [upload-to-ai][upload-to-ali] 组件，富文本组件能自动将图片上传到 oss，避免图片信息以 base64 编码形式保存在内容中。
-
-[⬆ Back to Top](#table-of-contents)
-
 ## Feature
 
-- **oss 上传**：整合了上传组件，只需配置 OSS 的基本信息([配置参考][upload-to-ali])，即可将图片上传到 oss，支持截图粘贴上传
+- **oss 上传**：整合了上传组件，只需配置 OSS 的基本信息([配置参考](https://github.com/FEMessage/upload-to-ali/blob/dev/README-zh.md#dotenv))，即可将图片或文件上传到 oss，支持截图粘贴上传
+- **添加网络图片**：可以使用 markdown 图片语法(`![]()`)快速添加网络图片，也可以直接粘贴添加
+- **全屏编辑**：可以让编辑器覆盖整个页面
 
 [⬆ Back to Top](#table-of-contents)
 
