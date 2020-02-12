@@ -72,7 +72,6 @@ export default {
     'redo',
     '|',
     'heading',
-    'fontSize',
     '|',
     'bold',
     'italic',
@@ -129,9 +128,6 @@ export default {
         title: 'Heading 5'
       }
     ]
-  },
-  fontSize: {
-    options: [10, 12, 14, 'default', 18, 22, 24]
   },
   image: {
     resizeUnit: 'px',
