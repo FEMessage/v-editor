@@ -1,6 +1,14 @@
 <template>
   <div class="v-editor">
-    <div ref="editor"></div>
+    <ckeditor
+      :editor="ClassicEditor"
+      :value="value"
+      :disabled="disabled"
+      :config="editorConfig"
+      @input="onInput"
+      @ready="onReady"
+      v-on="$listeners"
+    />
     <upload-to-ali
       v-show="false"
       ref="uploadToAli"
@@ -17,11 +25,13 @@ import defaultEditorOptions from './defaultEditorOptions'
 import debounce from 'lodash-es/debounce'
 import merge from 'lodash-es/merge'
 import ImageUploader from './plugin/ImageUploader'
+import CKEditor from '@ckeditor/ckeditor5-vue'
 
 export default {
   name: 'VEditor',
   components: {
-    UploadToAli
+    UploadToAli,
+    ckeditor: CKEditor.component
   },
   props: {
     /**
@@ -47,13 +57,6 @@ export default {
       default: () => ({})
     },
     /**
-     * 编辑器的高度，单位px
-     */
-    height: {
-      type: Number,
-      default: 400
-    },
-    /**
      * 编辑器是否可编辑
      */
     disabled: {
@@ -63,66 +66,40 @@ export default {
   },
   data() {
     return {
-      enableUpdateValue: true,
-      showLoading: false,
-      editor: null
+      editor: null,
+      ClassicEditor
     }
   },
-  watch: {
-    disabled(value) {
-      this.editor.isReadOnly = value
-    }
-  },
-  mounted() {
-    this.initEditor()
-  },
-  beforeDestroy() {
-    if (this.editor) {
-      this.editor.destroy()
-      this.editor = null
-    }
-  },
-  methods: {
-    async initEditor() {
-      const editorOptions = merge(
+  computed: {
+    editorConfig() {
+      return merge(
         defaultEditorOptions,
         {
-          initialData: this.value,
           extraPlugins: [ImageUploader(this.$refs.uploadToAli)],
           autosave: {
             save: debounce(editor => {
+              /**
+               * 建议自动保存事件，当 8 秒内未触发 input 事件时触发；
+               * 另外，v-editor 还支持 focus、blur 等 ckeditor-vue 事件；
+               * 见[文档](https://ckeditor.com/docs/ckeditor5/latest/builds/guides/integration/frameworks/vuejs.html#component-events)
+               *
+               * @property {string} data - 当前内容
+               */
               this.$emit('autosave', editor.getData())
             }, 8000)
           }
         },
         this.editorOptions
       )
-
-      try {
-        const editor = await ClassicEditor.create(
-          this.$refs.editor,
-          editorOptions
-        )
-        editor.isReadOnly = this.disabled
-        editor.ui.view.element.classList.add('markdown-body')
-
-        this.editorEvents(editor)
-        this.editor = editor
-      } catch (error) {
-        console.error(error)
-      }
+    }
+  },
+  methods: {
+    onInput(content) {
+      this.$emit('input', content)
     },
-    editorEvents(e) {
-      const editor = e || this.editor
-      // 监听内容变化
-      const emitValue = () => this.$emit('input', editor.getData())
-      editor.model.document.on('change:data', debounce(emitValue, 300))
-      editor.editing.view.document.on('focus', e => {
-        this.$emit('focus', e)
-      })
-      editor.editing.view.document.on('blur', e => {
-        this.$emit('blur', e)
-      })
+    onReady(editor) {
+      this.editor = editor
+      editor.ui.view.element.classList.add('markdown-body')
     }
   }
 }

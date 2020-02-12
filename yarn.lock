@@ -1261,6 +1261,11 @@
   dependencies:
     lodash-es "^4.17.10"
 
+"@ckeditor/ckeditor5-vue@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-vue/-/ckeditor5-vue-1.0.1.tgz#cddb99609f61b647214b704656c08a15b6a53865"
+  integrity sha512-4MaQwZ04cWwqYW0732sg2aqx9ILeHIP0LSLKUuLCLR21qYONZPvxY/V/czh1DH99toaL/iwPvEoJtO2ldriPaA==
+
 "@ckeditor/ckeditor5-widget@^16.0.0":
   version "16.0.0"
   resolved "https://registry.npm.taobao.org/@ckeditor/ckeditor5-widget/download/@ckeditor/ckeditor5-widget-16.0.0.tgz#40702bfbf03a2f29ac8813479c549d647863e417"
