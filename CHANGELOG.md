@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.2.0](https://github.com/FEMessage/v-editor/compare/v2.1.0...v2.2.0) (2020-02-14)
+
+
+### Bug Fixes
+
+* 修复 v-model 传值问题 ([#73](https://github.com/FEMessage/v-editor/issues/73)) ([1bed215](https://github.com/FEMessage/v-editor/commit/1bed215))
+
+
+### Features
+
+* 新增清除样式按钮 ([#76](https://github.com/FEMessage/v-editor/issues/76)) ([57942bb](https://github.com/FEMessage/v-editor/commit/57942bb))
+
+
+
 ## [2.1.0](https://github.com/FEMessage/v-editor/compare/v2.0.1...v2.1.0) (2020-02-06)
 
 
