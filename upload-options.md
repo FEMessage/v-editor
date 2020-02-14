@@ -12,7 +12,7 @@ export default {
       content: '',
       uploadOptions: {
         beforeUpload: () => console.log('before upload'),
-        httpRequest: this.myUpload
+        request: this.myUpload
       }
     }
   },

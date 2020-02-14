@@ -1,5 +1,8 @@
 自定义菜单
 
+> lodash.merge 的覆盖规则是数组项合并类似 concat；
+> 目前似乎无法自定义 toolbar；要么这里改例子要么改代码
+
 ```vue
 <template>
   <v-editor v-model="content" :editor-options="editorOptions"/>
@@ -10,7 +13,17 @@ export default {
     return {
       content: '',
       editorOptions: {
-        menus: ['head', 'bold', 'image', 'table', 'code', 'undo', 'redo']
+        toolbar: [
+          'undo',
+          'redo',
+          'fullScreen',
+          '|',
+          'heading',
+          'fontSize',
+        ],
+        fontSize: {
+          options: [10, 12, 14, 'default', 18, 22, 24]
+        },
       }
     }
   },
