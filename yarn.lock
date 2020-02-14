@@ -1148,6 +1148,11 @@
     "@ckeditor/ckeditor5-core" "^16.0.0"
     "@ckeditor/ckeditor5-utils" "^16.0.0"
 
+"@ckeditor/ckeditor5-inspector@^1.5.0":
+  version "1.5.0"
+  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-inspector/-/ckeditor5-inspector-1.5.0.tgz#2bbc04687be4fa57ca822abef7f52fe750e89e60"
+  integrity sha512-/A+K0zyp7wz2kXzQsCfr5GQdnfyFtl4BV9Kr4gdVwfug2c9xqWOeXEtFGEXe9BUj9ijv17flANh7n4UctC+gqg==
+
 "@ckeditor/ckeditor5-link@^16.0.0":
   version "16.0.0"
   resolved "https://registry.npm.taobao.org/@ckeditor/ckeditor5-link/download/@ckeditor/ckeditor5-link-16.0.0.tgz#4fc76ae1f9806d13b7907c362660e705f48ec6c7"
@@ -1200,6 +1205,16 @@
     "@ckeditor/ckeditor5-clipboard" "^16.0.0"
     "@ckeditor/ckeditor5-core" "^16.0.0"
     "@ckeditor/ckeditor5-engine" "^16.0.0"
+
+"@ckeditor/ckeditor5-remove-format@^16.0.0":
+  version "16.0.0"
+  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-remove-format/-/ckeditor5-remove-format-16.0.0.tgz#e726583a7e8750287ab2f9f4ab434297fbc9962c"
+  integrity sha512-cX9eIY2SnvDHOA4Be0mzkZUbHT5dGZ/ybaaErVhU9wXV0NuHe2Gf5WHRy3Sx6fpSqHUtd3r7SRff7Kywap4wog==
+  dependencies:
+    "@ckeditor/ckeditor5-core" "^16.0.0"
+    "@ckeditor/ckeditor5-ui" "^16.0.0"
+    "@ckeditor/ckeditor5-utils" "^16.0.0"
+    eslint-plugin-ckeditor5-rules "^0.0.2"
 
 "@ckeditor/ckeditor5-table@^16.0.0":
   version "16.0.0"
@@ -1260,6 +1275,11 @@
   integrity sha1-n3hR0Ccd7r49s6X48cocGtbP3Lw=
   dependencies:
     lodash-es "^4.17.10"
+
+"@ckeditor/ckeditor5-vue@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-vue/-/ckeditor5-vue-1.0.1.tgz#cddb99609f61b647214b704656c08a15b6a53865"
+  integrity sha512-4MaQwZ04cWwqYW0732sg2aqx9ILeHIP0LSLKUuLCLR21qYONZPvxY/V/czh1DH99toaL/iwPvEoJtO2ldriPaA==
 
 "@ckeditor/ckeditor5-widget@^16.0.0":
   version "16.0.0"
@@ -4683,6 +4703,11 @@ eslint-config-prettier@^6.5.0:
   integrity sha1-Qw0kgi6C996x4ipDW/o5mfrkrWQ=
   dependencies:
     get-stdin "^6.0.0"
+
+eslint-plugin-ckeditor5-rules@^0.0.2:
+  version "0.0.2"
+  resolved "https://registry.npmjs.org/eslint-plugin-ckeditor5-rules/-/eslint-plugin-ckeditor5-rules-0.0.2.tgz#f6325c6d046b41f05423c3a18bb9794b37c80baf"
+  integrity sha512-bV8w34pQcn1IyfdW1IEgfKuc1/hkTYpLo1DglRp1v4a2ph03PkMjN7vZ6FDrmu5ImVDJsd9022j5waA//MeyKg==
 
 eslint-plugin-jest@^23.0.3:
   version "23.6.0"

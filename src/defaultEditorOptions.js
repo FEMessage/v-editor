@@ -32,6 +32,7 @@ import TableToolbar from '@ckeditor/ckeditor5-table/src/tabletoolbar'
 // 本地插件
 import FullScreen from './plugin/FullScreen'
 import ExtraFormat from './plugin/ExtraFormat'
+import RemoveFormat from './plugin/RemoveFormat/RemoveFormat'
 import AttachmentUpload from './plugin/AttachmentUpload'
 
 export default {
@@ -65,14 +66,16 @@ export default {
     TableToolbar,
     FullScreen,
     ExtraFormat,
+    RemoveFormat,
     AttachmentUpload
   ],
   toolbar: [
     'undo',
     'redo',
+    'fullScreen',
+    'removeFormat',
     '|',
     'heading',
-    'fontSize',
     '|',
     'bold',
     'italic',
@@ -93,9 +96,7 @@ export default {
     'imageUpload',
     'AttachmentUpload',
     'insertTable',
-    'mediaEmbed',
-    '|',
-    'fullScreen'
+    'mediaEmbed'
   ],
   heading: {
     options: [
@@ -129,9 +130,6 @@ export default {
         title: 'Heading 5'
       }
     ]
-  },
-  fontSize: {
-    options: [10, 12, 14, 'default', 18, 22, 24]
   },
   image: {
     resizeUnit: 'px',
