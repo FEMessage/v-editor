@@ -1,18 +1,19 @@
 export class UploadAdapter {
-  constructor(loader, options, uploader) {
+  constructor(loader, options, uploadImg) {
     this.loader = loader
     this.options = options
-    this.uploader = uploader
+    this.uploadImg = uploadImg
   }
 
   async upload() {
     try {
+      // TODO: 检查是否多选
       const file = await this.loader.file
-      const url = await this.uploader.uploadRequest(file)
+      const url = await this.uploadImg(file)
 
-      return Promise.resolve({
+      return {
         default: url
-      })
+      }
     } catch (error) {
       console.error(error)
     }
