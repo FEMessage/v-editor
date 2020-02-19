@@ -137,5 +137,8 @@ export default {
   },
   table: {
     contentToolbar: ['tableColumn', 'tableRow', 'mergeTableCells']
+  },
+  link: {
+    addTargetToExternalLinks: true
   }
 }
