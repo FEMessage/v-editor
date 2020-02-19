@@ -72,10 +72,12 @@ export default {
   },
   computed: {
     editorConfig() {
+      // $refs 在 mounted 阶段才挂载，这里不能直接传实例
+      const uploadImg = file => this.$refs.uploadToAli.uploadRequest(file)
       return merge(
         defaultEditorOptions,
         {
-          extraPlugins: [ImageUploader(this.$refs.uploadToAli)],
+          extraPlugins: [ImageUploader(uploadImg)],
           autosave: {
             save: debounce(editor => {
               /**
