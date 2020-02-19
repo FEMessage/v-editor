@@ -7,7 +7,7 @@ export class UploadAdapter {
 
   async upload() {
     try {
-      // TODO: 检查是否多选
+      // 图片多选时会逐个调用此方法
       const file = await this.loader.file
       const url = await this.uploadImg(file)
 
