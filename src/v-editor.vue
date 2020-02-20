@@ -35,7 +35,7 @@ export default {
   },
   props: {
     /**
-     * 支持数字类型（默认单位 px）和 css 长度字符串
+     * 编辑区高度（不包括 toolbar），支持数字类型（默认单位 px）和 css 长度字符串
      */
     height: {
       type: [Number, String],
