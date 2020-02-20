@@ -129,8 +129,7 @@ export default {
 
     .ck-editor__main {
       & > .ck-content {
-        height: calc(100vh - 41px);
-        overflow: auto;
+        height: calc(100vh - 41px) !important;
       }
     }
   }
