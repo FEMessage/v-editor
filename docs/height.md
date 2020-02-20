@@ -1,14 +1,18 @@
-自定义编辑区（不包括 toolbar）高度，height 支持传 css 长度，和 Number 类型（默认单位 px）
+自定义编辑区（不包括 toolbar）高度，height 支持传 css 长度和 Number 类型（默认单位 px）
 
 ```vue
 <template>
-  <v-editor class="demo" v-model="content" height="200" />
+  <div>
+    <v-editor v-model="content" height="200" />
+    <v-editor v-model="content2" height="10em" />
+  </div>
 </template>
 <script>
 export default {
   data() {
     return {
       content: '',
+      content2: '',
     }
   },
 }
