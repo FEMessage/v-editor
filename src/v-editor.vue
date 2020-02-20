@@ -35,6 +35,13 @@ export default {
   },
   props: {
     /**
+     * 支持数字类型（默认单位 px）和 css 长度字符串
+     */
+    height: {
+      type: [Number, String],
+      default: undefined
+    },
+    /**
      * upload-to-ali的参数，参考[upload-to-ali文档](https://femessage.github.io/upload-to-ali)
      */
     uploadOptions: {
@@ -89,7 +96,8 @@ export default {
                */
               this.$emit('autosave', editor.getData())
             }, 8000)
-          }
+          },
+          height: this.height
         },
         this.editorOptions
       )

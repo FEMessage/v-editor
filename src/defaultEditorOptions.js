@@ -31,6 +31,7 @@ import TableToolbar from '@ckeditor/ckeditor5-table/src/tabletoolbar'
 
 // 本地插件
 import FullScreen from './plugin/FullScreen'
+import Height from './plugin/Height'
 import ExtraFormat from './plugin/ExtraFormat'
 import RemoveFormat from './plugin/RemoveFormat/RemoveFormat'
 import AttachmentUpload from './plugin/AttachmentUpload'
@@ -65,6 +66,7 @@ export default {
     Table,
     TableToolbar,
     FullScreen,
+    Height,
     ExtraFormat,
     RemoveFormat,
     AttachmentUpload
