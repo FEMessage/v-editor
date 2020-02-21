@@ -35,6 +35,13 @@ export default {
   },
   props: {
     /**
+     * 编辑区高度（不包括 toolbar），支持数字类型（默认单位 px）和 css 长度字符串
+     */
+    height: {
+      type: [Number, String],
+      default: undefined
+    },
+    /**
      * upload-to-ali的参数，参考[upload-to-ali文档](https://femessage.github.io/upload-to-ali)
      */
     uploadOptions: {
@@ -95,13 +102,25 @@ export default {
       )
     }
   },
+  watch: {
+    height: 'setHeight'
+  },
   methods: {
+    setHeight() {
+      if (!this.height || !this.editor) return
+      let {height} = this
+      if (!isNaN(+height)) height += 'px'
+      const {element} = this.editor.ui.view
+      const content = element.querySelector('.ck-editor__main')
+      content.style.height = height
+    },
     onInput(content) {
       this.$emit('input', content)
     },
     onReady(editor) {
       this.editor = editor
       editor.ui.view.element.classList.add('markdown-body')
+      this.setHeight()
     }
   }
 }
@@ -120,6 +139,12 @@ export default {
     margin: 1em 0;
   }
 
+  .ck-editor__main {
+    & > .ck-content {
+      height: 100%;
+    }
+  }
+
   .full-screen {
     position: fixed;
     top: 0;
@@ -128,10 +153,7 @@ export default {
     z-index: 10000;
 
     .ck-editor__main {
-      & > .ck-content {
-        height: calc(100vh - 41px);
-        overflow: auto;
-      }
+      height: calc(100vh - 41px) !important;
     }
   }
 }
