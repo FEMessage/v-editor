@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.3.0](https://github.com/FEMessage/v-editor/compare/v2.2.1...v2.3.0) (2020-02-21)
+
+
+### Features
+
+* 支持 height 属性 ([#80](https://github.com/FEMessage/v-editor/issues/80)) ([3cb459e](https://github.com/FEMessage/v-editor/commit/3cb459e))
+
+
+
 ### [2.2.1](https://github.com/FEMessage/v-editor/compare/v2.2.0...v2.2.1) (2020-02-19)
 
 
