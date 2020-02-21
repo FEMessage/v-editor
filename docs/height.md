@@ -1,29 +1,20 @@
-自定义编辑区高度，建议直接使用 css 来设置内部编辑区。注意是`.ck-editor__main`下紧跟的子元素`.ck-content`
+自定义编辑区（不包括 toolbar）高度，height 支持传 css 长度和 Number 类型（默认单位 px）
 
 ```vue
 <template>
-  <v-editor class="demo" v-model="content" />
+  <div>
+    <v-editor v-model="content" height="200" />
+    <v-editor v-model="content2" height="10em" />
+  </div>
 </template>
 <script>
 export default {
   data() {
     return {
       content: '',
+      content2: '',
     }
   },
-  watch: {
-    content(val, oldVal) {
-      //打印填写内容
-      console.log(val)
-    }
-  },
-  created() {
-    // HACK: styleguide 示例里面用不了 style block
-    document.querySelector('style').sheet.insertRule(`
-    .demo .ck-editor__main > .ck-content {
-      height: 400px
-    }`)
-  }
 }
 </script>
 ```
