@@ -5,6 +5,10 @@
  * 详情看相关 issues & pr：
  * - https://github.com/ckeditor/ckeditor5/issues/5877
  * - https://github.com/ckeditor/ckeditor5-engine/pull/861
+ *
+ * PS：这个可能是更优的方案，如果还有问题的话可以参考
+ * https://github.com/ckeditor/ckeditor5/issues/5877#issuecomment-566369164
+ * https://github.com/mycolorway/ckeditor5-engine/commit/7d921207054e327088fe7496a8cde451ddd87423
  */
 export default function(editor) {
   const {_renderer, document} = editor.editing.view
