@@ -34,6 +34,7 @@ import FullScreen from './plugin/FullScreen'
 import ExtraFormat from './plugin/ExtraFormat'
 import RemoveFormat from './plugin/RemoveFormat/RemoveFormat'
 import AttachmentUpload from './plugin/AttachmentUpload'
+import FixComposing from './plugin/FixComposing'
 
 export default {
   plugins: [
@@ -67,7 +68,8 @@ export default {
     FullScreen,
     ExtraFormat,
     RemoveFormat,
-    AttachmentUpload
+    AttachmentUpload,
+    FixComposing
   ],
   toolbar: [
     'undo',
