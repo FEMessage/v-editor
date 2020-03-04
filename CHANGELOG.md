@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.3.1](https://github.com/FEMessage/v-editor/compare/v2.3.0...v2.3.1) (2020-03-04)
+
+
+### Bug Fixes
+
+* 输入法相关问题 ([#81](https://github.com/FEMessage/v-editor/issues/81)) ([f6a4460](https://github.com/FEMessage/v-editor/commit/f6a4460))
+
+
+
 ## [2.3.0](https://github.com/FEMessage/v-editor/compare/v2.2.1...v2.3.0) (2020-02-21)
 
 
