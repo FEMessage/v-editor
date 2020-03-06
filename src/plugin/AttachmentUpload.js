@@ -59,7 +59,18 @@ class AttachmentCommand extends Command {
 
           // 插入文本
           const blank = writer.createText(' ')
-          const linkText = writer.createText(file.name, {linkHref: url})
+          /**
+           * 没法在 link 里插入 svg 图片
+           * https://ckeditor.com/docs/ckeditor5/latest/builds/guides/faq.html#where-are-the-editorinserthtml-and-editorinserttext-methods-how-to-insert-some-content
+           */
+          // const viewFragment = editor.data.processor.toView(attachmentIcon)
+          // const modelFragment = editor.data.toModel(viewFragment)
+          // console.log(modelFragment) // 空。得写插件支持
+          /**
+           * 只能 emoji 了
+           * 备选：🔗📂📚📦
+           */
+          const linkText = writer.createText(`🔗${file.name}`, {linkHref: url})
 
           model.insertContent(linkText, model.document.selection)
           model.insertContent(blank, model.document.selection)
