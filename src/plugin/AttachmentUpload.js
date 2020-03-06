@@ -68,9 +68,9 @@ class AttachmentCommand extends Command {
           // console.log(modelFragment) // 空。得写插件支持
           /**
            * 只能 emoji 了
-           * 备选：🔗📂📚
+           * 备选：🔗📂📚📦
            */
-          const linkText = writer.createText(`📦${file.name}`, {linkHref: url})
+          const linkText = writer.createText(`🔗${file.name}`, {linkHref: url})
 
           model.insertContent(linkText, model.document.selection)
           model.insertContent(blank, model.document.selection)
