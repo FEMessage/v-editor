@@ -145,6 +145,20 @@ export default {
     }
   }
 
+  ol,
+  ul {
+    padding-left: 1em;
+  }
+
+  // 不要影响 ul 的列表项
+  ol ol {
+    list-style-type: lower-alpha;
+
+    & ol {
+      list-style-type: lower-roman;
+    }
+  }
+
   .full-screen {
     position: fixed;
     top: 0;
