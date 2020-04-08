@@ -35,7 +35,6 @@ import ExtraFormat from './plugin/ExtraFormat'
 import RemoveFormat from './plugin/RemoveFormat'
 import AttachmentUpload from './plugin/AttachmentUpload'
 import FixComposing from './plugin/FixComposing'
-import AutoInsertHorizontalLine from './plugin/AutoInsertHorizontalLine'
 
 export default {
   plugins: [
@@ -70,8 +69,7 @@ export default {
     ExtraFormat,
     RemoveFormat,
     AttachmentUpload,
-    FixComposing,
-    AutoInsertHorizontalLine
+    FixComposing
   ],
   toolbar: [
     'undo',

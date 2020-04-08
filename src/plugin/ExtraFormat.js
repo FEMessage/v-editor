@@ -13,6 +13,7 @@ export default class ExtraFormat extends Plugin {
   afterInit() {
     this._addListAutoformat()
     this._urlImageAutoformat()
+    this._addHorizontalLineAutoFormat()
   }
 
   /**
@@ -50,5 +51,23 @@ export default class ExtraFormat extends Plugin {
         this.editor.model.insertContent(imageElement, doc.selection)
       }
     )
+  }
+
+  /**
+   * 快捷插入分割线
+   */
+  _addHorizontalLineAutoFormat() {
+    const {editor} = this
+    const cmd = 'horizontalLine'
+    if (!editor.commands.get(cmd)) return
+    const pat = /^---\s$/
+    new BlockAutoformatEditing(editor, pat, () => {
+      const node = editor.model.document.selection.getFirstPosition().parent
+      editor.model.enqueueChange(writer => {
+        writer.remove(node)
+        // 先 remove 再插入分割线，这样光标才会停在分割线下一行
+        editor.execute(cmd)
+      })
+    })
   }
 }
