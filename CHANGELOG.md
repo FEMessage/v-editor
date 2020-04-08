@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.5.0](https://github.com/FEMessage/v-editor/compare/v2.4.0...v2.5.0) (2020-04-08)
+
+
+### Features
+
+* 优化列表项样式 ([#89](https://github.com/FEMessage/v-editor/issues/89)) ([1ce2af2](https://github.com/FEMessage/v-editor/commit/1ce2af2))
+* 输入 “---{空格}” 自动插入分割线 ([#90](https://github.com/FEMessage/v-editor/issues/90)) ([cd4dc02](https://github.com/FEMessage/v-editor/commit/cd4dc02))
+
+
+
 ## [2.4.0](https://github.com/FEMessage/v-editor/compare/v2.3.1...v2.4.0) (2020-03-06)
 
 
