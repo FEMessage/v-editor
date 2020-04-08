@@ -32,7 +32,7 @@ import TableToolbar from '@ckeditor/ckeditor5-table/src/tabletoolbar'
 // 本地插件
 import FullScreen from './plugin/FullScreen'
 import ExtraFormat from './plugin/ExtraFormat'
-import RemoveFormat from './plugin/RemoveFormat/RemoveFormat'
+import RemoveFormat from './plugin/RemoveFormat'
 import AttachmentUpload from './plugin/AttachmentUpload'
 import FixComposing from './plugin/FixComposing'
 
