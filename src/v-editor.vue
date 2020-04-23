@@ -16,7 +16,11 @@
       v-bind="uploadOptions"
     />
     <!-- 上传的 spinner -->
-    <div v-show="showSpinnner" class="spinner-wrapper">
+    <div
+      v-show="showSpinnner"
+      class="spinner-wrapper"
+      :class="{'spinner-full-screen': isFullScreen}"
+    >
       <!-- @slot 上传 spinner -->
       <slot name="spinner">
         <div class="spinner-content center">
@@ -87,7 +91,8 @@ export default {
     return {
       editor: null,
       ClassicEditor,
-      showSpinnner: false
+      showSpinnner: false,
+      isFullScreen: false
     }
   },
   computed: {
@@ -119,10 +124,12 @@ export default {
     height: 'setHeight'
   },
   mounted() {
-    hooks.add('toggle-spinner', v => (this.showSpinnner = v))
+    hooks.add('toggle-spinner', bool => (this.showSpinnner = bool))
+    hooks.add('toggle-full-screen', bool => (this.isFullScreen = bool))
   },
   beforeDestroy() {
     hooks.clean('toggle-spinner')
+    hooks.clean('toggle-full-screen')
   },
   methods: {
     setHeight() {
@@ -202,6 +209,13 @@ export default {
     & .spinner-icon {
       width: 2rem;
       height: 2rem;
+    }
+
+    &.spinner-full-screen {
+      & .center {
+        z-index: 10001;
+        position: fixed;
+      }
     }
   }
 }
