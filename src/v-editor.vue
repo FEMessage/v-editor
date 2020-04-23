@@ -23,7 +23,7 @@
     >
       <!-- @slot 上传 spinner -->
       <slot name="spinner">
-        <div class="spinner-content center">
+        <div class="spinner-content top-right">
           <spinner-icon class="spinner-icon" />
         </div>
       </slot>
@@ -200,7 +200,7 @@ export default {
   }
 
   .spinner-wrapper {
-    & .center {
+    & .top-right {
       position: absolute;
       top: calc(@toolbarHeight + 10px);
       right: 10px;
@@ -212,7 +212,7 @@ export default {
     }
 
     &.spinner-full-screen {
-      & .center {
+      & .top-right {
         z-index: 10001;
         position: fixed;
       }
