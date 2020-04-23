@@ -18,9 +18,11 @@
     <!-- 上传的 spinner -->
     <div v-show="showSpinnner" class="spinner-wrapper">
       <!-- @slot 上传 spinner -->
-      <div slot="spinner" class="spinner-content center">
-        <spinner-icon class="spinner-icon" />
-      </div>
+      <slot name="spinner">
+        <div class="spinner-content center">
+          <spinner-icon class="spinner-icon" />
+        </div>
+      </slot>
     </div>
   </div>
 </template>
@@ -146,6 +148,8 @@ export default {
 <style src="github-markdown-css/github-markdown.css"></style>
 <style lang="less">
 .v-editor {
+  @toolbarHeight: 41px;
+
   position: relative;
 
   .ck .ck-heading-dropdown {
@@ -184,30 +188,20 @@ export default {
     z-index: 10000;
 
     .ck-editor__main {
-      height: calc(100vh - 41px) !important;
+      height: calc(100vh - @toolbarHeight) !important;
     }
   }
 
   .spinner-wrapper {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #eeee;
-    // 工具栏的图标 ↓ 箭头有层级
-    z-index: 100;
-
     & .center {
       position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%);
+      top: calc(@toolbarHeight + 10px);
+      right: 10px;
     }
 
     & .spinner-icon {
-      width: 1rem;
-      height: 1rem;
+      width: 2rem;
+      height: 2rem;
     }
   }
 }
