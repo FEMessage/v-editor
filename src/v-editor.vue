@@ -37,7 +37,6 @@ import merge from 'lodash-es/merge'
 import ImageUploader from './plugin/ImageUploader'
 import CKEditor from '@ckeditor/ckeditor5-vue'
 import SpinnerIcon from './assets/spinner.vue'
-import hooks from './utils/hooks'
 
 export default {
   name: 'VEditor',
@@ -119,14 +118,6 @@ export default {
   },
   watch: {
     height: 'setHeight'
-  },
-  mounted() {
-    hooks.add('toggle-spinner', bool => (this.showSpinnner = bool))
-    hooks.add('toggle-full-screen', bool => (this.isFullScreen = bool))
-  },
-  beforeDestroy() {
-    hooks.clean('toggle-spinner')
-    hooks.clean('toggle-full-screen')
   },
   methods: {
     setHeight() {

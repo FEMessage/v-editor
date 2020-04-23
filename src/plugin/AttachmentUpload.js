@@ -3,7 +3,6 @@ import Command from '@ckeditor/ckeditor5-core/src/command'
 import FileDialogButtonView from '@ckeditor/ckeditor5-upload/src/ui/filedialogbuttonview'
 
 import attachmentIcon from '../assets/attachment.svg'
-import hooks from '../utils/hooks'
 
 export default class AttachmentUpload extends Plugin {
   /**
@@ -32,7 +31,6 @@ export default class AttachmentUpload extends Plugin {
       // 文件选择结束回调
       view.on('done', (_, file) => {
         editor.execute('attachmentUpload', {file})
-        hooks.invoke('toggle-spinner', true)
       })
 
       return view
@@ -67,12 +65,6 @@ class AttachmentCommand extends Command {
         .then(() => loader.upload())
         .then(data => {
           const url = data.default
-
-          // 上传完成 - 去除 spinner - wrapper
-          // 小文件一闪不好看，大文件也不纠结这500ms
-          setTimeout(() => {
-            hooks.invoke('toggle-spinner', false)
-          }, 500)
 
           // 插入文本
           const blank = writer.createText(' ')

@@ -7,8 +7,6 @@ import ButtonView from '@ckeditor/ckeditor5-ui/src/button/buttonview'
 import maxIcon from '../assets/maximize.svg'
 import minIcon from '../assets/minimize.svg'
 
-import hooks from '../utils/hooks'
-
 // 自定义组件需要继承基础组件
 export default class FullScreen extends Plugin {
   // 重写基础组件的初始化函数
@@ -29,12 +27,10 @@ export default class FullScreen extends Plugin {
 
       // 点击按钮
       view.on('execute', () => {
-        const isFullScreen = editor.ui.view.element.classList.contains(
-          'full-screen'
-        )
-        hooks.invoke('toggle-full-screen', !isFullScreen)
         view.set({
-          icon: isFullScreen ? maxIcon : minIcon
+          icon: editor.ui.view.element.classList.contains('full-screen')
+            ? maxIcon
+            : minIcon
         })
         // ckeditor 是挂载在传入 dom 后面的，有意思
         editor.ui.view.element.classList.toggle('full-screen')
