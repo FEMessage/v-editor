@@ -15,16 +15,6 @@
       value=""
       v-bind="uploadOptions"
     />
-    <!-- 上传的 spinner -->
-    <div
-      v-show="showSpinnner"
-      class="spinner-wrapper"
-      :class="{'spinner-full-screen': isFullScreen}"
-    >
-      <div class="spinner-content main-top-right">
-        <spinner-icon class="spinner-icon" />
-      </div>
-    </div>
   </div>
 </template>
 
@@ -36,14 +26,12 @@ import debounce from 'lodash-es/debounce'
 import merge from 'lodash-es/merge'
 import ImageUploader from './plugin/ImageUploader'
 import CKEditor from '@ckeditor/ckeditor5-vue'
-import SpinnerIcon from './assets/spinner.vue'
 
 export default {
   name: 'VEditor',
   components: {
     UploadToAli,
-    ckeditor: CKEditor.component,
-    SpinnerIcon
+    ckeditor: CKEditor.component
   },
   props: {
     /**
@@ -86,9 +74,7 @@ export default {
   data() {
     return {
       editor: null,
-      ClassicEditor,
-      showSpinnner: false,
-      isFullScreen: false
+      ClassicEditor
     }
   },
   computed: {
@@ -184,31 +170,6 @@ export default {
 
     .ck-editor__main {
       height: calc(100vh - @toolbarHeight) !important;
-    }
-  }
-
-  & .spinner-wrapper {
-    position: absolute;
-    top: @toolbarHeight;
-    right: 0;
-    bottom: 0;
-
-    & .main-top-right {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-    }
-
-    & .spinner-icon {
-      width: 2rem;
-      height: 2rem;
-    }
-
-    &.spinner-full-screen {
-      & .main-top-right {
-        z-index: 10001;
-        position: fixed;
-      }
     }
   }
 }
