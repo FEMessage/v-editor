@@ -21,12 +21,9 @@
       class="spinner-wrapper"
       :class="{'spinner-full-screen': isFullScreen}"
     >
-      <!-- @slot 上传 spinner -->
-      <slot name="spinner">
-        <div class="spinner-content top-right">
-          <spinner-icon class="spinner-icon" />
-        </div>
-      </slot>
+      <div class="spinner-content main-top-right">
+        <spinner-icon class="spinner-icon" />
+      </div>
     </div>
   </div>
 </template>
@@ -199,10 +196,15 @@ export default {
     }
   }
 
-  .spinner-wrapper {
-    & .top-right {
+  & .spinner-wrapper {
+    position: absolute;
+    top: @toolbarHeight;
+    right: 0;
+    bottom: 0;
+
+    & .main-top-right {
       position: absolute;
-      top: calc(@toolbarHeight + 10px);
+      top: 10px;
       right: 10px;
     }
 
@@ -212,7 +214,7 @@ export default {
     }
 
     &.spinner-full-screen {
-      & .top-right {
+      & .main-top-right {
         z-index: 10001;
         position: fixed;
       }
