@@ -15,6 +15,13 @@
       value=""
       v-bind="uploadOptions"
     />
+    <!-- 上传的 spinner -->
+    <div v-show="showSpinnner" class="spinner-wrapper">
+      <!-- @slot 上传 spinner -->
+      <div slot="spinner" class="spinner-content center">
+        <spinner-icon class="spinner-icon" />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -26,12 +33,15 @@ import debounce from 'lodash-es/debounce'
 import merge from 'lodash-es/merge'
 import ImageUploader from './plugin/ImageUploader'
 import CKEditor from '@ckeditor/ckeditor5-vue'
+import SpinnerIcon from './assets/spinner.vue'
+import hooks from './utils/hooks'
 
 export default {
   name: 'VEditor',
   components: {
     UploadToAli,
-    ckeditor: CKEditor.component
+    ckeditor: CKEditor.component,
+    SpinnerIcon
   },
   props: {
     /**
@@ -74,7 +84,8 @@ export default {
   data() {
     return {
       editor: null,
-      ClassicEditor
+      ClassicEditor,
+      showSpinnner: false
     }
   },
   computed: {
@@ -104,6 +115,12 @@ export default {
   },
   watch: {
     height: 'setHeight'
+  },
+  mounted() {
+    hooks.add('toggle-spinner', v => (this.showSpinnner = v))
+  },
+  beforeDestroy() {
+    hooks.clean('toggle-spinner')
   },
   methods: {
     setHeight() {
@@ -168,6 +185,29 @@ export default {
 
     .ck-editor__main {
       height: calc(100vh - 41px) !important;
+    }
+  }
+
+  .spinner-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #eeee;
+    // 工具栏的图标 ↓ 箭头有层级
+    z-index: 100;
+
+    & .center {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%);
+    }
+
+    & .spinner-icon {
+      width: 1rem;
+      height: 1rem;
     }
   }
 }
