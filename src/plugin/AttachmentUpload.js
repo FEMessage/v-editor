@@ -51,10 +51,19 @@ class AttachmentCommand extends Command {
 
     model.change(writer => {
       const loader = fileRepository.createLoader(file)
+      /** @type {import ('ckeditor__ckeditor5-engine').model.Range} */
+      let filenameTxtPlaceholderRange
 
-      // 执行顺序依次：读取，上传
+      // 执行顺序依次：读取，占位，上传
       loader
         .read()
+        .then(() => {
+          const filenameTxtModel = writer.createText(`{{${file.name}}}`)
+          filenameTxtPlaceholderRange = model.insertContent(
+            filenameTxtModel,
+            model.document.selection
+          )
+        })
         .then(() => loader.upload())
         .then(data => {
           const url = data.default
@@ -83,6 +92,13 @@ class AttachmentCommand extends Command {
           model.insertContent(linkText, model.document.selection)
           model.insertContent(blank, model.document.selection)
           editor.execute('enter')
+
+          if (filenameTxtPlaceholderRange) {
+            const selection = writer.createSelection(
+              filenameTxtPlaceholderRange
+            )
+            model.deleteContent(selection)
+          }
 
           // 回收 loader
           fileRepository.destroyLoader(loader)
