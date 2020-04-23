@@ -129,8 +129,6 @@ export default {
 <style src="github-markdown-css/github-markdown.css"></style>
 <style lang="less">
 .v-editor {
-  @toolbarHeight: 41px;
-
   position: relative;
 
   .ck .ck-heading-dropdown {
@@ -169,7 +167,7 @@ export default {
     z-index: 10000;
 
     .ck-editor__main {
-      height: calc(100vh - @toolbarHeight) !important;
+      height: calc(100vh - 41px) !important;
     }
   }
 }
