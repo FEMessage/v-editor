@@ -66,8 +66,6 @@ class AttachmentCommand extends Command {
         .then(data => {
           const url = data.default
 
-          // 插入文本
-          const blank = writer.createText(' ')
           /**
            * 没法在 link 里插入 svg 图片
            * https://ckeditor.com/docs/ckeditor5/latest/builds/guides/faq.html#where-are-the-editorinserthtml-and-editorinserttext-methods-how-to-insert-some-content
@@ -81,16 +79,12 @@ class AttachmentCommand extends Command {
            */
           const linkText = writer.createText(`🔗${file.name}`, {linkHref: url})
 
-          model.insertContent(linkText, model.document.selection)
-          model.insertContent(blank, model.document.selection)
-          editor.execute('enter')
-
+          let selection
           if (filenameTxtPlaceholderRange) {
-            const selection = writer.createSelection(
-              filenameTxtPlaceholderRange
-            )
-            model.deleteContent(selection)
+            selection = writer.createSelection(filenameTxtPlaceholderRange)
           }
+
+          model.insertContent(linkText, selection || model.document.selection)
 
           // 回收 loader
           fileRepository.destroyLoader(loader)
