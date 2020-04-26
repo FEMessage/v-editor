@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.6.0](https://github.com/FEMessage/v-editor/compare/v2.5.0...v2.6.0) (2020-04-26)
+
+
+### Features
+
+* 上传附件时显示占位文字 ([#91](https://github.com/FEMessage/v-editor/issues/91)) ([34c62f3](https://github.com/FEMessage/v-editor/commit/34c62f3))
+
+
+
 ## [2.5.0](https://github.com/FEMessage/v-editor/compare/v2.4.0...v2.5.0) (2020-04-08)
 
 
