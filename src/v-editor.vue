@@ -124,6 +124,7 @@ export default {
     },
     uploadFile(file) {
       const request = this.$refs.uploadToAli.uploadRequest(file)
+      this.$emit('upload-start')
       request
         .then(res => {
           this.$emit('upload-end', true, res)
