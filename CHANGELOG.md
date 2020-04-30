@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.7.0](https://github.com/FEMessage/v-editor/compare/v2.6.0...v2.7.0) (2020-04-30)
+
+
+### Features
+
+* 添加上传事件发射 ([#92](https://github.com/FEMessage/v-editor/issues/92)) ([c0ea46a](https://github.com/FEMessage/v-editor/commit/c0ea46a))
+
+
+
 ## [2.6.0](https://github.com/FEMessage/v-editor/compare/v2.5.0...v2.6.0) (2020-04-26)
 
 
