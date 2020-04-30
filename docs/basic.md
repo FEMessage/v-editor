@@ -3,7 +3,7 @@
 ```vue
 <template>
   <div>
-    <v-editor @ready="editor = $event" v-model="content" />
+    <v-editor @ready="editor = $event" v-model="content"/>
     <el-button @click="toggleInspector" style="margin-top: 5px">{{flag ? '关闭' : '打开'}}数据结构视图</el-button>
   </div>
 </template>
@@ -13,7 +13,7 @@ export default {
     return {
       content: '',
       editor: null,
-      flag: false
+      flag: false,
     }
   },
   watch: {
@@ -29,7 +29,8 @@ export default {
         ? CKEditorInspector.destroy()
         : CKEditorInspector.attach({basic: this.editor})
       this.flag = !this.flag
-    }
+    },
+    
   },
 }
 </script>
