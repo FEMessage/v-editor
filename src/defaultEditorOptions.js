@@ -29,7 +29,7 @@ import Table from '@ckeditor/ckeditor5-table/src/table'
 import TableToolbar from '@ckeditor/ckeditor5-table/src/tabletoolbar'
 
 // 本地插件
-import Autoformat from './plugin/autoformat'
+import Autoformat from './plugin/Autoformat'
 import FullScreen from './plugin/FullScreen'
 import ExtraFormat from './plugin/ExtraFormat'
 import RemoveFormat from './plugin/RemoveFormat'

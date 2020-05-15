@@ -7,12 +7,20 @@ export default class TheAutoFormat extends Autoformat {
 
     if (commands.get('bulletedList')) {
       // eslint-disable-next-line no-new
-      new BlockAutoformatEditing(this.editor, /^[*-]\s/, 'bulletedList')
+      new BlockAutoformatEditing(
+        this.editor,
+        /^[*-]\s/,
+        this._composeListener('bulletedList')
+      )
     }
 
     if (commands.get('numberedList')) {
       // eslint-disable-next-line no-new
-      new BlockAutoformatEditing(this.editor, /^1\.\s/, 'numberedList')
+      new BlockAutoformatEditing(
+        this.editor,
+        /^1\.\s/,
+        this._composeListener('numberedList')
+      )
     }
   }
 
@@ -35,6 +43,14 @@ export default class TheAutoFormat extends Autoformat {
             this.editor.execute('heading', {value: commandValue})
           })
         })
+    }
+  }
+
+  _composeListener(command) {
+    return () => {
+      const isComposing = this.editor.editing.view.document.isComposing
+      if (isComposing) return false
+      return this.editor.execute(command)
     }
   }
 }

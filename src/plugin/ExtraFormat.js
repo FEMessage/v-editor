@@ -23,7 +23,11 @@ export default class ExtraFormat extends Plugin {
     const commands = this.editor.commands
 
     if (commands.get('todoList')) {
-      new BlockAutoformatEditing(this.editor, /^\[\]\s/, 'todoList')
+      new BlockAutoformatEditing(
+        this.editor,
+        /^\[\]\s/,
+        this._composeListener('todolist')
+      )
     }
   }
 
@@ -69,5 +73,13 @@ export default class ExtraFormat extends Plugin {
         editor.execute(cmd)
       })
     })
+  }
+
+  _composeListener(command) {
+    return () => {
+      const isComposing = this.editor.editing.view.document.isComposing
+      if (isComposing) return false
+      return this.editor.execute(command)
+    }
   }
 }
