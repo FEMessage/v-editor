@@ -23,7 +23,7 @@ export default class ExtraFormat extends Plugin {
     const commands = this.editor.commands
 
     if (commands.get('todoList')) {
-      new BlockAutoformatEditing(this.editor, /^\[\]\s$/, 'todoList')
+      new BlockAutoformatEditing(this.editor, /^\[\]\s/, 'todoList')
     }
   }
 
