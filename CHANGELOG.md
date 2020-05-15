@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.7.1](https://github.com/FEMessage/v-editor/compare/v2.7.0...v2.7.1) (2020-05-15)
+
+
+### Bug Fixes
+
+* 清歌输入法占位导致的定位出错 ([#94](https://github.com/FEMessage/v-editor/issues/94)) ([2deab6d](https://github.com/FEMessage/v-editor/commit/2deab6d))
+
+
+
 ## [2.7.0](https://github.com/FEMessage/v-editor/compare/v2.6.0...v2.7.0) (2020-04-30)
 
 
