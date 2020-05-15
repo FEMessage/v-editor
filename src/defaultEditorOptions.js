@@ -1,6 +1,5 @@
 import Essentials from '@ckeditor/ckeditor5-essentials/src/essentials'
 import Autosave from '@ckeditor/ckeditor5-autosave/src/autosave'
-import Autoformat from '@ckeditor/ckeditor5-autoformat/src/autoformat'
 import CKFinder from '@ckeditor/ckeditor5-ckfinder/src/ckfinder'
 
 import Heading from '@ckeditor/ckeditor5-heading/src/heading'
@@ -30,6 +29,7 @@ import Table from '@ckeditor/ckeditor5-table/src/table'
 import TableToolbar from '@ckeditor/ckeditor5-table/src/tabletoolbar'
 
 // 本地插件
+import Autoformat from './plugin/Autoformat'
 import FullScreen from './plugin/FullScreen'
 import ExtraFormat from './plugin/ExtraFormat'
 import RemoveFormat from './plugin/RemoveFormat'

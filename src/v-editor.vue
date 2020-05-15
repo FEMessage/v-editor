@@ -159,7 +159,7 @@ export default {
 
   ol,
   ul {
-    padding-left: 1em;
+    padding-left: 1.5em;
   }
 
   // 不要影响 ul 的列表项
