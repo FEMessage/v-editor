@@ -61,7 +61,8 @@
     "@ckeditor/ckeditor5-upload": "^16.0.0",
     "@ckeditor/ckeditor5-vue": "^1.0.1",
     "github-markdown-css": "^3.0.1",
-    "lodash-es": "^4.17.15"
+    "lodash-es": "^4.17.15",
+    "marked": "^1.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.8.3",

@@ -35,6 +35,7 @@ import ExtraFormat from './plugin/ExtraFormat'
 import RemoveFormat from './plugin/RemoveFormat'
 import AttachmentUpload from './plugin/AttachmentUpload'
 import FixComposing from './plugin/FixComposing'
+import TransformMD from './plugin/TransformMD'
 
 export default {
   plugins: [
@@ -69,6 +70,7 @@ export default {
     ExtraFormat,
     RemoveFormat,
     AttachmentUpload,
+    TransformMD,
     FixComposing
   ],
   toolbar: [
