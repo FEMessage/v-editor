@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.8.0](https://github.com/FEMessage/v-editor/compare/v2.7.1...v2.8.0) (2020-05-19)
+
+
+### Features
+
+* 添加 placeholder ([#96](https://github.com/FEMessage/v-editor/issues/96)) ([5b2fad2](https://github.com/FEMessage/v-editor/commit/5b2fad2))
+* 自动转换 markdown 文本 ([#95](https://github.com/FEMessage/v-editor/issues/95)) ([00fc1ce](https://github.com/FEMessage/v-editor/commit/00fc1ce))
+
+
+
 ### [2.7.1](https://github.com/FEMessage/v-editor/compare/v2.7.0...v2.7.1) (2020-05-15)
 
 
