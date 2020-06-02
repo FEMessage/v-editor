@@ -26,7 +26,7 @@ export default class ExtraFormat extends Plugin {
       new BlockAutoformatEditing(
         this.editor,
         /^\[\]\s/,
-        this._composeListener('todolist')
+        this._composeListener('todoList')
       )
     }
   }
