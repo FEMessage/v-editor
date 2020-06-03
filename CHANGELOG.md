@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.8.1](https://github.com/FEMessage/v-editor/compare/v2.8.0...v2.8.1) (2020-06-03)
+
+
+### Bug Fixes
+
+* todoList 失效 ([#98](https://github.com/FEMessage/v-editor/issues/98)) ([dbe4290](https://github.com/FEMessage/v-editor/commit/dbe4290))
+
+
+
 ## [2.8.0](https://github.com/FEMessage/v-editor/compare/v2.7.1...v2.8.0) (2020-05-19)
 
 
