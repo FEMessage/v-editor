@@ -8,14 +8,13 @@ const REMOVE_FORMAT = 'removeFormat'
 export default class extends RemoveFormatUI {
   init() {
     const editor = this.editor
-    const t = editor.t
 
     editor.ui.componentFactory.add(REMOVE_FORMAT, locale => {
       const command = editor.commands.get(REMOVE_FORMAT)
       const view = new ButtonView(locale)
 
       view.set({
-        label: t('Remove Format'),
+        label: '清除格式',
         icon: removeButtonIcon,
         tooltip: true
       })
