@@ -15,7 +15,7 @@ export default class extends RemoveFormatUI {
       const view = new ButtonView(locale)
 
       view.set({
-        label: t('Remove Format'),
+        label: t('清除格式'),
         icon: removeButtonIcon,
         tooltip: true
       })
