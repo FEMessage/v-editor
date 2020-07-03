@@ -27,6 +27,7 @@ import merge from 'lodash-es/merge'
 import ImageUploader from './plugin/ImageUploader'
 import CKEditor from '@ckeditor/ckeditor5-vue'
 
+const oneKB = 1024
 export default {
   name: 'VEditor',
   components: {
@@ -131,7 +132,23 @@ export default {
       this.setHeight()
     },
     uploadFile(file) {
-      const request = this.$refs.uploadToAli.uploadRequest(file)
+      const uploadToAli = this.$refs.uploadToAli
+      const request = (async () => {
+        // 执行uploadToAli的beforeUpload
+        try {
+          await uploadToAli.beforeUpload([file])
+        } catch (e) {
+          throw new Error(e)
+        }
+        // 检查有无oversize的文件
+        const isOverSize = file.size > uploadToAli.size * oneKB
+        if (isOverSize) {
+          uploadToAli.onOversize(isOverSize)
+          throw new Error(isOverSize)
+        }
+
+        return uploadToAli.uploadRequest(file)
+      })()
       this.$emit('upload-start')
       request
         .then(res => {
