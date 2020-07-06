@@ -88,7 +88,7 @@ export default {
     editorConfig() {
       // $refs 在 mounted 阶段才挂载，这里不能直接传实例
       const uploadImg = this.uploadFile
-      return merge(
+      return Object.assign(
         defaultEditorOptions,
         {
           placeholder: this.placeholder,
