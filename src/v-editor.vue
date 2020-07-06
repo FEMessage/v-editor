@@ -20,14 +20,15 @@
 
 <script>
 import ClassicEditor from '@ckeditor/ckeditor5-editor-classic/src/classiceditor'
-import UploadToAli from '@femessage/upload-to-ali'
+// import UploadToAli from '@femessage/upload-to-ali'
+import UploadToAli from '../../upload-to-ali/src'
+
 import defaultEditorOptions from './defaultEditorOptions'
 import debounce from 'lodash-es/debounce'
 import merge from 'lodash-es/merge'
 import ImageUploader from './plugin/ImageUploader'
 import CKEditor from '@ckeditor/ckeditor5-vue'
 
-const oneKB = 1024
 export default {
   name: 'VEditor',
   components: {
@@ -133,26 +134,19 @@ export default {
     },
     uploadFile(file) {
       const uploadToAli = this.$refs.uploadToAli
-      const request = (async () => {
-        // 执行uploadToAli的beforeUpload
-        try {
-          await uploadToAli.beforeUpload([file])
-        } catch (e) {
-          throw new Error(e)
-        }
-        // 检查有无oversize的文件
-        const isOverSize = file.size > uploadToAli.size * oneKB
-        if (isOverSize) {
-          uploadToAli.onOversize(isOverSize)
-          throw new Error(isOverSize)
-        }
-
-        return uploadToAli.uploadRequest(file)
-      })()
+      // 模拟upload-to-ali 的upload传参
+      const request = uploadToAli.upload({
+        target: {files: [file]}
+      })
       this.$emit('upload-start')
       request
         .then(res => {
-          this.$emit('upload-end', true, res)
+          // res没有返回意味着上传失败
+          if (res) {
+            this.$emit('upload-end', true, res)
+          } else {
+            this.$emit('upload-end', false, 'fail')
+          }
         })
         .catch(e => {
           this.$emit('upload-end', false, e)

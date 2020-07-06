@@ -49,7 +49,7 @@ export default {
       uploadOptions: {
         request: this.myUpload,
         size: 100,
-        onOversize: () => this.$message.warning('请选择100K以内的图片')
+        onOversize: () => console.log('请选择100K以内的图片')
       }
     }
   },
