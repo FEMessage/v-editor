@@ -20,8 +20,7 @@
 
 <script>
 import ClassicEditor from '@ckeditor/ckeditor5-editor-classic/src/classiceditor'
-// import UploadToAli from '@femessage/upload-to-ali'
-import UploadToAli from '../../upload-to-ali/src'
+import UploadToAli from '@femessage/upload-to-ali'
 
 import defaultEditorOptions from './defaultEditorOptions'
 import debounce from 'lodash-es/debounce'
