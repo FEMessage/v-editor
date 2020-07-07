@@ -21,6 +21,7 @@
 <script>
 import ClassicEditor from '@ckeditor/ckeditor5-editor-classic/src/classiceditor'
 import UploadToAli from '@femessage/upload-to-ali'
+
 import defaultEditorOptions from './defaultEditorOptions'
 import debounce from 'lodash-es/debounce'
 import ImageUploader from './plugin/ImageUploader'
@@ -131,11 +132,20 @@ export default {
       this.setHeight()
     },
     uploadFile(file) {
-      const request = this.$refs.uploadToAli.uploadRequest(file)
+      const uploadToAli = this.$refs.uploadToAli
+      // 模拟upload-to-ali 的upload传参
+      const request = uploadToAli.upload({
+        target: {files: [file]}
+      })
       this.$emit('upload-start')
       request
         .then(res => {
-          this.$emit('upload-end', true, res)
+          // res没有返回意味着上传失败
+          if (res) {
+            this.$emit('upload-end', true, res)
+          } else {
+            this.$emit('upload-end', false, 'fail')
+          }
         })
         .catch(e => {
           this.$emit('upload-end', false, e)
