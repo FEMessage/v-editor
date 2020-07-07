@@ -1185,9 +1185,9 @@
   integrity sha1-Cp5qyZ4X+Zw7QBJ5Hx90IILetZE=
 
 "@femessage/upload-to-ali@^2.1.2":
-  version "2.1.6"
-  resolved "https://registry.npm.taobao.org/@femessage/upload-to-ali/download/@femessage/upload-to-ali-2.1.6.tgz#ade8be53ff817fb7dd8efe5d7a4bc892e1ee200c"
-  integrity sha1-rei+U/+Bf7fdjv5dekvIkuHuIAw=
+  version "2.1.7"
+  resolved "https://registry.npm.taobao.org/@femessage/upload-to-ali/download/@femessage/upload-to-ali-2.1.7.tgz#edf24e76b4c7654165e613a1afdc0773e73896e2"
+  integrity sha1-7fJOdrTHZUFl5hOhr9wHc+c4luI=
   dependencies:
     "@femessage/img-preview" "^1.2.0"
     compressorjs "^1.0.6"
@@ -3488,7 +3488,7 @@ compression@^1.7.4:
 
 compressorjs@^1.0.6:
   version "1.0.6"
-  resolved "https://registry.npm.taobao.org/compressorjs/download/compressorjs-1.0.6.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fcompressorjs%2Fdownload%2Fcompressorjs-1.0.6.tgz#75c55e2c3d797afeaa3084bd0cbf03e8374e4b6d"
+  resolved "https://registry.npm.taobao.org/compressorjs/download/compressorjs-1.0.6.tgz#75c55e2c3d797afeaa3084bd0cbf03e8374e4b6d"
   integrity sha1-dcVeLD15ev6qMIS9DL8D6DdOS20=
   dependencies:
     blueimp-canvas-to-blob "^3.16.0"
@@ -4651,9 +4651,9 @@ element-ui@^2.7.2:
     throttle-debounce "^1.0.1"
 
 elliptic@^6.0.0, elliptic@^6.5.2:
-  version "6.5.2"
-  resolved "https://registry.npm.taobao.org/elliptic/download/elliptic-6.5.2.tgz#05c5678d7173c049d8ca433552224a495d0e3762"
-  integrity sha1-BcVnjXFzwEnYykM1UiJKSV0ON2I=
+  version "6.5.3"
+  resolved "https://registry.npm.taobao.org/elliptic/download/elliptic-6.5.3.tgz?cache=0&sync_timestamp=1592492805287&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Felliptic%2Fdownload%2Felliptic-6.5.3.tgz#cb59eb2efdaf73a0bd78ccd7015a62ad6e0f93d6"
+  integrity sha1-y1nrLv2vc6C9eMzXAVpirW4Pk9Y=
   dependencies:
     bn.js "^4.4.0"
     brorand "^1.0.1"
@@ -10058,9 +10058,9 @@ path-type@^4.0.0:
   integrity sha1-hO0BwKe6OAr+CdkKjBgNzZ0DBDs=
 
 pbkdf2@^3.0.3:
-  version "3.0.17"
-  resolved "https://registry.npm.taobao.org/pbkdf2/download/pbkdf2-3.0.17.tgz#976c206530617b14ebb32114239f7b09336e93a6"
-  integrity sha1-l2wgZTBhexTrsyEUI597CTNuk6Y=
+  version "3.1.1"
+  resolved "https://registry.npm.taobao.org/pbkdf2/download/pbkdf2-3.1.1.tgz#cb8724b0fada984596856d1a6ebafd3584654b94"
+  integrity sha1-y4cksPramEWWhW0abrr9NYRlS5Q=
   dependencies:
     create-hash "^1.1.2"
     create-hmac "^1.1.4"
