@@ -76,6 +76,15 @@ export default {
     disabled: {
       type: Boolean,
       default: false
+    },
+    /**
+     * Upload Fail事件处理，入参status为boolean，true表示upload失败原因是不满足uploadOptions导致的；false表示upload被catch错误了，此时会传入第二个参数error信息
+     */
+    onUploadFail: {
+      type: Function,
+      default() {
+        alert('上传失败，请重试')
+      }
     }
   },
   data() {
@@ -145,10 +154,12 @@ export default {
             this.$emit('upload-end', true, res)
           } else {
             this.$emit('upload-end', false, 'fail')
+            this.onUploadFail(true)
           }
         })
         .catch(e => {
           this.$emit('upload-end', false, e)
+          this.onUploadFail(false, e)
         })
       return request
     }
