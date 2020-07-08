@@ -60,7 +60,7 @@ export default {
      */
     value: {
       type: String,
-      default: () => ({})
+      default: ''
     },
     /**
      * editor配置
