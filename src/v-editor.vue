@@ -160,6 +160,7 @@ export default {
 <style lang="less">
 .v-editor {
   position: relative;
+  min-width: 400px;
 
   .ck .ck-heading-dropdown {
     max-width: 80px;
