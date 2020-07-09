@@ -1,10 +1,9 @@
 基本用法
-注：出于成本考虑，本demo没有部署上传服务，所以上传图片会失败
 
 ```vue
 <template>
   <div>
-    <v-editor @ready="editor = $event" v-model="content"/>
+    <v-editor @ready="editor = $event" v-model="content" :on-upload-fail=“onUploadFail”/>
     <el-button @click="toggleInspector" style="margin-top: 5px">{{flag ? '关闭' : '打开'}}数据结构视图</el-button>
   </div>
 </template>
@@ -31,7 +30,9 @@ export default {
         : CKEditorInspector.attach({basic: this.editor})
       this.flag = !this.flag
     },
-    
+    onUploadFail() {
+      alert('出于成本考虑，本demo没有部署上传服务，所以上传图片会失败')
+    }
   },
 }
 </script>
