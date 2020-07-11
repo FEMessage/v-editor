@@ -21,9 +21,9 @@
 <script>
 import ClassicEditor from '@ckeditor/ckeditor5-editor-classic/src/classiceditor'
 import UploadToAli from '@femessage/upload-to-ali'
+
 import defaultEditorOptions from './defaultEditorOptions'
 import debounce from 'lodash-es/debounce'
-import merge from 'lodash-es/merge'
 import ImageUploader from './plugin/ImageUploader'
 import CKEditor from '@ckeditor/ckeditor5-vue'
 
@@ -60,7 +60,7 @@ export default {
      */
     value: {
       type: String,
-      default: () => ({})
+      default: ''
     },
     /**
      * editor配置
@@ -76,6 +76,15 @@ export default {
     disabled: {
       type: Boolean,
       default: false
+    },
+    /**
+     * Upload Fail事件处理，入参status为boolean，true表示upload失败原因是不满足uploadOptions导致的；false表示upload被catch错误了，此时会传入第二个参数error信息
+     */
+    onUploadFail: {
+      type: Function,
+      default() {
+        alert('上传失败，请重试')
+      }
     }
   },
   data() {
@@ -88,7 +97,8 @@ export default {
     editorConfig() {
       // $refs 在 mounted 阶段才挂载，这里不能直接传实例
       const uploadImg = this.uploadFile
-      return merge(
+      return Object.assign(
+        {},
         defaultEditorOptions,
         {
           placeholder: this.placeholder,
@@ -131,14 +141,25 @@ export default {
       this.setHeight()
     },
     uploadFile(file) {
-      const request = this.$refs.uploadToAli.uploadRequest(file)
+      const uploadToAli = this.$refs.uploadToAli
+      // 模拟upload-to-ali 的upload传参
+      const request = uploadToAli.upload({
+        target: {files: [file]}
+      })
       this.$emit('upload-start')
       request
         .then(res => {
-          this.$emit('upload-end', true, res)
+          // res没有返回意味着上传过程中发现upload文件大小超出限制或其他不能上传的限制导致上传不能执行
+          if (res) {
+            this.$emit('upload-end', true, res)
+          } else {
+            this.$emit('upload-end', false, 'fail')
+            this.onUploadFail(true)
+          }
         })
         .catch(e => {
           this.$emit('upload-end', false, e)
+          this.onUploadFail(false, e)
         })
       return request
     }
