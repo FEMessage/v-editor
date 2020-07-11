@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.8.3](https://github.com/FEMessage/v-editor/compare/v2.8.2...v2.8.3) (2020-07-11)
+
+
+### Bug Fixes
+
+* default value ([#100](https://github.com/FEMessage/v-editor/issues/100)) ([70501df](https://github.com/FEMessage/v-editor/commit/70501df))
+* editorOptions 按预期合并选项 ([#106](https://github.com/FEMessage/v-editor/issues/106)) ([929d6ad](https://github.com/FEMessage/v-editor/commit/929d6ad))
+* upload失败时的处理 ([#107](https://github.com/FEMessage/v-editor/issues/107)) ([0d53597](https://github.com/FEMessage/v-editor/commit/0d53597))
+* 修复部分upload-to-ali的props不生效的问题 ([#105](https://github.com/FEMessage/v-editor/issues/105)) ([eeffad8](https://github.com/FEMessage/v-editor/commit/eeffad8))
+
+
+
 ### [2.8.2](https://github.com/FEMessage/v-editor/compare/v2.8.1...v2.8.2) (2020-06-12)
 
 
