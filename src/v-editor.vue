@@ -161,6 +161,7 @@ export default {
 .v-editor {
   position: relative;
   min-width: 400px;
+  @ck-button-hover-background-color: #f5f6f9;
 
   .ck .ck-heading-dropdown {
     max-width: 80px;
@@ -205,5 +206,21 @@ export default {
       height: calc(100vh - 41px) !important;
     }
   }
+  .ck.ck-button:not(.ck-disabled):hover,
+  a.ck.ck-button:not(.ck-disabled):hover {
+    background: @ck-button-hover-background-color;
+  }
+
+  @fontSizes: 12, 14, 16, 18, 20, 22, 26, 28, 36, 48, 56;
+  .for(@data, @i: 1) when(@i <= length(@data)) {
+    @fontSize: extract(@data, @i);
+    .ck-fontsize-option.ck-fontsize-option-@{fontSize} {
+      .ck-button__label {
+        line-height: @fontSize * 1.2px;
+      }
+    }
+    .for(@data, (@i + 1));
+  }
+  .for(@fontSizes);
 }
 </style>
