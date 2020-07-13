@@ -211,6 +211,14 @@ export default {
     background: @ck-button-hover-background-color;
   }
 
+  .ck-heading-dropdown,
+  .ck-font-size-dropdown {
+    .ck-button.ck-dropdown__button .ck-button__label {
+      width: auto;
+      padding-right: 8px;
+    }
+  }
+
   @fontSizes: 12, 14, 16, 18, 20, 22, 26, 28, 36, 48, 56;
   .for(@data, @i: 1) when(@i <= length(@data)) {
     @fontSize: extract(@data, @i);

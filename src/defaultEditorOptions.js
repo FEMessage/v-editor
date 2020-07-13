@@ -2,6 +2,7 @@ import Autosave from '@ckeditor/ckeditor5-autosave/src/autosave'
 import CKFinder from '@ckeditor/ckeditor5-ckfinder/src/ckfinder'
 
 import Heading from '@ckeditor/ckeditor5-heading/src/heading'
+import Font from '@ckeditor/ckeditor5-font/src/font'
 import BlockQuote from '@ckeditor/ckeditor5-block-quote/src/blockquote'
 import HorizontalLine from '@ckeditor/ckeditor5-horizontal-line/src/horizontalline'
 
@@ -24,7 +25,6 @@ import TableToolbar from '@ckeditor/ckeditor5-table/src/tabletoolbar'
 
 // 本地魔改插件
 import Essentials from './plugin/essentials'
-import Font from './plugin/font'
 import Bold from './plugin/bold'
 import Italic from './plugin/italic'
 import Strikethrough from './plugin/strikethrough'
@@ -79,7 +79,6 @@ export default {
     'removeFormat',
     '|',
     'heading',
-    'fontsize',
     '|',
     'bold',
     'italic',
@@ -134,10 +133,6 @@ export default {
         title: 'Heading 5'
       }
     ]
-  },
-  fontSize: {
-    options: [12, 14, 16, 18, 20, 22, 26, 28, 36, 48, 56],
-    supportAllValues: true
   },
   image: {
     resizeUnit: 'px',
