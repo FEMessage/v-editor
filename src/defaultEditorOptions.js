@@ -2,7 +2,6 @@ import Autosave from '@ckeditor/ckeditor5-autosave/src/autosave'
 import CKFinder from '@ckeditor/ckeditor5-ckfinder/src/ckfinder'
 
 import Heading from '@ckeditor/ckeditor5-heading/src/heading'
-import Strikethrough from '@ckeditor/ckeditor5-basic-styles/src/strikethrough'
 import Underline from '@ckeditor/ckeditor5-basic-styles/src/underline'
 import BlockQuote from '@ckeditor/ckeditor5-block-quote/src/blockquote'
 import HorizontalLine from '@ckeditor/ckeditor5-horizontal-line/src/horizontalline'
@@ -29,6 +28,7 @@ import Essentials from './plugin/essentials'
 import Font from './plugin/font'
 import Bold from './plugin/bold'
 import Italic from './plugin/italic'
+import Strikethrough from './plugin/strikethrough'
 
 // 本地插件
 import Autoformat from './plugin/Autoformat'
