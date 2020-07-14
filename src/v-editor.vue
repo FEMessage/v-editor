@@ -194,7 +194,20 @@ export default {
   min-width: 400px;
   @ck-button-hover-background-color: #f5f6f9;
 
+  .ck.ck-button,
+  a.ck.ck-button {
+    margin: 0;
+    padding: 0;
+    min-width: 24px;
+    min-height: 24px;
+  }
+
+  .ck.ck-toolbar > .ck-toolbar__items > * {
+    margin-right: 4px;
+  }
+
   .ck .ck-heading-dropdown {
+    padding-left: 4px;
     max-width: 80px;
   }
 
