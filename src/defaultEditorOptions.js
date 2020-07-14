@@ -2,7 +2,6 @@ import Autosave from '@ckeditor/ckeditor5-autosave/src/autosave'
 import CKFinder from '@ckeditor/ckeditor5-ckfinder/src/ckfinder'
 
 import Heading from '@ckeditor/ckeditor5-heading/src/heading'
-import Font from '@ckeditor/ckeditor5-font/src/font'
 import BlockQuote from '@ckeditor/ckeditor5-block-quote/src/blockquote'
 import HorizontalLine from '@ckeditor/ckeditor5-horizontal-line/src/horizontalline'
 
@@ -15,8 +14,6 @@ import ImageResize from '@ckeditor/ckeditor5-image/src/imageresize'
 
 import Indent from '@ckeditor/ckeditor5-indent/src/indent'
 import Link from '@ckeditor/ckeditor5-link/src/link'
-import List from '@ckeditor/ckeditor5-list/src/list'
-import TodoList from '@ckeditor/ckeditor5-list/src/todolist'
 // import MediaEmbed from '@ckeditor/ckeditor5-media-embed/src/mediaembed'
 import Paragraph from '@ckeditor/ckeditor5-paragraph/src/paragraph'
 import PasteFromOffice from '@ckeditor/ckeditor5-paste-from-office/src/pastefromoffice'
@@ -25,10 +22,13 @@ import TableToolbar from '@ckeditor/ckeditor5-table/src/tabletoolbar'
 
 // 本地魔改插件
 import Essentials from './plugin/essentials'
+import Font from './plugin/font'
 import Bold from './plugin/bold'
 import Italic from './plugin/italic'
 import Strikethrough from './plugin/strikethrough'
 import Underline from './plugin/underline'
+import List from './plugin/List'
+import TodoList from './plugin/TodoList'
 
 // 本地插件
 import Autoformat from './plugin/Autoformat'
@@ -103,7 +103,7 @@ export default {
   ],
   heading: {
     options: [
-      {model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph'},
+      {model: 'paragraph', title: 'H', class: 'ck-heading_paragraph'},
       {
         model: 'heading1',
         view: 'h1',
