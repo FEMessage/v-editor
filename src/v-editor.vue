@@ -9,6 +9,16 @@
       @ready="onReady"
       v-on="$listeners"
     />
+    <div
+      class="toggle-full-screen"
+      :class="{'is-full-screen': isFullScreen}"
+      @click="toggleFullScreen"
+    >
+      <component
+        :is="isFullScreen ? fullScreenExitIcon : fullScreenIcon"
+      ></component>
+    </div>
+
     <upload-to-ali
       v-show="false"
       ref="uploadToAli"
@@ -26,6 +36,9 @@ import defaultEditorOptions from './defaultEditorOptions'
 import debounce from 'lodash-es/debounce'
 import ImageUploader from './plugin/ImageUploader'
 import CKEditor from '@ckeditor/ckeditor5-vue'
+
+import fullScreenIcon from './assets/fullscreen.vue'
+import fullScreenExitIcon from './assets/fullscreenexit.vue'
 
 export default {
   name: 'VEditor',
@@ -90,7 +103,10 @@ export default {
   data() {
     return {
       editor: null,
-      ClassicEditor
+      ClassicEditor,
+      isFullScreen: false,
+      fullScreenIcon,
+      fullScreenExitIcon
     }
   },
   computed: {
@@ -162,6 +178,10 @@ export default {
           this.onUploadFail(false, e)
         })
       return request
+    },
+    toggleFullScreen() {
+      this.isFullScreen = !this.isFullScreen
+      this.editor.ui.view.element.classList.toggle('full-screen')
     }
   }
 }
@@ -206,12 +226,30 @@ export default {
     }
   }
 
+  @icon-size: 16px;
+  @full-screen-index: 10000;
+  .toggle-full-screen {
+    position: absolute;
+    width: @icon-size;
+    height: @icon-size;
+    right: 8px;
+    top: 48px;
+    &.is-full-screen {
+      position: fixed;
+      z-index: @full-screen-index;
+    }
+    > svg {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
   .full-screen {
     position: fixed;
     top: 0;
     right: 0;
     left: 0;
-    z-index: 10000;
+    z-index: @full-screen-index;
 
     .ck-editor__main {
       height: calc(100vh - 41px) !important;
@@ -229,17 +267,5 @@ export default {
       padding-right: 8px;
     }
   }
-
-  @fontSizes: 12, 14, 16, 18, 20, 22, 26, 28, 36, 48, 56;
-  .for(@data, @i: 1) when(@i <= length(@data)) {
-    @fontSize: extract(@data, @i);
-    .ck-fontsize-option.ck-fontsize-option-@{fontSize} {
-      .ck-button__label {
-        line-height: @fontSize * 1.2px;
-      }
-    }
-    .for(@data, (@i + 1));
-  }
-  .for(@fontSizes);
 }
 </style>
