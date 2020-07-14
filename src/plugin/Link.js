@@ -23,7 +23,7 @@ class LinkUICustom extends LinkUI {
       const button = new ButtonView(locale)
 
       button.isEnabled = true
-      button.label = '插入超链接'
+      button.label = '超链接'
       button.icon = linkIcon
       button.keystroke = linkKeystroke
       button.tooltip = true

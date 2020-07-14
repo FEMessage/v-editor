@@ -2,7 +2,6 @@ import Autosave from '@ckeditor/ckeditor5-autosave/src/autosave'
 import CKFinder from '@ckeditor/ckeditor5-ckfinder/src/ckfinder'
 
 import Heading from '@ckeditor/ckeditor5-heading/src/heading'
-import BlockQuote from '@ckeditor/ckeditor5-block-quote/src/blockquote'
 import HorizontalLine from '@ckeditor/ckeditor5-horizontal-line/src/horizontalline'
 
 import Image from '@ckeditor/ckeditor5-image/src/image'
@@ -29,6 +28,7 @@ import Underline from './plugin/underline'
 import List from './plugin/List'
 import TodoList from './plugin/TodoList'
 import Link from './plugin/Link'
+import BlockQuote from './plugin/Blockquote'
 
 // 本地插件
 import Autoformat from './plugin/Autoformat'
