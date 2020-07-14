@@ -7,7 +7,6 @@ import Image from '@ckeditor/ckeditor5-image/src/image'
 import ImageCaption from '@ckeditor/ckeditor5-image/src/imagecaption'
 import ImageStyle from '@ckeditor/ckeditor5-image/src/imagestyle'
 import ImageToolbar from '@ckeditor/ckeditor5-image/src/imagetoolbar'
-import ImageUpload from '@ckeditor/ckeditor5-image/src/imageupload'
 import ImageResize from '@ckeditor/ckeditor5-image/src/imageresize'
 
 import Indent from '@ckeditor/ckeditor5-indent/src/indent'
@@ -29,6 +28,7 @@ import TodoList from './plugin/TodoList'
 import Link from './plugin/Link'
 import BlockQuote from './plugin/Blockquote'
 import HorizontalLine from './plugin/horizontalline'
+import ImageUpload from './plugin/imageupload'
 
 // 本地插件
 import Autoformat from './plugin/Autoformat'
