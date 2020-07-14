@@ -13,7 +13,6 @@ import Indent from '@ckeditor/ckeditor5-indent/src/indent'
 // import MediaEmbed from '@ckeditor/ckeditor5-media-embed/src/mediaembed'
 import Paragraph from '@ckeditor/ckeditor5-paragraph/src/paragraph'
 import PasteFromOffice from '@ckeditor/ckeditor5-paste-from-office/src/pastefromoffice'
-import Table from '@ckeditor/ckeditor5-table/src/table'
 import TableToolbar from '@ckeditor/ckeditor5-table/src/tabletoolbar'
 
 // 本地魔改插件
@@ -29,6 +28,7 @@ import Link from './plugin/Link'
 import BlockQuote from './plugin/Blockquote'
 import HorizontalLine from './plugin/horizontalline'
 import ImageUpload from './plugin/imageupload'
+import Table from './plugin/table'
 
 // 本地插件
 import Autoformat from './plugin/Autoformat'
