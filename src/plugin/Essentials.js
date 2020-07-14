@@ -1,9 +1,4 @@
 /**
- * @license Copyright (c) 2003-2019, CKSource - Frederico Knabben. All rights reserved.
- * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
- */
-
-/**
  * @module essentials/essentials
  */
 
@@ -18,15 +13,6 @@ import Undo from './undo'
 /**
  * A plugin including all essential editing features. It represents a set of features that enables similar functionalities
  * to a `<textarea>` element.
- *
- * It includes:
- *
- * * {@link module:clipboard/clipboard~Clipboard},
- * * {@link module:enter/enter~Enter},
- * * {@link module:enter/shiftenter~ShiftEnter},
- * * {@link module:typing/typing~Typing},
- *
- * This plugin set does not define any block-level containers (such as {@link module:paragraph/paragraph~Paragraph}).
  * If your editor is supposed to handle block content, make sure to include it.
  *
  * @extends module:core/plugin~Plugin
