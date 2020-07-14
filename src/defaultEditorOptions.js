@@ -10,7 +10,6 @@ import ImageToolbar from '@ckeditor/ckeditor5-image/src/imagetoolbar'
 import ImageResize from '@ckeditor/ckeditor5-image/src/imageresize'
 
 import Indent from '@ckeditor/ckeditor5-indent/src/indent'
-// import MediaEmbed from '@ckeditor/ckeditor5-media-embed/src/mediaembed'
 import Paragraph from '@ckeditor/ckeditor5-paragraph/src/paragraph'
 import PasteFromOffice from '@ckeditor/ckeditor5-paste-from-office/src/pastefromoffice'
 import TableToolbar from '@ckeditor/ckeditor5-table/src/tabletoolbar'
@@ -29,6 +28,7 @@ import BlockQuote from './plugin/Blockquote'
 import HorizontalLine from './plugin/horizontalline'
 import ImageUpload from './plugin/imageupload'
 import Table from './plugin/table'
+import MediaEmbed from './plugin/mediaembed'
 
 // 本地插件
 import Autoformat from './plugin/Autoformat'
@@ -62,7 +62,7 @@ export default {
     Link,
     List,
     TodoList,
-    // MediaEmbed,
+    MediaEmbed,
     Paragraph,
     PasteFromOffice,
     Table,
@@ -98,8 +98,8 @@ export default {
     '|',
     'imageUpload',
     'AttachmentUpload',
-    'insertTable'
-    // 'mediaEmbed'
+    'insertTable',
+    'mediaEmbed'
   ],
   heading: {
     options: [
