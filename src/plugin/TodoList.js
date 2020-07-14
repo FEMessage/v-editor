@@ -7,6 +7,7 @@ import TodoListEditing from '@ckeditor/ckeditor5-list/src/todolistediting'
 import {createUIComponent} from '@ckeditor/ckeditor5-list/src/utils'
 import todoListIcon from '../assets/todolist.svg'
 import Plugin from '@ckeditor/ckeditor5-core/src/plugin'
+import '@ckeditor/ckeditor5-list/theme/todolist.css'
 
 /**
  * The to-do list UI feature. It introduces the `'todoList'` button that
@@ -19,9 +20,7 @@ class TodoListUI extends Plugin {
    * @inheritDoc
    */
   init() {
-    const t = this.editor.t
-
-    createUIComponent(this.editor, 'todoList', t('To-do List'), todoListIcon)
+    createUIComponent(this.editor, 'todoList', '待办列表', todoListIcon)
   }
 }
 

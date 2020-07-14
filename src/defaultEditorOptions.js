@@ -13,7 +13,6 @@ import ImageUpload from '@ckeditor/ckeditor5-image/src/imageupload'
 import ImageResize from '@ckeditor/ckeditor5-image/src/imageresize'
 
 import Indent from '@ckeditor/ckeditor5-indent/src/indent'
-import Link from '@ckeditor/ckeditor5-link/src/link'
 // import MediaEmbed from '@ckeditor/ckeditor5-media-embed/src/mediaembed'
 import Paragraph from '@ckeditor/ckeditor5-paragraph/src/paragraph'
 import PasteFromOffice from '@ckeditor/ckeditor5-paste-from-office/src/pastefromoffice'
@@ -29,6 +28,7 @@ import Strikethrough from './plugin/strikethrough'
 import Underline from './plugin/underline'
 import List from './plugin/List'
 import TodoList from './plugin/TodoList'
+import Link from './plugin/Link'
 
 // 本地插件
 import Autoformat from './plugin/Autoformat'
