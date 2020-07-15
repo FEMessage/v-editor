@@ -7,7 +7,7 @@ import MediaFormView from '@ckeditor/ckeditor5-media-embed/src/ui/mediaformview'
 import Widget from '@ckeditor/ckeditor5-widget/src/widget'
 
 import {createDropdown} from '@ckeditor/ckeditor5-ui/src/dropdown/utils'
-import DropdownButtonView from '../DropDownButtonView'
+import DropdownButtonView from '../Dropdown-ButtonView'
 
 import '@ckeditor/ckeditor5-media-embed/theme/mediaembed.css'
 

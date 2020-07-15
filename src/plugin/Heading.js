@@ -11,7 +11,7 @@ import {
   addListToDropdown
 } from '@ckeditor/ckeditor5-ui/src/dropdown/utils'
 import {getLocalizedOptions} from '@ckeditor/ckeditor5-heading/src/utils'
-import DropdownButtonView from './DropdownButtonView'
+import DropdownButtonView from './Dropdown-ButtonView'
 
 import Collection from '@ckeditor/ckeditor5-utils/src/collection'
 

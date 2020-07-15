@@ -6,7 +6,7 @@ import {
 } from '@ckeditor/ckeditor5-font/src/utils'
 
 import {createDropdown} from '@ckeditor/ckeditor5-ui/src/dropdown/utils'
-import DropdownButtonView from '../DropDownButtonView'
+import DropdownButtonView from '../Dropdown-ButtonView'
 
 export default class ColorUICustom extends ColorUI {
   init() {
