@@ -1,16 +1,7 @@
 import generateUIPlugin from '../generateUIPlugin'
 import FontColorEditing from '@ckeditor/ckeditor5-font/src/fontcolor/fontcolorediting'
 
-/**
- * @license Copyright (c) 2003-2019, CKSource - Frederico Knabben. All rights reserved.
- * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
- */
-
-/**
- * @module font/fontcolor/fontcolorui
- */
-
-import ColorUI from '@ckeditor/ckeditor5-font/src/ui/colorui'
+import ColorUI from './ColorUI'
 import {FONT_COLOR} from '@ckeditor/ckeditor5-font/src/utils'
 import fontColorIcon from '../../assets/fontcolor.svg'
 

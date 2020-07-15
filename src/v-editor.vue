@@ -193,17 +193,38 @@ export default {
   position: relative;
   min-width: 400px;
   @ck-button-hover-background-color: #f5f6f9;
+  @ck-border-color: #dcdee6;
+  @button-size: 16px;
 
   .ck.ck-button,
   a.ck.ck-button {
     margin: 0;
     padding: 0;
-    min-width: 24px;
-    min-height: 24px;
+    min-width: unset;
+    min-height: unset;
+    width: @button-size;
+    height: @button-size;
+    line-height: @button-size;
+    // margin: 12px 0;
+    .ck.ck-icon {
+      width: @button-size;
+      height: @button-size;
+    }
   }
 
-  .ck.ck-toolbar > .ck-toolbar__items > * {
-    margin-right: 4px;
+  .ck.ck-toolbar {
+    border-color: @ck-border-color;
+    > .ck-toolbar__items > * {
+      margin-right: 4px;
+    }
+    .ck.ck-toolbar__separator {
+      height: @button-size;
+      margin: auto 4px;
+    }
+  }
+
+  .ck.ck-editor__main > .ck-editor__editable {
+    border-color: @ck-border-color;
   }
 
   .ck .ck-heading-dropdown {
@@ -278,6 +299,9 @@ export default {
     .ck-button.ck-dropdown__button .ck-button__label {
       width: auto;
       padding-right: 8px;
+      font-size: @button-size;
+      line-height: @button-size;
+      height: @button-size;
     }
   }
 }

@@ -1,8 +1,6 @@
 import Autosave from '@ckeditor/ckeditor5-autosave/src/autosave'
 import CKFinder from '@ckeditor/ckeditor5-ckfinder/src/ckfinder'
 
-import Heading from '@ckeditor/ckeditor5-heading/src/heading'
-
 import Image from '@ckeditor/ckeditor5-image/src/image'
 import ImageCaption from '@ckeditor/ckeditor5-image/src/imagecaption'
 import ImageStyle from '@ckeditor/ckeditor5-image/src/imagestyle'
@@ -16,7 +14,7 @@ import TableToolbar from '@ckeditor/ckeditor5-table/src/tabletoolbar'
 
 // 本地魔改插件
 import Essentials from './plugin/essentials'
-import Font from './plugin/font'
+import Font from './plugin/Font'
 import Bold from './plugin/bold'
 import Italic from './plugin/italic'
 import Strikethrough from './plugin/strikethrough'
@@ -29,6 +27,7 @@ import HorizontalLine from './plugin/horizontalline'
 import ImageUpload from './plugin/imageupload'
 import Table from './plugin/table'
 import MediaEmbed from './plugin/mediaembed'
+import Heading from './plugin/Heading'
 
 // 本地插件
 import Autoformat from './plugin/Autoformat'

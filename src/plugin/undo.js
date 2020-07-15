@@ -17,15 +17,14 @@ class UndoUICustom extends UndoUI {
   init() {
     const editor = this.editor
     const locale = editor.locale
-    const t = editor.t
 
     const localizedUndoIcon =
       locale.uiLanguageDirection == 'ltr' ? undoIcon : redoIcon
     const localizedRedoIcon =
       locale.uiLanguageDirection == 'ltr' ? redoIcon : undoIcon
 
-    this._addButton('undo', t('撤销'), 'CTRL+Z', localizedUndoIcon)
-    this._addButton('redo', t('重做'), 'CTRL+Y', localizedRedoIcon)
+    this._addButton('undo', '撤销', 'CTRL+Z', localizedUndoIcon)
+    this._addButton('redo', '重做', 'CTRL+Y', localizedRedoIcon)
   }
 }
 export default generateUIPlugin('Undo', [UndoEditing, UndoUICustom])
