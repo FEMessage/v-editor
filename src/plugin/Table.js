@@ -7,7 +7,7 @@ import Widget from '@ckeditor/ckeditor5-widget/src/widget'
 import '@ckeditor/ckeditor5-table/theme/table.css'
 
 import {createDropdown} from '@ckeditor/ckeditor5-ui/src/dropdown/utils'
-import DropdownButtonView from './Dropdown-ButtonView'
+import DropdownButtonView from './DropdownButtonView'
 import InsertTableView from '@ckeditor/ckeditor5-table/src/ui/inserttableview'
 
 import tableIcon from '../assets/table.svg'
