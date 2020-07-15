@@ -1,6 +1,6 @@
 import ColorUI from '@ckeditor/ckeditor5-font/src/ui/colorui'
+import {addColorTableToDropdown} from './utils'
 import {
-  addColorTableToDropdown,
   normalizeColorOptions,
   getLocalizedColorOptions
 } from '@ckeditor/ckeditor5-font/src/utils'
@@ -11,7 +11,6 @@ import DropdownButtonView from '../DropdownButtonView'
 export default class ColorUICustom extends ColorUI {
   init() {
     const editor = this.editor
-    const t = editor.t
     const command = editor.commands.get(this.commandName)
     const colorsConfig = normalizeColorOptions(
       editor.config.get(this.componentName).colors
@@ -34,9 +33,9 @@ export default class ColorUICustom extends ColorUI {
           }
         })),
         columns: this.columns,
-        removeButtonLabel: t('Remove color'),
+        removeButtonLabel: '移除颜色',
         documentColorsLabel:
-          documentColorsCount !== 0 ? t('Document colors') : undefined,
+          documentColorsCount !== 0 ? '文档中的颜色' : undefined,
         documentColorsCount:
           documentColorsCount === undefined ? this.columns : documentColorsCount
       })
