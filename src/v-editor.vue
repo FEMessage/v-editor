@@ -194,8 +194,12 @@ export default {
   min-width: 400px;
   @ck-button-hover-background-color: #f5f6f9;
   @ck-border-color: #dcdee6;
-  @button-size: 16px;
-
+  @button-size: 24px;
+  @icon-size: 16px;
+  @font-size: 12px;
+  .ck.ck-toolbar__items {
+    height: 40px;
+  }
   .ck.ck-button,
   a.ck.ck-button {
     margin: 0;
@@ -205,21 +209,23 @@ export default {
     width: @button-size;
     height: @button-size;
     line-height: @button-size;
+    cursor: pointer;
     // margin: 12px 0;
     .ck.ck-icon {
-      width: @button-size;
-      height: @button-size;
+      width: @icon-size;
+      height: @icon-size;
     }
   }
 
+  @button-distance: 4px;
   .ck.ck-toolbar {
     border-color: @ck-border-color;
     > .ck-toolbar__items > * {
-      margin-right: 4px;
+      margin-right: @button-distance;
     }
     .ck.ck-toolbar__separator {
-      height: @button-size;
-      margin: auto 4px;
+      height: @icon-size;
+      margin: auto @button-distance*2;
     }
   }
 
@@ -259,8 +265,6 @@ export default {
       list-style-type: lower-roman;
     }
   }
-
-  @icon-size: 16px;
   @full-screen-index: 10000;
   .toggle-full-screen {
     position: absolute;
@@ -299,7 +303,7 @@ export default {
     .ck-button.ck-dropdown__button .ck-button__label {
       width: auto;
       padding-right: 8px;
-      font-size: @button-size;
+      font-size: @font-size;
       line-height: @button-size;
       height: @button-size;
     }
