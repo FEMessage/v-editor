@@ -222,6 +222,12 @@ export default {
         right: 0;
       }
     }
+    .ck.ck-color-table {
+      .ck-color-table__remove-color {
+        width: 100%;
+        padding-left: 8px;
+      }
+    }
   }
   .ck.ck-button,
   a.ck.ck-button {
@@ -260,13 +266,6 @@ export default {
     .ck.ck-toolbar__separator {
       height: @icon-size;
       margin: auto @button-distance*2;
-    }
-  }
-
-  .ck.ck-color-table {
-    .ck-color-table__remove-color {
-      width: 100%;
-      padding-left: 8px;
     }
   }
 

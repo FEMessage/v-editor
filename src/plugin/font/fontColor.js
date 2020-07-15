@@ -15,13 +15,11 @@ class FontColorUI extends ColorUI {
    * @inheritDoc
    */
   constructor(editor) {
-    const t = editor.locale.t
-
     super(editor, {
       commandName: FONT_COLOR,
       componentName: FONT_COLOR,
       icon: fontColorIcon,
-      dropdownLabel: t('Font Color')
+      dropdownLabel: '字体颜色'
     })
   }
 
