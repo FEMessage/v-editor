@@ -192,13 +192,36 @@ export default {
 .v-editor {
   position: relative;
   min-width: 400px;
-  @ck-button-hover-background-color: #f5f6f9;
+  @ck-button-hover-background-color: #f0f2f5;
   @ck-border-color: #dcdee6;
   @button-size: 24px;
   @icon-size: 16px;
   @font-size: 12px;
   .ck.ck-toolbar__items {
     height: 40px;
+    .ck.ck-button,
+    a.ck.ck-button {
+      width: @button-size;
+      height: @button-size;
+      line-height: @button-size;
+    }
+    .ck.ck-list__item {
+      .ck.ck-button,
+      a.ck.ck-button {
+        width: 100%;
+        height: auto;
+        line-height: 1;
+      }
+    }
+    .ck.ck-dropdown {
+      .ck-button.ck-dropdown__button {
+        width: 100%;
+      }
+      .ck-dropdown__arrow {
+        margin: 0;
+        right: 0;
+      }
+    }
   }
   .ck.ck-button,
   a.ck.ck-button {
@@ -206,15 +229,21 @@ export default {
     padding: 0;
     min-width: unset;
     min-height: unset;
-    width: @button-size;
-    height: @button-size;
-    line-height: @button-size;
+
     cursor: pointer;
     // margin: 12px 0;
     .ck.ck-icon {
       width: @icon-size;
       height: @icon-size;
     }
+    &:not(.ck-disabled):hover {
+      background: @ck-button-hover-background-color;
+    }
+  }
+
+  .ck.ck-dropdown .ck-button.ck-dropdown__button {
+    width: @button-size;
+    height: @button-size;
   }
 
   @button-distance: 4px;
@@ -223,9 +252,21 @@ export default {
     > .ck-toolbar__items > * {
       margin-right: @button-distance;
     }
+    > .ck-toolbar__items > *,
+    > .ck.ck-toolbar__grouped-dropdown {
+      padding: 0;
+      margin: 0;
+    }
     .ck.ck-toolbar__separator {
       height: @icon-size;
       margin: auto @button-distance*2;
+    }
+  }
+
+  .ck.ck-color-table {
+    .ck-color-table__remove-color {
+      width: 100%;
+      padding-left: 8px;
     }
   }
 
@@ -251,10 +292,29 @@ export default {
   .ck.ck-editor__editable > .ck-placeholder::before {
     color: #c0c4cc;
   }
+  // chrome 默认
+  ul {
+    list-style-type: disc;
+  }
+
+  ol {
+    list-style-type: decimal;
+  }
+
+  li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+  }
 
   ol,
   ul {
     padding-left: 1.5em;
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
   }
 
   // 不要影响 ul 的列表项
@@ -292,10 +352,6 @@ export default {
     .ck-editor__main {
       height: calc(100vh - 41px) !important;
     }
-  }
-  .ck.ck-button:not(.ck-disabled):hover,
-  a.ck.ck-button:not(.ck-disabled):hover {
-    background: @ck-button-hover-background-color;
   }
 
   .ck-heading-dropdown,
