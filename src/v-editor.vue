@@ -22,7 +22,7 @@
     <upload-to-ali
       v-show="false"
       ref="uploadToAli"
-      value=""
+      value
       v-bind="uploadOptions"
     />
   </div>
@@ -197,6 +197,31 @@ export default {
   @button-size: 24px;
   @icon-size: 16px;
   @font-size: 12px;
+  @scrollbar-color: #c6c7ca;
+  @scrollbar-size: 4px;
+  .ck.ck-editor__main {
+    /*控制整个滚动条*/
+    ::-webkit-scrollbar {
+      width: @scrollbar-size;
+      height: @scrollbar-size;
+    }
+
+    /*滚动条两端方向按钮*/
+    ::-webkit-scrollbar-button {
+      display: none;
+    }
+
+    /*滚动条中间滑动部分*/
+    ::-webkit-scrollbar-thumb {
+      background-color: @scrollbar-color;
+      border-radius: @scrollbar-size / 2;
+    }
+
+    /*滚动条右下角区域*/
+    ::-webkit-scrollbar-corner {
+      display: none;
+    }
+  }
   .ck.ck-toolbar__items {
     height: 40px;
     .ck.ck-button,
@@ -255,6 +280,7 @@ export default {
   @button-distance: 4px;
   .ck.ck-toolbar {
     border-color: @ck-border-color;
+    background: transparent;
     > .ck-toolbar__items > * {
       margin-right: @button-distance;
     }
