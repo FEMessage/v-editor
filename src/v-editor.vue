@@ -280,7 +280,7 @@ export default {
   @button-distance: 4px;
   .ck.ck-toolbar {
     border-color: @ck-border-color;
-    background: transparent;
+    background: #fff;
     > .ck-toolbar__items > * {
       margin-right: @button-distance;
     }
