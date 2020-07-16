@@ -14,17 +14,10 @@
       :class="{'is-full-screen': isFullScreen}"
       @click="toggleFullScreen"
     >
-      <component
-        :is="isFullScreen ? fullScreenExitIcon : fullScreenIcon"
-      ></component>
+      <component :is="isFullScreen ? fullScreenExitIcon : fullScreenIcon"></component>
     </div>
 
-    <upload-to-ali
-      v-show="false"
-      ref="uploadToAli"
-      value
-      v-bind="uploadOptions"
-    />
+    <upload-to-ali v-show="false" ref="uploadToAli" value v-bind="uploadOptions" />
   </div>
 </template>
 
@@ -199,6 +192,9 @@ export default {
   @font-size: 12px;
   @scrollbar-color: #c6c7ca;
   @scrollbar-size: 4px;
+  .ck.ck-editor__editable:not(.ck-editor__nested-editable).ck-focused {
+    box-shadow: none;
+  }
   .ck.ck-editor__main {
     /*控制整个滚动条*/
     ::-webkit-scrollbar {
