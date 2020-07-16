@@ -14,10 +14,17 @@
       :class="{'is-full-screen': isFullScreen}"
       @click="toggleFullScreen"
     >
-      <component :is="isFullScreen ? fullScreenExitIcon : fullScreenIcon"></component>
+      <component
+        :is="isFullScreen ? fullScreenExitIcon : fullScreenIcon"
+      ></component>
     </div>
 
-    <upload-to-ali v-show="false" ref="uploadToAli" value v-bind="uploadOptions" />
+    <upload-to-ali
+      v-show="false"
+      ref="uploadToAli"
+      value
+      v-bind="uploadOptions"
+    />
   </div>
 </template>
 
