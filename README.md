@@ -9,7 +9,7 @@
 
 Lightweight rich text editor based on [ckeditor5](https://github.com/ckeditor/ckeditor5) and [upload-to-ali](https://github.com/FEMessage/upload-to-ali).
 
-![view.png](https://i.loli.net/2020/02/03/5J8Holf2vqrGSwu.png)
+![view.png](https://i.loli.net/2020/07/17/8geC2fBIv17SLaN.png)
 
 [中文文档](./README-zh.md)
 
