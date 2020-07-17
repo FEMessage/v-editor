@@ -165,7 +165,6 @@ export default {
       this.$emit('upload-start')
       request
         .then(res => {
-          console.log(res)
           // res没有返回意味着上传过程中发现upload文件大小超出限制或其他不能上传的限制导致上传不能执行
           if (res) {
             this.$emit('upload-end', true, res)
