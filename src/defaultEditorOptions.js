@@ -13,20 +13,20 @@ import PasteFromOffice from '@ckeditor/ckeditor5-paste-from-office/src/pastefrom
 import TableToolbar from '@ckeditor/ckeditor5-table/src/tabletoolbar'
 
 // 本地魔改插件
-import Essentials from './plugin/essentials'
+import Essentials from './plugin/Essentials'
 import Font from './plugin/Font'
 import Bold from './plugin/bold'
-import Italic from './plugin/italic'
-import Strikethrough from './plugin/strikethrough'
-import Underline from './plugin/underline'
+import Italic from './plugin/Italic'
+import Strikethrough from './plugin/Strikethrough'
+import Underline from './plugin/Underline'
 import List from './plugin/List'
 import TodoList from './plugin/TodoList'
 import Link from './plugin/Link'
 import BlockQuote from './plugin/Blockquote'
-import HorizontalLine from './plugin/horizontalline'
-import ImageUpload from './plugin/imageupload'
-import Table from './plugin/table'
-import MediaEmbed from './plugin/mediaembed'
+import HorizontalLine from './plugin/Horizontalline'
+import ImageUpload from './plugin/Imageupload'
+import Table from './plugin/Table'
+import MediaEmbed from './plugin/Mediaembed'
 import Heading from './plugin/Heading'
 
 // 本地插件
