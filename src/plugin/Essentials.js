@@ -3,7 +3,7 @@ import Clipboard from '@ckeditor/ckeditor5-clipboard/src/clipboard'
 import Enter from '@ckeditor/ckeditor5-enter/src/enter'
 import ShiftEnter from '@ckeditor/ckeditor5-enter/src/shiftenter'
 import Typing from '@ckeditor/ckeditor5-typing/src/typing'
-import Undo from './Undo'
+import Undo from './Undo1'
 
 export default generateUIPlugin('Essentials', [
   Clipboard,

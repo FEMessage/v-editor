@@ -15,7 +15,7 @@ import TableToolbar from '@ckeditor/ckeditor5-table/src/tabletoolbar'
 // 本地魔改插件
 import Essentials from './plugin/Essentials'
 import Font from './plugin/Font'
-import Bold from './plugin/bold'
+import Bold from './plugin/Bold'
 import Italic from './plugin/Italic'
 import Strikethrough from './plugin/Strikethrough'
 import Underline from './plugin/Underline'
