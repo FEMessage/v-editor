@@ -165,6 +165,7 @@ export default {
       this.$emit('upload-start')
       request
         .then(res => {
+          console.log(res)
           // res没有返回意味着上传过程中发现upload文件大小超出限制或其他不能上传的限制导致上传不能执行
           if (res) {
             this.$emit('upload-end', true, res)
@@ -194,6 +195,7 @@ export default {
   min-width: 400px;
   @ck-button-hover-background-color: #f0f2f5;
   @ck-border-color: #dcdee6;
+  @toolbar-height: 36px;
   @button-size: 24px;
   @icon-size: 16px;
   @font-size: 12px;
@@ -226,7 +228,7 @@ export default {
     }
   }
   .ck.ck-toolbar__items {
-    height: 40px;
+    height: @toolbar-height;
     .ck.ck-button,
     a.ck.ck-button {
       width: @button-size;
@@ -360,6 +362,7 @@ export default {
     height: @icon-size;
     right: 8px;
     top: 48px;
+    cursor: pointer;
     &.is-full-screen {
       position: fixed;
       z-index: @full-screen-index;
