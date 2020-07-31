@@ -14,9 +14,8 @@
       :class="{'is-full-screen': isFullScreen}"
       @click="toggleFullScreen"
     >
-      <component
-        :is="isFullScreen ? fullScreenExitIcon : fullScreenIcon"
-      ></component>
+      <full-screen-exit-icon v-if="isFullScreen" />
+      <full-screen-icon v-else />
     </div>
 
     <upload-to-ali
@@ -44,7 +43,9 @@ export default {
   name: 'VEditor',
   components: {
     UploadToAli,
-    ckeditor: CKEditor.component
+    ckeditor: CKEditor.component,
+    fullScreenIcon,
+    fullScreenExitIcon
   },
   props: {
     /**
@@ -104,9 +105,7 @@ export default {
     return {
       editor: null,
       ClassicEditor,
-      isFullScreen: false,
-      fullScreenIcon,
-      fullScreenExitIcon
+      isFullScreen: false
     }
   },
   computed: {
@@ -200,6 +199,7 @@ export default {
   @font-size: 12px;
   @scrollbar-color: #c6c7ca;
   @scrollbar-size: 4px;
+  @ck-header-label-width: 45px;
   .ck.ck-editor__editable:not(.ck-editor__nested-editable).ck-focused {
     box-shadow: none;
   }
@@ -387,8 +387,8 @@ export default {
   .ck-heading-dropdown,
   .ck-font-size-dropdown {
     .ck-button.ck-dropdown__button .ck-button__label {
-      width: auto;
-      padding-right: 8px;
+      width: @ck-header-label-width;
+      text-align: center;
       font-size: @font-size;
       line-height: @button-size;
       height: @button-size;

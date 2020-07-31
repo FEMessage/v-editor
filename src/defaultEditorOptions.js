@@ -102,7 +102,7 @@ export default {
   ],
   heading: {
     options: [
-      {model: 'paragraph', title: 'H', class: 'ck-heading_paragraph'},
+      {model: 'paragraph', title: '正文', class: 'ck-heading_paragraph'},
       {
         model: 'heading1',
         view: 'h1',
