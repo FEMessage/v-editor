@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.9.0](https://github.com/FEMessage/v-editor/compare/v2.8.3...v2.9.0) (2020-07-31)
+
+
+### Features
+
+* 使用新的UI布局及替换toolbar的icon ([#111](https://github.com/FEMessage/v-editor/issues/111)) ([8368bd7](https://github.com/FEMessage/v-editor/commit/8368bd7))
+
+
+
 ### [2.8.3](https://github.com/FEMessage/v-editor/compare/v2.8.2...v2.8.3) (2020-07-11)
 
 
