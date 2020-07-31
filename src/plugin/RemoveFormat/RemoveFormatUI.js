@@ -1,7 +1,7 @@
 import RemoveFormatUI from '@ckeditor/ckeditor5-remove-format/src/removeformatui'
 import ButtonView from '@ckeditor/ckeditor5-ui/src/button/buttonview'
 // 只有图标和原本不一样
-import removeButtonIcon from '@ckeditor/ckeditor5-core/theme/icons/eraser.svg'
+import removeButtonIcon from '../../assets/eraser.svg'
 
 const REMOVE_FORMAT = 'removeFormat'
 
