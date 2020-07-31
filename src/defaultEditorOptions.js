@@ -125,11 +125,6 @@ export default {
         model: 'heading4',
         view: 'h4',
         title: 'Heading 4'
-      },
-      {
-        model: 'heading5',
-        view: 'h5',
-        title: 'Heading 5'
       }
     ]
   },
