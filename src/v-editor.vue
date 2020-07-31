@@ -9,10 +9,19 @@
       @ready="onReady"
       v-on="$listeners"
     />
+    <div
+      class="toggle-full-screen"
+      :class="{'is-full-screen': isFullScreen}"
+      @click="toggleFullScreen"
+    >
+      <full-screen-exit-icon v-if="isFullScreen" />
+      <full-screen-icon v-else />
+    </div>
+
     <upload-to-ali
       v-show="false"
       ref="uploadToAli"
-      value=""
+      value
       v-bind="uploadOptions"
     />
   </div>
@@ -27,11 +36,16 @@ import debounce from 'lodash-es/debounce'
 import ImageUploader from './plugin/ImageUploader'
 import CKEditor from '@ckeditor/ckeditor5-vue'
 
+import fullScreenIcon from './assets/fullscreen.vue'
+import fullScreenExitIcon from './assets/fullscreenexit.vue'
+
 export default {
   name: 'VEditor',
   components: {
     UploadToAli,
-    ckeditor: CKEditor.component
+    ckeditor: CKEditor.component,
+    fullScreenIcon,
+    fullScreenExitIcon
   },
   props: {
     /**
@@ -90,7 +104,8 @@ export default {
   data() {
     return {
       editor: null,
-      ClassicEditor
+      ClassicEditor,
+      isFullScreen: false
     }
   },
   computed: {
@@ -162,6 +177,10 @@ export default {
           this.onUploadFail(false, e)
         })
       return request
+    },
+    toggleFullScreen() {
+      this.isFullScreen = !this.isFullScreen
+      this.editor.ui.view.element.classList.toggle('full-screen')
     }
   }
 }
@@ -171,8 +190,121 @@ export default {
 <style lang="less">
 .v-editor {
   position: relative;
+  min-width: 400px;
+  @ck-button-hover-background-color: #f0f2f5;
+  @ck-border-color: #dcdee6;
+  @toolbar-height: 36px;
+  @button-size: 24px;
+  @icon-size: 16px;
+  @font-size: 12px;
+  @scrollbar-color: #c6c7ca;
+  @scrollbar-size: 4px;
+  @ck-header-label-width: 45px;
+  .ck.ck-editor__editable:not(.ck-editor__nested-editable).ck-focused {
+    box-shadow: none;
+  }
+  .ck.ck-editor__main {
+    /*控制整个滚动条*/
+    ::-webkit-scrollbar {
+      width: @scrollbar-size;
+      height: @scrollbar-size;
+    }
+
+    /*滚动条两端方向按钮*/
+    ::-webkit-scrollbar-button {
+      display: none;
+    }
+
+    /*滚动条中间滑动部分*/
+    ::-webkit-scrollbar-thumb {
+      background-color: @scrollbar-color;
+      border-radius: @scrollbar-size / 2;
+    }
+
+    /*滚动条右下角区域*/
+    ::-webkit-scrollbar-corner {
+      display: none;
+    }
+  }
+  .ck.ck-toolbar__items {
+    height: @toolbar-height;
+    .ck.ck-button,
+    a.ck.ck-button {
+      width: @button-size;
+      height: @button-size;
+      line-height: @button-size;
+    }
+    .ck.ck-list__item {
+      .ck.ck-button,
+      a.ck.ck-button {
+        width: 100%;
+        height: auto;
+        line-height: 1;
+      }
+    }
+    .ck.ck-dropdown {
+      .ck-button.ck-dropdown__button {
+        width: 100%;
+      }
+      .ck-dropdown__arrow {
+        margin: 0;
+        right: 0;
+      }
+    }
+    .ck.ck-color-table {
+      .ck-color-table__remove-color {
+        width: 100%;
+        padding-left: 8px;
+      }
+    }
+  }
+  .ck.ck-button,
+  a.ck.ck-button {
+    margin: 0;
+    padding: 0;
+    min-width: unset;
+    min-height: unset;
+
+    cursor: pointer;
+    // margin: 12px 0;
+    .ck.ck-icon {
+      width: @icon-size;
+      height: @icon-size;
+    }
+    &:not(.ck-disabled):hover {
+      background: @ck-button-hover-background-color;
+    }
+  }
+
+  .ck.ck-dropdown .ck-button.ck-dropdown__button {
+    width: @button-size;
+    height: @button-size;
+  }
+
+  @button-distance: 4px;
+  .ck.ck-toolbar {
+    border-color: @ck-border-color;
+    background: #fff;
+    > .ck-toolbar__items > * {
+      margin-right: @button-distance;
+    }
+    > .ck-toolbar__items > *,
+    > .ck.ck-toolbar__grouped-dropdown {
+      padding: 0;
+      margin: 0;
+    }
+    .ck.ck-toolbar__separator {
+      height: @icon-size;
+      margin: auto @button-distance*2;
+    }
+  }
+
+  .ck.ck-editor__main > .ck-editor__editable {
+    border-color: @ck-border-color;
+  }
 
   .ck .ck-heading-dropdown {
+    padding-left: 4px;
     max-width: 80px;
   }
 
@@ -189,10 +321,29 @@ export default {
   .ck.ck-editor__editable > .ck-placeholder::before {
     color: #c0c4cc;
   }
+  // chrome 默认
+  ul {
+    list-style-type: disc;
+  }
+
+  ol {
+    list-style-type: decimal;
+  }
+
+  li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+  }
 
   ol,
   ul {
     padding-left: 1.5em;
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
   }
 
   // 不要影响 ul 的列表项
@@ -203,16 +354,44 @@ export default {
       list-style-type: lower-roman;
     }
   }
+  @full-screen-index: 10000;
+  .toggle-full-screen {
+    position: absolute;
+    width: @icon-size;
+    height: @icon-size;
+    right: 8px;
+    top: 48px;
+    cursor: pointer;
+    &.is-full-screen {
+      position: fixed;
+      z-index: @full-screen-index;
+    }
+    > svg {
+      width: 100%;
+      height: 100%;
+    }
+  }
 
   .full-screen {
     position: fixed;
     top: 0;
     right: 0;
     left: 0;
-    z-index: 10000;
+    z-index: @full-screen-index;
 
     .ck-editor__main {
       height: calc(100vh - 41px) !important;
+    }
+  }
+
+  .ck-heading-dropdown,
+  .ck-font-size-dropdown {
+    .ck-button.ck-dropdown__button .ck-button__label {
+      width: @ck-header-label-width;
+      text-align: center;
+      font-size: @font-size;
+      line-height: @button-size;
+      height: @button-size;
     }
   }
 }
