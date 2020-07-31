@@ -3,7 +3,7 @@
 ```vue
 <template>
   <div>
-    <v-editor @ready="editor = $event" v-model="content" :on-upload-fail=“onUploadFail”/>
+    <v-editor @ready="editor = $event" v-model="content" :on-upload-fail="onUploadFail" />
     <el-button @click="toggleInspector" style="margin-top: 5px">{{flag ? '关闭' : '打开'}}数据结构视图</el-button>
   </div>
 </template>
