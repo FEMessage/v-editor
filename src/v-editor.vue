@@ -24,12 +24,14 @@
       value
       v-bind="uploadOptions"
     />
+    <img-preview v-model="previewImageUrl" />
   </div>
 </template>
 
 <script>
 import ClassicEditor from '@ckeditor/ckeditor5-editor-classic/src/classiceditor'
 import UploadToAli from '@femessage/upload-to-ali'
+import ImgPreview from '@femessage/img-preview'
 
 import defaultEditorOptions from './defaultEditorOptions'
 import debounce from 'lodash-es/debounce'
@@ -39,13 +41,17 @@ import CKEditor from '@ckeditor/ckeditor5-vue'
 import fullScreenIcon from './assets/fullscreen.vue'
 import fullScreenExitIcon from './assets/fullscreenexit.vue'
 
+import ImagePreview from './plugin/ImagePreview'
+import './translations'
+
 export default {
   name: 'VEditor',
   components: {
     UploadToAli,
     ckeditor: CKEditor.component,
     fullScreenIcon,
-    fullScreenExitIcon
+    fullScreenExitIcon,
+    ImgPreview
   },
   props: {
     /**
@@ -105,7 +111,8 @@ export default {
     return {
       editor: null,
       ClassicEditor,
-      isFullScreen: false
+      isFullScreen: false,
+      previewImageUrl: ''
     }
   },
   computed: {
@@ -117,7 +124,10 @@ export default {
         defaultEditorOptions,
         {
           placeholder: this.placeholder,
-          extraPlugins: [ImageUploader(uploadImg)],
+          extraPlugins: [
+            ImageUploader(uploadImg),
+            ImagePreview(this.imagePreview)
+          ],
           autosave: {
             save: debounce(editor => {
               /**
@@ -129,7 +139,8 @@ export default {
                */
               this.$emit('autosave', editor.getData())
             }, 8000)
-          }
+          },
+          language: 'zh-cn'
         },
         this.editorOptions
       )
@@ -139,6 +150,9 @@ export default {
     height: 'setHeight'
   },
   methods: {
+    imagePreview(url) {
+      this.previewImageUrl = url
+    },
     setHeight() {
       if (!this.height || !this.editor) return
       let {height} = this
