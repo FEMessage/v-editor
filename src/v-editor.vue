@@ -200,40 +200,45 @@ export default {
   @scrollbar-color: #c6c7ca;
   @scrollbar-size: 4px;
   @ck-header-label-width: 45px;
+
   .ck.ck-editor__editable:not(.ck-editor__nested-editable).ck-focused {
     box-shadow: none;
   }
+
   .ck.ck-editor__main {
-    /*控制整个滚动条*/
+    /* 控制整个滚动条 */
     ::-webkit-scrollbar {
       width: @scrollbar-size;
       height: @scrollbar-size;
     }
 
-    /*滚动条两端方向按钮*/
+    /* 滚动条两端方向按钮 */
     ::-webkit-scrollbar-button {
       display: none;
     }
 
-    /*滚动条中间滑动部分*/
+    /* 滚动条中间滑动部分 */
     ::-webkit-scrollbar-thumb {
       background-color: @scrollbar-color;
       border-radius: @scrollbar-size / 2;
     }
 
-    /*滚动条右下角区域*/
+    /* 滚动条右下角区域 */
     ::-webkit-scrollbar-corner {
       display: none;
     }
   }
+
   .ck.ck-toolbar__items {
     height: @toolbar-height;
+
     .ck.ck-button,
     a.ck.ck-button {
       width: @button-size;
       height: @button-size;
       line-height: @button-size;
     }
+
     .ck.ck-list__item {
       .ck.ck-button,
       a.ck.ck-button {
@@ -242,15 +247,18 @@ export default {
         line-height: 1;
       }
     }
+
     .ck.ck-dropdown {
       .ck-button.ck-dropdown__button {
         width: 100%;
       }
+
       .ck-dropdown__arrow {
         margin: 0;
         right: 0;
       }
     }
+
     .ck.ck-color-table {
       .ck-color-table__remove-color {
         width: 100%;
@@ -258,19 +266,20 @@ export default {
       }
     }
   }
+
   .ck.ck-button,
   a.ck.ck-button {
     margin: 0;
     padding: 0;
     min-width: unset;
     min-height: unset;
-
     cursor: pointer;
     // margin: 12px 0;
     .ck.ck-icon {
       width: @icon-size;
       height: @icon-size;
     }
+
     &:not(.ck-disabled):hover {
       background: @ck-button-hover-background-color;
     }
@@ -282,17 +291,21 @@ export default {
   }
 
   @button-distance: 4px;
+
   .ck.ck-toolbar {
     border-color: @ck-border-color;
     background: #fff;
+
     > .ck-toolbar__items > * {
       margin-right: @button-distance;
     }
+
     > .ck-toolbar__items > *,
     > .ck.ck-toolbar__grouped-dropdown {
       padding: 0;
       margin: 0;
     }
+
     .ck.ck-toolbar__separator {
       height: @icon-size;
       margin: auto @button-distance*2;
@@ -341,8 +354,8 @@ export default {
     display: block;
     margin-block-start: 1em;
     margin-block-end: 1em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
     padding-inline-start: 40px;
   }
 
@@ -355,6 +368,7 @@ export default {
     }
   }
   @full-screen-index: 10000;
+
   .toggle-full-screen {
     position: absolute;
     width: @icon-size;
@@ -362,10 +376,12 @@ export default {
     right: 8px;
     top: 48px;
     cursor: pointer;
+
     &.is-full-screen {
       position: fixed;
       z-index: @full-screen-index;
     }
+
     > svg {
       width: 100%;
       height: 100%;
