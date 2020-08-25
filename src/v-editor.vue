@@ -67,7 +67,11 @@ export default {
      */
     uploadOptions: {
       type: Object,
-      default: () => ({})
+      default: () => ({
+        compressOptions: {
+          maxWidth: Infinity
+        }
+      })
     },
     /**
      * 编辑的内容，返回一段HTML，支持v-model
