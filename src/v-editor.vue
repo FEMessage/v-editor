@@ -39,6 +39,9 @@ import CKEditor from '@ckeditor/ckeditor5-vue'
 import fullScreenIcon from './assets/fullscreen.vue'
 import fullScreenExitIcon from './assets/fullscreenexit.vue'
 
+const ROW_HEIGHT = 24
+const INNER_PADDING = 16
+
 export default {
   name: 'VEditor',
   components: {
@@ -56,7 +59,9 @@ export default {
       default: ''
     },
     /**
+     * @deprecated
      * 编辑区高度（不包括 toolbar），支持数字类型（默认单位 px）和 css 长度字符串
+     * 如果设置了 autosize，该选项将失效
      */
     height: {
       type: [Number, String],
@@ -99,6 +104,13 @@ export default {
       default() {
         alert('上传失败，请重试')
       }
+    },
+    /**
+     * 自适应内容高度，传入对象，如，{ minRows: 2, maxRows: 6 }
+     */
+    autosize: {
+      type: Object,
+      default: () => ({})
     }
   },
   data() {
@@ -133,19 +145,60 @@ export default {
         },
         this.editorOptions
       )
+    },
+    autosizeIsEmpty() {
+      return !Object.keys(this.autosize).length
     }
   },
   watch: {
-    height: 'setHeight'
+    height: 'setHeight',
+    autosize: {
+      handler: 'resizeHeight',
+      deep: true
+    }
   },
   methods: {
+    resizeHeight() {
+      if (this.autosizeIsEmpty || !this.editor) {
+        return
+      }
+      const {minRows, maxRows} = this.autosize
+      const {element} = this.editor.ui.view
+      const main = element.querySelector('.ck-editor__main')
+      const content = element.querySelector('.ck-content')
+      const result = {}
+      const minHeight = ROW_HEIGHT * minRows + INNER_PADDING
+      const maxHeight = ROW_HEIGHT * maxRows + INNER_PADDING
+      content.style.minHeight = `${minHeight}px`
+      const resize = () => {
+        this.$nextTick(() => {
+          let height = content.scrollHeight
+          if (height <= minHeight) {
+            result.height = `${minHeight}px`
+          }
+          if (height > minHeight && height < maxHeight) {
+            result.height = ''
+          }
+          if (height >= maxHeight) {
+            result.height = `${maxHeight}px`
+          }
+          content.style.minHeight = `${minHeight}px`
+          main.style.height = result.height
+        })
+      }
+      resize()
+      this.editor.model.document.on('change:data', resize)
+    },
+    imagePreview(url) {
+      this.previewImageUrl = url
+    },
     setHeight() {
-      if (!this.height || !this.editor) return
+      if (!this.height || !this.editor || !this.autosizeIsEmpty) return
       let {height} = this
       if (!isNaN(+height)) height += 'px'
       const {element} = this.editor.ui.view
-      const content = element.querySelector('.ck-editor__main')
-      content.style.height = height
+      const main = element.querySelector('.ck-editor__main')
+      main.style.height = height
     },
     onInput(content) {
       this.$emit('input', content)
@@ -154,6 +207,7 @@ export default {
       this.editor = editor
       editor.ui.view.element.classList.add('markdown-body')
       this.setHeight()
+      this.resizeHeight()
     },
     uploadFile(file) {
       const uploadToAli = this.$refs.uploadToAli
@@ -200,40 +254,45 @@ export default {
   @scrollbar-color: #c6c7ca;
   @scrollbar-size: 4px;
   @ck-header-label-width: 45px;
+
   .ck.ck-editor__editable:not(.ck-editor__nested-editable).ck-focused {
     box-shadow: none;
   }
+
   .ck.ck-editor__main {
-    /*控制整个滚动条*/
+    /* 控制整个滚动条 */
     ::-webkit-scrollbar {
       width: @scrollbar-size;
       height: @scrollbar-size;
     }
 
-    /*滚动条两端方向按钮*/
+    /* 滚动条两端方向按钮 */
     ::-webkit-scrollbar-button {
       display: none;
     }
 
-    /*滚动条中间滑动部分*/
+    /* 滚动条中间滑动部分 */
     ::-webkit-scrollbar-thumb {
       background-color: @scrollbar-color;
       border-radius: @scrollbar-size / 2;
     }
 
-    /*滚动条右下角区域*/
+    /* 滚动条右下角区域 */
     ::-webkit-scrollbar-corner {
       display: none;
     }
   }
+
   .ck.ck-toolbar__items {
     height: @toolbar-height;
+
     .ck.ck-button,
     a.ck.ck-button {
       width: @button-size;
       height: @button-size;
       line-height: @button-size;
     }
+
     .ck.ck-list__item {
       .ck.ck-button,
       a.ck.ck-button {
@@ -242,15 +301,18 @@ export default {
         line-height: 1;
       }
     }
+
     .ck.ck-dropdown {
       .ck-button.ck-dropdown__button {
         width: 100%;
       }
+
       .ck-dropdown__arrow {
         margin: 0;
         right: 0;
       }
     }
+
     .ck.ck-color-table {
       .ck-color-table__remove-color {
         width: 100%;
@@ -258,19 +320,20 @@ export default {
       }
     }
   }
+
   .ck.ck-button,
   a.ck.ck-button {
     margin: 0;
     padding: 0;
     min-width: unset;
     min-height: unset;
-
     cursor: pointer;
     // margin: 12px 0;
     .ck.ck-icon {
       width: @icon-size;
       height: @icon-size;
     }
+
     &:not(.ck-disabled):hover {
       background: @ck-button-hover-background-color;
     }
@@ -282,17 +345,21 @@ export default {
   }
 
   @button-distance: 4px;
+
   .ck.ck-toolbar {
     border-color: @ck-border-color;
     background: #fff;
+
     > .ck-toolbar__items > * {
       margin-right: @button-distance;
     }
+
     > .ck-toolbar__items > *,
     > .ck.ck-toolbar__grouped-dropdown {
       padding: 0;
       margin: 0;
     }
+
     .ck.ck-toolbar__separator {
       height: @icon-size;
       margin: auto @button-distance*2;
@@ -341,8 +408,8 @@ export default {
     display: block;
     margin-block-start: 1em;
     margin-block-end: 1em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
     padding-inline-start: 40px;
   }
 
@@ -355,6 +422,7 @@ export default {
     }
   }
   @full-screen-index: 10000;
+
   .toggle-full-screen {
     position: absolute;
     width: @icon-size;
@@ -362,10 +430,12 @@ export default {
     right: 8px;
     top: 48px;
     cursor: pointer;
+
     &.is-full-screen {
       position: fixed;
       z-index: @full-screen-index;
     }
+
     > svg {
       width: 100%;
       height: 100%;
