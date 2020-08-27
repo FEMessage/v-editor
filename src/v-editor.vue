@@ -156,7 +156,9 @@ export default {
     },
     onReady(editor) {
       this.editor = editor
-      editor.ui.view.element.classList.add('markdown-body')
+      editor.ui.view.element
+        .querySelector('.ck-editor__main')
+        .classList.add('markdown-body')
       this.setHeight()
     },
     uploadFile(file) {
@@ -190,195 +192,21 @@ export default {
 }
 </script>
 
-<style src="github-markdown-css/github-markdown.css"></style>
 <style lang="less" scoped>
-.v-editor::v-deep .markdown-body hr {
-  background-color: #e8e8e8;
-  height: 2px;
-  margin: 13px 0;
-}
-</style>
-<style lang="less">
+// TODO: 需要提供一份 css 给使用 v-editor 创建的富文本提供相同的样式
+@import url('~github-markdown-css/github-markdown.css');
+@ck-border-color: #dcdee6;
+@button-size: 24px;
+@icon-size: 16px;
+@font-size: 12px;
+@scrollbar-color: #c6c7ca;
+@scrollbar-size: 4px;
+@ck-header-label-width: 45px;
+@full-screen-index: 10000;
+
 .v-editor {
   position: relative;
   min-width: 400px;
-  @ck-button-hover-background-color: #f0f2f5;
-  @ck-border-color: #dcdee6;
-  @toolbar-height: 36px;
-  @button-size: 24px;
-  @icon-size: 16px;
-  @font-size: 12px;
-  @scrollbar-color: #c6c7ca;
-  @scrollbar-size: 4px;
-  @ck-header-label-width: 45px;
-
-  .ck.ck-editor__editable:not(.ck-editor__nested-editable).ck-focused {
-    box-shadow: none;
-  }
-
-  .ck.ck-editor__main {
-    /* 控制整个滚动条 */
-    ::-webkit-scrollbar {
-      width: @scrollbar-size;
-      height: @scrollbar-size;
-    }
-
-    /* 滚动条两端方向按钮 */
-    ::-webkit-scrollbar-button {
-      display: none;
-    }
-
-    /* 滚动条中间滑动部分 */
-    ::-webkit-scrollbar-thumb {
-      background-color: @scrollbar-color;
-      border-radius: @scrollbar-size / 2;
-    }
-
-    /* 滚动条右下角区域 */
-    ::-webkit-scrollbar-corner {
-      display: none;
-    }
-  }
-
-  .ck.ck-toolbar__items {
-    height: @toolbar-height;
-
-    .ck.ck-button,
-    a.ck.ck-button {
-      width: @button-size;
-      height: @button-size;
-      line-height: @button-size;
-    }
-
-    .ck.ck-list__item {
-      .ck.ck-button,
-      a.ck.ck-button {
-        width: 100%;
-        height: auto;
-        line-height: 1;
-      }
-    }
-
-    .ck.ck-dropdown {
-      .ck-button.ck-dropdown__button {
-        width: 100%;
-      }
-
-      .ck-dropdown__arrow {
-        margin: 0;
-        right: 0;
-      }
-    }
-
-    .ck.ck-color-table {
-      .ck-color-table__remove-color {
-        width: 100%;
-        padding-left: 8px;
-      }
-    }
-  }
-
-  .ck.ck-button,
-  a.ck.ck-button {
-    margin: 0;
-    padding: 0;
-    min-width: unset;
-    min-height: unset;
-    cursor: pointer;
-    // margin: 12px 0;
-    .ck.ck-icon {
-      width: @icon-size;
-      height: @icon-size;
-    }
-
-    &:not(.ck-disabled):hover {
-      background: @ck-button-hover-background-color;
-    }
-  }
-
-  .ck.ck-dropdown .ck-button.ck-dropdown__button {
-    width: @button-size;
-    height: @button-size;
-  }
-
-  @button-distance: 4px;
-
-  .ck.ck-toolbar {
-    border-color: @ck-border-color;
-    background: #fff;
-
-    > .ck-toolbar__items > * {
-      margin-right: @button-distance;
-    }
-
-    > .ck-toolbar__items > *,
-    > .ck.ck-toolbar__grouped-dropdown {
-      padding: 0;
-      margin: 0;
-    }
-
-    .ck.ck-toolbar__separator {
-      height: @icon-size;
-      margin: auto @button-distance*2;
-    }
-  }
-
-  .ck.ck-editor__main > .ck-editor__editable {
-    border-color: @ck-border-color;
-  }
-
-  .ck .ck-heading-dropdown {
-    padding-left: 4px;
-    max-width: 80px;
-  }
-
-  .ck-content .image {
-    margin: 1em 0;
-  }
-
-  .ck-editor__main {
-    & > .ck-content {
-      height: 100%;
-    }
-  }
-
-  .ck.ck-editor__editable > .ck-placeholder::before {
-    color: #c0c4cc;
-  }
-  // chrome 默认
-  ul {
-    list-style-type: disc;
-  }
-
-  ol {
-    list-style-type: decimal;
-  }
-
-  li {
-    display: list-item;
-    text-align: -webkit-match-parent;
-  }
-
-  ol,
-  ul {
-    padding-left: 1.5em;
-    display: block;
-    margin-block-start: 1em;
-    margin-block-end: 1em;
-    margin-inline-start: 0;
-    margin-inline-end: 0;
-    padding-inline-start: 40px;
-  }
-
-  // 不要影响 ul 的列表项
-  ol ol {
-    list-style-type: lower-alpha;
-
-    & ol {
-      list-style-type: lower-roman;
-    }
-  }
-  @full-screen-index: 10000;
 
   .toggle-full-screen {
     position: absolute;
@@ -411,14 +239,193 @@ export default {
     }
   }
 
-  .ck-heading-dropdown,
-  .ck-font-size-dropdown {
-    .ck-button.ck-dropdown__button .ck-button__label {
-      width: @ck-header-label-width;
-      text-align: center;
-      font-size: @font-size;
-      line-height: @button-size;
-      height: @button-size;
+  &::v-deep {
+    // chrome 默认
+    .markdown-body {
+      hr {
+        background-color: #e8e8e8;
+        height: 2px;
+        margin: 13px 0;
+      }
+
+      ol,
+      ul {
+        padding-left: 1.5em;
+        display: block;
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start: 0;
+        margin-inline-end: 0;
+        padding-inline-start: 40px;
+      }
+
+      ul:not(.todo-list) {
+        list-style-type: disc;
+      }
+
+      ol {
+        list-style-type: decimal;
+      }
+
+      li {
+        display: list-item;
+        text-align: -webkit-match-parent;
+      }
+
+      ol ol {
+        list-style-type: lower-alpha;
+
+        & ol {
+          list-style-type: lower-roman;
+        }
+      }
+    }
+
+    .ck {
+      &.ck-editor__top {
+        .ck-heading-dropdown,
+        .ck-font-size-dropdown {
+          .ck-button .ck-button__label {
+            width: @ck-header-label-width;
+            text-align: center;
+            font-size: @font-size;
+            line-height: @button-size;
+            height: @button-size;
+          }
+        }
+      }
+
+      &.ck-editor__main {
+        /* 控制整个滚动条 */
+        ::-webkit-scrollbar {
+          width: @scrollbar-size;
+          height: @scrollbar-size;
+        }
+
+        /* 滚动条两端方向按钮 */
+        ::-webkit-scrollbar-button {
+          display: none;
+        }
+
+        /* 滚动条中间滑动部分 */
+        ::-webkit-scrollbar-thumb {
+          background-color: @scrollbar-color;
+          border-radius: @scrollbar-size / 2;
+        }
+
+        /* 滚动条右下角区域 */
+        ::-webkit-scrollbar-corner {
+          display: none;
+        }
+
+        .ck-content {
+          // use for height prop
+          height: 100%;
+
+          &.ck-editor__editable {
+            border-color: @ck-border-color;
+
+            &:not(.ck-editor__nested-editable).ck-focused {
+              box-shadow: none;
+            }
+
+            .ck-placeholder::before {
+              color: #c0c4cc;
+            }
+          }
+          // 图片默认靠左
+          .image {
+            margin: 1em 0;
+          }
+        }
+      }
+    }
+  }
+}
+</style>
+<style lang="less">
+@ck-button-hover-background-color: #f0f2f5;
+@ck-border-color: #dcdee6;
+@toolbar-height: 36px;
+@button-size: 24px;
+@icon-size: 16px;
+@button-distance: 4px;
+
+// <body> 子级同时有的元素
+.ck {
+  .ck-button {
+    margin: 0;
+    padding: 0;
+    min-width: unset;
+    min-height: unset;
+    cursor: pointer;
+    // margin: 12px 0;
+    .ck.ck-icon {
+      width: @icon-size;
+      height: @icon-size;
+    }
+
+    &:not(.ck-disabled):hover {
+      background: @ck-button-hover-background-color;
+    }
+  }
+
+  .ck-toolbar {
+    border-color: @ck-border-color;
+    background: #fff;
+
+    .ck.ck-toolbar__separator {
+      height: @icon-size;
+      margin: auto @button-distance*2;
+    }
+
+    .ck-toolbar__items {
+      height: @toolbar-height;
+
+      > .ck:not(.ck-toolbar__separator),
+      > .ck-file-dialog-button,
+      > .ck-button_with-text {
+        padding: 0;
+        margin: 0;
+      }
+
+      .ck-button {
+        width: @button-size;
+        height: @button-size;
+        line-height: @button-size;
+      }
+
+      .ck-list__item {
+        .ck-button {
+          width: 100%;
+          height: auto;
+          line-height: 1;
+        }
+      }
+
+      .ck-dropdown {
+        &.ck-heading-dropdown {
+          .ck-dropdown__button {
+            padding: 0;
+          }
+        }
+
+        .ck-button.ck-dropdown__button {
+          width: 100%;
+        }
+
+        .ck-dropdown__arrow {
+          margin: 0;
+          right: 0;
+        }
+      }
+
+      .ck-color-table {
+        .ck-color-table__remove-color {
+          width: 100%;
+          padding-left: 8px;
+        }
+      }
     }
   }
 }
