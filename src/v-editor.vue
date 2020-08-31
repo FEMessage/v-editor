@@ -203,42 +203,42 @@ export default {
 @ck-header-label-width: 45px;
 @full-screen-index: 10000;
 
+.toggle-full-screen {
+  position: absolute;
+  width: @icon-size;
+  height: @icon-size;
+  right: 8px;
+  top: 48px;
+  cursor: pointer;
+
+  &.is-full-screen {
+    position: fixed;
+    z-index: @full-screen-index;
+  }
+
+  > svg {
+    width: 100%;
+    height: 100%;
+  }
+}
+
 .v-editor {
   position: relative;
   min-width: 400px;
 
-  .toggle-full-screen {
-    position: absolute;
-    width: @icon-size;
-    height: @icon-size;
-    right: 8px;
-    top: 48px;
-    cursor: pointer;
-
-    &.is-full-screen {
-      position: fixed;
-      z-index: @full-screen-index;
-    }
-
-    > svg {
-      width: 100%;
-      height: 100%;
-    }
-  }
-
-  .full-screen {
-    position: fixed;
-    top: 0;
-    right: 0;
-    left: 0;
-    z-index: @full-screen-index;
-
-    .ck-editor__main {
-      height: calc(100vh - 41px) !important;
-    }
-  }
-
   &::v-deep {
+    .full-screen {
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 0;
+      z-index: @full-screen-index;
+
+      .ck-editor__main {
+        height: calc(100vh - 41px) !important;
+      }
+    }
+
     .ck {
       &.ck-editor__top {
         .ck-heading-dropdown,
