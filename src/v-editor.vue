@@ -74,7 +74,8 @@ export default {
       })
     },
     /**
-     * 编辑的内容，返回一段HTML，支持v-model
+     * 编辑的内容，返回一段HTML，支持v-model。
+     * 如果需要保持编辑器内和阅读区域样式一致，在使用的标签上添加 v-editor 和 markdown-body 两个 class 即可
      */
     value: {
       type: String,
@@ -193,8 +194,6 @@ export default {
 </script>
 
 <style lang="less" scoped>
-// TODO: 需要提供一份 css 给使用 v-editor 创建的富文本提供相同的样式
-@import url('~github-markdown-css/github-markdown.css');
 @ck-border-color: #dcdee6;
 @button-size: 24px;
 @icon-size: 16px;
@@ -240,47 +239,6 @@ export default {
   }
 
   &::v-deep {
-    // chrome 默认
-    .markdown-body {
-      hr {
-        background-color: #e8e8e8;
-        height: 2px;
-        margin: 13px 0;
-      }
-
-      ol,
-      ul {
-        padding-left: 1.5em;
-        display: block;
-        margin-block-start: 1em;
-        margin-block-end: 1em;
-        margin-inline-start: 0;
-        margin-inline-end: 0;
-        padding-inline-start: 40px;
-      }
-
-      ul:not(.todo-list) {
-        list-style-type: disc;
-      }
-
-      ol {
-        list-style-type: decimal;
-      }
-
-      li {
-        display: list-item;
-        text-align: -webkit-match-parent;
-      }
-
-      ol ol {
-        list-style-type: lower-alpha;
-
-        & ol {
-          list-style-type: lower-roman;
-        }
-      }
-    }
-
     .ck {
       &.ck-editor__top {
         .ck-heading-dropdown,
@@ -333,16 +291,13 @@ export default {
               color: #c0c4cc;
             }
           }
-          // 图片默认靠左
-          .image {
-            margin: 1em 0;
-          }
         }
       }
     }
   }
 }
 </style>
+<style lang="less" src="./assets/richtext.less"></style>
 <style lang="less">
 @ck-button-hover-background-color: #f0f2f5;
 @ck-border-color: #dcdee6;
