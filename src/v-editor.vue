@@ -99,6 +99,13 @@ export default {
       default() {
         alert('上传失败，请重试')
       }
+    },
+    /**
+     * 上传中的状态，支持 .sync
+     */
+    uploading: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
@@ -161,6 +168,7 @@ export default {
       const request = uploadToAli.upload({
         target: {files: [file]}
       })
+      this.$emit('update:uploading', true)
       this.$emit('upload-start')
       request
         .then(res => {
@@ -175,6 +183,9 @@ export default {
         .catch(e => {
           this.$emit('upload-end', false, e)
           this.onUploadFail(false, e)
+        })
+        .finally(() => {
+          this.$emit('update:uploading', false)
         })
       return request
     },
