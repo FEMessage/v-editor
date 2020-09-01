@@ -62,7 +62,7 @@ class AttachmentCommand extends Command {
             model.document.selection
           )
         })
-        .then(() => loader.upload())
+        .then(() => loader.upload('*/*'))
         .then(data => {
           const url = data.default
 
@@ -77,7 +77,7 @@ class AttachmentCommand extends Command {
            * 只能 emoji 了
            * 备选：🔗📂📚📦
            */
-          const linkText = writer.createText(`🔗${file.name}`, {linkHref: url})
+          const linkText = writer.createText(`🔗 ${file.name}`, {linkHref: url})
 
           let selection
           if (filenameTxtPlaceholderRange) {

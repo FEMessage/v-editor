@@ -23,6 +23,7 @@
       ref="uploadToAli"
       value
       v-bind="uploadOptions"
+      :accept="uploaderAccept"
     />
   </div>
 </template>
@@ -33,7 +34,7 @@ import UploadToAli from '@femessage/upload-to-ali'
 
 import defaultEditorOptions from './defaultEditorOptions'
 import debounce from 'lodash-es/debounce'
-import ImageUploader from './plugin/ImageUploader'
+import Uploader from './plugin/Uploader'
 import CKEditor from '@ckeditor/ckeditor5-vue'
 
 import fullScreenIcon from './assets/fullscreen.vue'
@@ -110,19 +111,19 @@ export default {
     return {
       editor: null,
       ClassicEditor,
-      isFullScreen: false
+      isFullScreen: false,
+      uploaderAccept: 'image/*'
     }
   },
   computed: {
     editorConfig() {
       // $refs 在 mounted 阶段才挂载，这里不能直接传实例
-      const uploadImg = this.uploadFile
       return Object.assign(
         {},
         defaultEditorOptions,
         {
           placeholder: this.placeholder,
-          extraPlugins: [ImageUploader(uploadImg)],
+          extraPlugins: [Uploader(this.uploadFile)],
           autosave: {
             save: debounce(editor => {
               /**
@@ -162,28 +163,30 @@ export default {
         .classList.add('markdown-body')
       this.setHeight()
     },
-    uploadFile(file) {
-      const uploadToAli = this.$refs.uploadToAli
-      // 模拟upload-to-ali 的upload传参
-      const request = uploadToAli.upload({
-        target: {files: [file]}
-      })
+    /**
+     * @param {File} file 选择的文件
+     * @param {string} fileMIMEType 文件 MIME-Type
+     */
+    async uploadFile(file, fileMIMEType) {
+      this.uploaderAccept = fileMIMEType
       this.$emit('upload-start')
-      request
-        .then(res => {
-          // res没有返回意味着上传过程中发现upload文件大小超出限制或其他不能上传的限制导致上传不能执行
-          if (res) {
-            this.$emit('upload-end', true, res)
-          } else {
-            this.$emit('upload-end', false, 'fail')
-            this.onUploadFail(true)
-          }
+      // 模拟 upload-to-ali 的 upload传参
+      try {
+        const res = await this.$refs.uploadToAli.upload({
+          target: {files: [file]}
         })
-        .catch(e => {
-          this.$emit('upload-end', false, e)
-          this.onUploadFail(false, e)
-        })
-      return request
+        // res没有返回意味着上传过程中发现upload文件大小超出限制或其他不能上传的限制导致上传不能执行
+        if (res) {
+          this.$emit('upload-end', true, res)
+          return res
+        } else {
+          this.$emit('upload-end', false, 'fail')
+          this.onUploadFail(true)
+        }
+      } catch (e) {
+        this.$emit('upload-end', false, e)
+        this.onUploadFail(false, e)
+      }
     },
     toggleFullScreen() {
       this.isFullScreen = !this.isFullScreen

@@ -1,7 +1,10 @@
 import Plugin from '@ckeditor/ckeditor5-core/src/plugin'
 import {UploadAdapter} from '../utils/adapter'
 
-export default uploadImg =>
+/**
+ * @param {function} uploadFunc upload function for upload image and attachment
+ */
+export default uploadFunc =>
   class ImageUploadAdaptor extends Plugin {
     /**
      * @inheritDoc
@@ -15,9 +18,8 @@ export default uploadImg =>
      */
     init() {
       const {editor} = this
-      const options = editor.config.get('imageUploadOption')
       editor.plugins.get('FileRepository').createUploadAdapter = loader => {
-        return new UploadAdapter(loader, options, uploadImg)
+        return new UploadAdapter(loader, uploadFunc)
       }
     }
   }

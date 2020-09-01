@@ -1,29 +1,28 @@
 export class UploadAdapter {
-  constructor(loader, options, uploadImg) {
+  constructor(loader, uploadFunc) {
     this.loader = loader
-    this.options = options
-    this.uploadImg = uploadImg
+    this.uploadFunc = uploadFunc
   }
 
-  async upload() {
-    const file = await this.loader.file
-    return new Promise((resolve, reject) => {
+  /**
+   *
+   * @param {string} fileMIMEType mime-type
+   * see: https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Complete_list_of_MIME_types
+   */
+  async upload(fileMIMEType) {
+    try {
+      const file = await this.loader.file
       // 图片多选时会逐个调用此方法
-      this.uploadImg(file)
-        .then(url => {
-          // 没有url意味着上传没有执行，需要reject
-          if (url) {
-            resolve({
-              default: url
-            })
-          } else {
-            reject()
-          }
-        })
-        .catch(e => {
-          reject(e)
-        })
-    })
+      const url = await this.uploadFunc(file, fileMIMEType)
+      // 没有url意味着上传没有执行，需要reject
+      if (url) {
+        return {default: url}
+      } else {
+        return Promise.reject(url)
+      }
+    } catch (error) {
+      return Promise.reject(error)
+    }
   }
 
   abort() {}
