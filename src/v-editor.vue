@@ -284,6 +284,10 @@ export default {
           &.ck-editor__editable {
             border-color: @ck-border-color;
 
+            &.ck-editor__editable_inline > :first-child {
+              margin-top: 8px;
+            }
+
             &:not(.ck-editor__nested-editable).ck-focused {
               box-shadow: none;
             }
