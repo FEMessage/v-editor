@@ -1184,6 +1184,11 @@
   resolved "https://registry.npm.taobao.org/@femessage/img-preview/download/@femessage/img-preview-1.4.0.tgz#0a9e6ac99e17f99c3b4012791f1f742082deb591"
   integrity sha1-Cp5qyZ4X+Zw7QBJ5Hx90IILetZE=
 
+"@femessage/img-preview@^1.4.1":
+  version "1.4.1"
+  resolved "https://registry.npm.taobao.org/@femessage/img-preview/download/@femessage/img-preview-1.4.1.tgz#cff697fd0844bb3e967de56e2bc1d922dcb3ee19"
+  integrity sha1-z/aX/QhEuz6WfeVuK8HZItyz7hk=
+
 "@femessage/upload-to-ali@^2.1.2":
   version "2.1.7"
   resolved "https://registry.npm.taobao.org/@femessage/upload-to-ali/download/@femessage/upload-to-ali-2.1.7.tgz#edf24e76b4c7654165e613a1afdc0773e73896e2"
