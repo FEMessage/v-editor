@@ -167,8 +167,8 @@ export default {
       const main = element.querySelector('.ck-editor__main')
       const content = element.querySelector('.ck-content')
       const result = {}
-      const minHeight = ROW_HEIGHT * minRows + INNER_PADDING
-      const maxHeight = ROW_HEIGHT * maxRows + INNER_PADDING
+      const minHeight = ROW_HEIGHT * minRows + INNER_PADDING || 1
+      const maxHeight = ROW_HEIGHT * maxRows + INNER_PADDING || Infinity
       content.style.minHeight = `${minHeight}px`
       const resize = () => {
         this.$nextTick(() => {
