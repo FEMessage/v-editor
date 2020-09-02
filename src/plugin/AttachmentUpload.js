@@ -22,11 +22,15 @@ export default class AttachmentUpload extends Plugin {
       // 文件选择器类型按钮
       const view = new FileDialogButtonView(locale)
 
+      const command = editor.commands.get('attachmentUpload')
+
       view.buttonView.set({
         label: '附件上传',
         icon: attachmentIcon,
         tooltip: true
       })
+
+      view.buttonView.bind('isEnabled').to(command)
 
       // 文件选择结束回调
       view.on('done', (_, file) => {
@@ -77,7 +81,7 @@ class AttachmentCommand extends Command {
            * 只能 emoji 了
            * 备选：🔗📂📚📦
            */
-          const linkText = writer.createText(`🔗${file.name}`, {linkHref: url})
+          const linkText = writer.createText(`🔗 ${file.name}`, {linkHref: url})
 
           let selection
           if (filenameTxtPlaceholderRange) {
