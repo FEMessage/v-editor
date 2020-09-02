@@ -5,12 +5,12 @@ import {UploadAdapter} from '../utils/adapter'
  * @param {function} uploadFunc upload function for upload image and attachment
  */
 export default uploadFunc =>
-  class ImageUploadAdaptor extends Plugin {
+  class Uploader extends Plugin {
     /**
      * @inheritDoc
      */
     static get pluginName() {
-      return 'ImageUploadAdaptor'
+      return 'Uploader'
     }
 
     /**

@@ -9,11 +9,11 @@ export class UploadAdapter {
    * @param {string} fileMIMEType mime-type
    * see: https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Complete_list_of_MIME_types
    */
-  async upload(fileMIMEType) {
+  async upload() {
     try {
       const file = await this.loader.file
       // 图片多选时会逐个调用此方法
-      const url = await this.uploadFunc(file, fileMIMEType)
+      const url = await this.uploadFunc(file)
       // 没有url意味着上传没有执行，需要reject
       if (url) {
         return {default: url}

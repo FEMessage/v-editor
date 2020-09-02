@@ -62,7 +62,7 @@ class AttachmentCommand extends Command {
             model.document.selection
           )
         })
-        .then(() => loader.upload('*/*'))
+        .then(() => loader.upload())
         .then(data => {
           const url = data.default
 
