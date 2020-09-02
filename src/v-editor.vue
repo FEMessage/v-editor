@@ -46,7 +46,7 @@ import ImagePreview from './plugin/ImagePreview'
 import './translations'
 
 const ROW_HEIGHT = 24
-const INNER_PADDING = 10
+const INNER_PADDING = 8 * 2 + 1 * 2 // .ck-content padding + border
 
 export default {
   name: 'VEditor',
@@ -354,6 +354,10 @@ export default {
 
             &.ck-editor__editable_inline > :first-child {
               margin-top: 8px;
+            }
+
+            &.ck-editor__editable_inline > :last-child {
+              margin-bottom: 8px;
             }
 
             &:not(.ck-editor__nested-editable).ck-focused {
