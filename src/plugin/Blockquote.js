@@ -16,7 +16,7 @@ class BlockQuoteUICustom extends BlockQuoteUI {
       const buttonView = new ButtonView(locale)
 
       buttonView.set({
-        label: '代码块',
+        label: '引用',
         icon: quoteIcon,
         tooltip: true,
         isToggleable: true

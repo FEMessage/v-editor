@@ -81,7 +81,7 @@ class AttachmentCommand extends Command {
            * 只能 emoji 了
            * 备选：🔗📂📚📦
            */
-          const linkText = writer.createText(`🔗${file.name}`, {linkHref: url})
+          const linkText = writer.createText(`🔗 ${file.name}`, {linkHref: url})
 
           let selection
           if (filenameTxtPlaceholderRange) {

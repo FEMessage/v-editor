@@ -23,6 +23,7 @@
       ref="uploadToAli"
       value
       v-bind="uploadOptions"
+      :accept="uploaderAccept"
     />
     <img-preview v-model="previewImageUrl" />
   </div>
@@ -35,7 +36,7 @@ import ImgPreview from '@femessage/img-preview'
 
 import defaultEditorOptions from './defaultEditorOptions'
 import debounce from 'lodash-es/debounce'
-import ImageUploader from './plugin/ImageUploader'
+import Uploader from './plugin/Uploader'
 import CKEditor from '@ckeditor/ckeditor5-vue'
 
 import fullScreenIcon from './assets/fullscreen.vue'
@@ -73,10 +74,15 @@ export default {
      */
     uploadOptions: {
       type: Object,
-      default: () => ({})
+      default: () => ({
+        compressOptions: {
+          maxWidth: Infinity
+        }
+      })
     },
     /**
-     * 编辑的内容，返回一段HTML，支持v-model
+     * 编辑的内容，返回一段HTML，支持v-model。
+     * 如果需要保持编辑器内和阅读区域样式一致，在使用的标签上添加 v-editor 和 markdown-body 两个 class 即可
      */
     value: {
       type: String,
@@ -112,20 +118,20 @@ export default {
       editor: null,
       ClassicEditor,
       isFullScreen: false,
+      uploaderAccept: '*/*',
       previewImageUrl: ''
     }
   },
   computed: {
     editorConfig() {
       // $refs 在 mounted 阶段才挂载，这里不能直接传实例
-      const uploadImg = this.uploadFile
       return Object.assign(
         {},
         defaultEditorOptions,
         {
           placeholder: this.placeholder,
           extraPlugins: [
-            ImageUploader(uploadImg),
+            Uploader(this.uploadFile),
             ImagePreview(this.imagePreview)
           ],
           autosave: {
@@ -166,31 +172,33 @@ export default {
     },
     onReady(editor) {
       this.editor = editor
-      editor.ui.view.element.classList.add('markdown-body')
+      editor.ui.view.element
+        .querySelector('.ck-editor__main')
+        .classList.add('markdown-body')
       this.setHeight()
     },
-    uploadFile(file) {
-      const uploadToAli = this.$refs.uploadToAli
-      // 模拟upload-to-ali 的upload传参
-      const request = uploadToAli.upload({
-        target: {files: [file]}
-      })
+    /**
+     * @param {File} file 选择的文件
+     */
+    async uploadFile(file) {
       this.$emit('upload-start')
-      request
-        .then(res => {
-          // res没有返回意味着上传过程中发现upload文件大小超出限制或其他不能上传的限制导致上传不能执行
-          if (res) {
-            this.$emit('upload-end', true, res)
-          } else {
-            this.$emit('upload-end', false, 'fail')
-            this.onUploadFail(true)
-          }
+      // 模拟 upload-to-ali 的 upload传参
+      try {
+        const res = await this.$refs.uploadToAli.upload({
+          target: {files: [file]}
         })
-        .catch(e => {
-          this.$emit('upload-end', false, e)
-          this.onUploadFail(false, e)
-        })
-      return request
+        // res没有返回意味着上传过程中发现upload文件大小超出限制或其他不能上传的限制导致上传不能执行
+        if (res) {
+          this.$emit('upload-end', true, res)
+          return res
+        } else {
+          this.$emit('upload-end', false, 'fail')
+          this.onUploadFail(true)
+        }
+      } catch (e) {
+        this.$emit('upload-end', false, e)
+        this.onUploadFail(false, e)
+      }
     },
     toggleFullScreen() {
       this.isFullScreen = !this.isFullScreen
@@ -200,217 +208,201 @@ export default {
 }
 </script>
 
-<style src="github-markdown-css/github-markdown.css"></style>
-<style lang="less">
-// 修复 v-editor 处于 dialog 中无法显示 image toolbar（处于body上） 的问题
-.ck.ck-balloon-panel {
-  z-index: 3000;
+<style lang="less" scoped>
+@ck-border-color: #dcdee6;
+@button-size: 24px;
+@icon-size: 16px;
+@font-size: 12px;
+@scrollbar-color: #c6c7ca;
+@scrollbar-size: 4px;
+@ck-header-label-width: 45px;
+@full-screen-index: 10000;
+
+.toggle-full-screen {
+  position: absolute;
+  width: @icon-size;
+  height: @icon-size;
+  right: 8px;
+  top: 48px;
+  cursor: pointer;
+
+  &.is-full-screen {
+    position: fixed;
+    z-index: @full-screen-index;
+  }
+
+  > svg {
+    width: 100%;
+    height: 100%;
+  }
 }
 
 .v-editor {
   position: relative;
   min-width: 400px;
-  @ck-button-hover-background-color: #f0f2f5;
-  @ck-border-color: #dcdee6;
-  @toolbar-height: 36px;
-  @button-size: 24px;
-  @icon-size: 16px;
-  @font-size: 12px;
-  @scrollbar-color: #c6c7ca;
-  @scrollbar-size: 4px;
-  @ck-header-label-width: 45px;
-  .ck.ck-editor__editable:not(.ck-editor__nested-editable).ck-focused {
-    box-shadow: none;
-  }
-  .ck.ck-editor__main {
-    /*控制整个滚动条*/
-    ::-webkit-scrollbar {
-      width: @scrollbar-size;
-      height: @scrollbar-size;
+
+  &::v-deep {
+    .full-screen {
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 0;
+      z-index: @full-screen-index;
+
+      .ck-editor__main {
+        height: calc(100vh - 41px) !important;
+      }
     }
 
-    /*滚动条两端方向按钮*/
-    ::-webkit-scrollbar-button {
-      display: none;
-    }
+    .ck {
+      &.ck-editor__top {
+        .ck-heading-dropdown,
+        .ck-font-size-dropdown {
+          .ck-button .ck-button__label {
+            width: @ck-header-label-width;
+            text-align: center;
+            font-size: @font-size;
+            line-height: @button-size;
+            height: @button-size;
+          }
+        }
+      }
 
-    /*滚动条中间滑动部分*/
-    ::-webkit-scrollbar-thumb {
-      background-color: @scrollbar-color;
-      border-radius: @scrollbar-size / 2;
-    }
+      &.ck-editor__main {
+        /* 控制整个滚动条 */
+        ::-webkit-scrollbar {
+          width: @scrollbar-size;
+          height: @scrollbar-size;
+        }
 
-    /*滚动条右下角区域*/
-    ::-webkit-scrollbar-corner {
-      display: none;
+        /* 滚动条两端方向按钮 */
+        ::-webkit-scrollbar-button {
+          display: none;
+        }
+
+        /* 滚动条中间滑动部分 */
+        ::-webkit-scrollbar-thumb {
+          background-color: @scrollbar-color;
+          border-radius: @scrollbar-size / 2;
+        }
+
+        /* 滚动条右下角区域 */
+        ::-webkit-scrollbar-corner {
+          display: none;
+        }
+
+        .ck-content {
+          // use for height prop
+          height: 100%;
+
+          &.ck-editor__editable {
+            border-color: @ck-border-color;
+
+            &.ck-editor__editable_inline > :first-child {
+              margin-top: 8px;
+            }
+
+            &:not(.ck-editor__nested-editable).ck-focused {
+              box-shadow: none;
+            }
+
+            .ck-placeholder::before {
+              color: #c0c4cc;
+            }
+          }
+        }
+      }
     }
   }
-  .ck.ck-toolbar__items {
-    height: @toolbar-height;
-    .ck.ck-button,
-    a.ck.ck-button {
-      width: @button-size;
-      height: @button-size;
-      line-height: @button-size;
-    }
-    .ck.ck-list__item {
-      .ck.ck-button,
-      a.ck.ck-button {
-        width: 100%;
-        height: auto;
-        line-height: 1;
-      }
-    }
-    .ck.ck-dropdown {
-      .ck-button.ck-dropdown__button {
-        width: 100%;
-      }
-      .ck-dropdown__arrow {
-        margin: 0;
-        right: 0;
-      }
-    }
-    .ck.ck-color-table {
-      .ck-color-table__remove-color {
-        width: 100%;
-        padding-left: 8px;
-      }
-    }
+}
+</style>
+<style lang="less" src="./assets/richtext.less"></style>
+<style lang="less">
+@ck-button-hover-background-color: #f0f2f5;
+@ck-border-color: #dcdee6;
+@toolbar-height: 36px;
+@button-size: 24px;
+@icon-size: 16px;
+@button-distance: 4px;
+
+// <body> 子级同时有的元素
+.ck {
+  &.ck-balloon-panel {
+    z-index: 3000;
   }
-  .ck.ck-button,
-  a.ck.ck-button {
+  .ck-button {
     margin: 0;
     padding: 0;
     min-width: unset;
     min-height: unset;
-
     cursor: pointer;
     // margin: 12px 0;
     .ck.ck-icon {
       width: @icon-size;
       height: @icon-size;
     }
+
     &:not(.ck-disabled):hover {
       background: @ck-button-hover-background-color;
     }
   }
 
-  .ck.ck-dropdown .ck-button.ck-dropdown__button {
-    width: @button-size;
-    height: @button-size;
-  }
-
-  @button-distance: 4px;
-  .ck.ck-toolbar {
+  .ck-toolbar {
     border-color: @ck-border-color;
     background: #fff;
-    > .ck-toolbar__items > * {
-      margin-right: @button-distance;
-    }
-    > .ck-toolbar__items > *,
-    > .ck.ck-toolbar__grouped-dropdown {
-      padding: 0;
-      margin: 0;
-    }
+
     .ck.ck-toolbar__separator {
       height: @icon-size;
       margin: auto @button-distance*2;
     }
-  }
 
-  .ck.ck-editor__main > .ck-editor__editable {
-    border-color: @ck-border-color;
-  }
+    .ck-toolbar__items {
+      height: @toolbar-height;
 
-  .ck .ck-heading-dropdown {
-    padding-left: 4px;
-    max-width: 80px;
-  }
+      > .ck:not(.ck-toolbar__separator),
+      > .ck-file-dialog-button,
+      > .ck-button_with-text {
+        padding: 0;
+        margin: 0;
+      }
 
-  .ck-content .image {
-    margin: 1em 0;
-  }
+      .ck-button {
+        width: @button-size;
+        height: @button-size;
+        line-height: @button-size;
+      }
 
-  .ck-editor__main {
-    & > .ck-content {
-      height: 100%;
-    }
-  }
+      .ck-list__item {
+        .ck-button {
+          width: 100%;
+          height: auto;
+          line-height: 1;
+        }
+      }
 
-  .ck.ck-editor__editable > .ck-placeholder::before {
-    color: #c0c4cc;
-  }
-  // chrome 默认
-  ul {
-    list-style-type: disc;
-  }
+      .ck-dropdown {
+        &.ck-heading-dropdown {
+          .ck-dropdown__button {
+            padding: 0;
+          }
+        }
 
-  ol {
-    list-style-type: decimal;
-  }
+        .ck-button.ck-dropdown__button {
+          width: 100%;
+        }
 
-  li {
-    display: list-item;
-    text-align: -webkit-match-parent;
-  }
+        .ck-dropdown__arrow {
+          margin: 0;
+          right: 0;
+        }
+      }
 
-  ol,
-  ul {
-    padding-left: 1.5em;
-    display: block;
-    margin-block-start: 1em;
-    margin-block-end: 1em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    padding-inline-start: 40px;
-  }
-
-  // 不要影响 ul 的列表项
-  ol ol {
-    list-style-type: lower-alpha;
-
-    & ol {
-      list-style-type: lower-roman;
-    }
-  }
-  @full-screen-index: 10000;
-  .toggle-full-screen {
-    position: absolute;
-    width: @icon-size;
-    height: @icon-size;
-    right: 8px;
-    top: 48px;
-    cursor: pointer;
-    &.is-full-screen {
-      position: fixed;
-      z-index: @full-screen-index;
-    }
-    > svg {
-      width: 100%;
-      height: 100%;
-    }
-  }
-
-  .full-screen {
-    position: fixed;
-    top: 0;
-    right: 0;
-    left: 0;
-    z-index: @full-screen-index;
-
-    .ck-editor__main {
-      height: calc(100vh - 41px) !important;
-    }
-  }
-
-  .ck-heading-dropdown,
-  .ck-font-size-dropdown {
-    .ck-button.ck-dropdown__button .ck-button__label {
-      width: @ck-header-label-width;
-      text-align: center;
-      font-size: @font-size;
-      line-height: @button-size;
-      height: @button-size;
+      .ck-color-table {
+        .ck-color-table__remove-color {
+          width: 100%;
+          padding-left: 8px;
+        }
+      }
     }
   }
 }
