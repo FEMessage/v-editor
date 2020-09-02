@@ -38,6 +38,8 @@ import CKEditor from '@ckeditor/ckeditor5-vue'
 import fullScreenIcon from './assets/fullscreen.vue'
 import fullScreenExitIcon from './assets/fullscreenexit.vue'
 
+const DEFAULT_AUTOSAVE_WAITING_TIME = 8000
+
 export default {
   name: 'VEditor',
   components: {
@@ -102,9 +104,12 @@ export default {
     /**
      * 关闭 autosave 功能，详见文档[Getting and saving data - CKEditor 5 Documentation](https://ckeditor.com/docs/ckeditor5/latest/builds/guides/integration/saving-data.html#autosave-feature)
      */
-    disableAutosave: {
-      type: Boolean,
-      default: false
+    autosave: {
+      type: [Boolean, Number],
+      default: false,
+      validator: e => {
+        return typeof e === 'boolean' || (typeof e === 'number' && e >= 0)
+      }
     }
   },
   data() {
@@ -116,6 +121,12 @@ export default {
   },
   computed: {
     editorConfig() {
+      const autosaveValidate =
+        typeof this.autosave === 'number' && this.autosave >= 0
+      let autosaveEnable = autosaveValidate || this.autosave === true
+      let waitingTime = autosaveValidate
+        ? this.autosave
+        : DEFAULT_AUTOSAVE_WAITING_TIME
       // $refs 在 mounted 阶段才挂载，这里不能直接传实例
       const uploadImg = this.uploadFile
       return Object.assign(
@@ -124,11 +135,10 @@ export default {
         {
           placeholder: this.placeholder,
           extraPlugins: [ImageUploader(uploadImg)],
-          ...(this.disableAutosave
-            ? {}
-            : {
+          ...(autosaveEnable
+            ? {
                 autosave: {
-                  waitingTime: 8000,
+                  waitingTime,
                   save: editor => {
                     /**
                      * 建议自动保存事件，当 8 秒内未触发 input 事件时触发；
@@ -140,7 +150,8 @@ export default {
                     this.$emit('autosave', editor.getData())
                   }
                 }
-              }),
+              }
+            : {}),
           language: 'zh-cn'
         },
         this.editorOptions
