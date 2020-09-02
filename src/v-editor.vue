@@ -38,7 +38,7 @@ import CKEditor from '@ckeditor/ckeditor5-vue'
 import fullScreenIcon from './assets/fullscreen.vue'
 import fullScreenExitIcon from './assets/fullscreenexit.vue'
 
-const DEFAULT_AUTOSAVE_WAITING_TIME = 8000
+const DEFAULT_AUTOSAVE_WAITING_TIME = 5000
 
 export default {
   name: 'VEditor',
@@ -102,7 +102,7 @@ export default {
       }
     },
     /**
-     * 关闭 autosave 功能，详见文档[Getting and saving data - CKEditor 5 Documentation](https://ckeditor.com/docs/ckeditor5/latest/builds/guides/integration/saving-data.html#autosave-feature)
+     * 启用 autosave 功能，也可传递一个毫秒数值，启用后可以监听 autosave 事件
      */
     autosave: {
       type: [Boolean, Number],
