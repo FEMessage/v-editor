@@ -1,10 +1,10 @@
-如果 8 秒内没有任何操作，会触发自动保存
+如果 1 秒内没有任何操作，会触发自动保存
 
-It will autosave if no any operation in 8s
+It will autosave if no any operation in 1s
 
 ```vue
 <template>
-  <v-editor v-model="content" @autosave="handleSave" />
+  <v-editor v-model="content" @autosave="handleSave" :autosave="1000"/>
 </template>
 <script>
 export default {
