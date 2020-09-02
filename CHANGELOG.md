@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.10.0](https://github.com/FEMessage/v-editor/compare/v2.9.1...v2.10.0) (2020-09-02)
+
+
+### Bug Fixes
+
+* 附件上传按钮无法禁用 ([#123](https://github.com/FEMessage/v-editor/issues/123)) ([cd40dd7](https://github.com/FEMessage/v-editor/commit/cd40dd7))
+
+
+### Features
+
+* 体验优化 ([#117](https://github.com/FEMessage/v-editor/issues/117)) ([e7baaef](https://github.com/FEMessage/v-editor/commit/e7baaef))
+* 图片预览功能 ([#116](https://github.com/FEMessage/v-editor/issues/116)) ([ac6266f](https://github.com/FEMessage/v-editor/commit/ac6266f))
+* 添加 autosize 功能 ([#115](https://github.com/FEMessage/v-editor/issues/115)) ([1513cb1](https://github.com/FEMessage/v-editor/commit/1513cb1))
+
+
+
 ### [2.9.1](https://github.com/FEMessage/v-editor/compare/v2.9.0...v2.9.1) (2020-08-14)
 
 
