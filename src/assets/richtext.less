@@ -1,0 +1,58 @@
+@import url('~github-markdown-css/github-markdown.css');
+
+.v-editor .markdown-body,
+.v-editor.markdown-body {
+  hr {
+    background-color: #e8e8e8;
+    height: 2px;
+    margin: 12px 0;
+  }
+
+  p {
+    margin-bottom: 0;
+  }
+
+  ol,
+  ul {
+    padding-left: 1.5em;
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+    padding-inline-start: 40px;
+  }
+
+  ul:not(.todo-list) {
+    list-style-type: disc;
+  }
+
+  ol {
+    list-style-type: decimal;
+  }
+
+  li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+  }
+
+  ol ol {
+    list-style-type: lower-alpha;
+
+    & ol {
+      list-style-type: lower-roman;
+    }
+  }
+
+  i {
+    font-style: italic;
+  }
+
+  // 图片、表格默认靠左
+  figure {
+    &.image,
+    &.table {
+      margin: 1em 0;
+    }
+  }
+}
