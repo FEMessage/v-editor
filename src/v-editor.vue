@@ -40,7 +40,7 @@ import fullScreenIcon from './assets/fullscreen.vue'
 import fullScreenExitIcon from './assets/fullscreenexit.vue'
 
 const ROW_HEIGHT = 24
-const INNER_PADDING = 16
+const INNER_PADDING = 10
 
 export default {
   name: 'VEditor',
@@ -162,12 +162,15 @@ export default {
       if (this.autosizeIsEmpty || !this.editor) {
         return
       }
-      const {minRows, maxRows} = this.autosize
+      let {minRows, maxRows} = this.autosize
       const {element} = this.editor.ui.view
       const main = element.querySelector('.ck-editor__main')
       const content = element.querySelector('.ck-content')
       const result = {}
-      const minHeight = ROW_HEIGHT * minRows + INNER_PADDING || 1
+      if (!minRows) {
+        minRows = 3
+      }
+      const minHeight = ROW_HEIGHT * minRows + INNER_PADDING
       const maxHeight = ROW_HEIGHT * maxRows + INNER_PADDING || Infinity
       content.style.minHeight = `${minHeight}px`
       const resize = () => {
