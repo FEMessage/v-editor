@@ -2,7 +2,7 @@
   <div class="v-editor">
     <ckeditor
       :editor="ClassicEditor"
-      :value="value"
+      :value="computedValue"
       :disabled="disabled"
       :config="editorConfig"
       @input="onInput"
@@ -44,6 +44,7 @@ import fullScreenExitIcon from './assets/fullscreenexit.vue'
 
 import ImagePreview from './plugin/ImagePreview'
 import './translations'
+import {replaceWrap} from './utils'
 
 const ROW_HEIGHT = 24
 const INNER_PADDING = 8 * 2 + 1 * 2 // .ck-content padding + border
@@ -135,6 +136,9 @@ export default {
     }
   },
   computed: {
+    computedValue() {
+      return replaceWrap(this.value, '<br>')
+    },
     editorConfig() {
       // $refs 在 mounted 阶段才挂载，这里不能直接传实例
       return Object.assign(
