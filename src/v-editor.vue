@@ -137,6 +137,7 @@ export default {
   },
   computed: {
     computedValue() {
+      // TODO: 此处每次监听 this.value 的变化可能存在性能问题
       return replaceNewlineWithBr(this.value)
     },
     editorConfig() {
