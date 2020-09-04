@@ -1,3 +1,3 @@
-export function replaceNewline(str, replaceStr) {
-  return str.replace(/\r?\n/g, replaceStr)
+export function replaceNewlineWithBr(str) {
+  return str.replace(/\r?\n/g, '<br>')
 }
