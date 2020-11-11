@@ -22,6 +22,7 @@
   "browser": {
     "./sfc": "src/v-editor.vue"
   },
+  "types": "src/v-editor.d.ts",
   "scripts": {
     "dev": "vue-styleguidist server",
     "test": "jest --verbose",
