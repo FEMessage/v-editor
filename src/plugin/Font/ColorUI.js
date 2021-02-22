@@ -68,7 +68,7 @@ export default class ColorUICustom extends ColorUI {
               this.componentName
             )
           }
-          this.colorTableView.updateSelectedColors()
+          this.colorTableView.appendGrids()
         }
       })
 
