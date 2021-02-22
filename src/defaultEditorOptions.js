@@ -34,7 +34,7 @@ import Autoformat from './plugin/Autoformat'
 import ExtraFormat from './plugin/ExtraFormat'
 import RemoveFormat from './plugin/RemoveFormat'
 import AttachmentUpload from './plugin/AttachmentUpload'
-import FixComposing from './plugin/FixComposing'
+// import FixComposing from './plugin/FixComposing'
 import TransformMD from './plugin/TransformMD'
 
 export default {
@@ -69,8 +69,8 @@ export default {
     ExtraFormat,
     RemoveFormat,
     AttachmentUpload,
-    TransformMD,
-    FixComposing
+    TransformMD
+    // FixComposing
   ],
   toolbar: [
     'undo',
@@ -100,6 +100,7 @@ export default {
     'insertTable',
     'mediaEmbed'
   ],
+
   heading: {
     options: [
       {model: 'paragraph', title: '正文', class: 'ck-heading_paragraph'},
