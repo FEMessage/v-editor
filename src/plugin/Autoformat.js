@@ -9,6 +9,7 @@ export default class TheAutoformat extends Autoformat {
       // eslint-disable-next-line no-new
       new BlockAutoformatEditing(
         this.editor,
+        this,
         /^[*-]\s/,
         this._composeListener('bulletedList')
       )
@@ -18,6 +19,7 @@ export default class TheAutoformat extends Autoformat {
       // eslint-disable-next-line no-new
       new BlockAutoformatEditing(
         this.editor,
+        this,
         /^1\.\s/,
         this._composeListener('numberedList')
       )
@@ -35,7 +37,7 @@ export default class TheAutoformat extends Autoformat {
           const pattern = new RegExp(`^(#{${level}})\\s`)
 
           // eslint-disable-next-line no-new
-          new BlockAutoformatEditing(this.editor, pattern, () => {
+          new BlockAutoformatEditing(this.editor, this, pattern, () => {
             if (!command.isEnabled) {
               return false
             }
