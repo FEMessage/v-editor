@@ -45,7 +45,7 @@ class MediaEmbedUICustom extends MediaEmbedUI {
       const dropdown = createDropdown(locale, DropdownButtonView)
 
       this._setUpDropdown(dropdown, this.form, command, editor)
-      this._setUpForm(this.form, dropdown, command)
+      this._setUpForm(dropdown, this.form, command)
 
       return dropdown
     })
