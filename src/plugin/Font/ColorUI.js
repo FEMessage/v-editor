@@ -3,8 +3,7 @@ import {addColorTableToDropdown} from './utils'
 import {
   normalizeColorOptions,
   getLocalizedColorOptions
-} from '@ckeditor/ckeditor5-font/src/utils'
-
+} from '@ckeditor/ckeditor5-ui/src/colorgrid/utils'
 import {createDropdown} from '@ckeditor/ckeditor5-ui/src/dropdown/utils'
 import DropdownButtonView from '../DropdownButtonView'
 
