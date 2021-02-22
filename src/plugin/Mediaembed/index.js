@@ -67,7 +67,7 @@ class MediaEmbedUICustom extends MediaEmbedUI {
       'open',
       () => {
         form.url = command.value || ''
-        form.urlInputView.select()
+        form.urlInputView.fieldView.select()
         form.focus()
       },
       {priority: 'low'}
