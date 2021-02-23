@@ -25,6 +25,7 @@ export default class ExtraFormat extends Plugin {
     if (commands.get('todoList')) {
       new BlockAutoformatEditing(
         this.editor,
+        this,
         /^\[\]\s/,
         this._composeListener('todoList')
       )
@@ -37,6 +38,7 @@ export default class ExtraFormat extends Plugin {
   _urlImageAutoformat() {
     new BlockAutoformatEditing(
       this.editor,
+      this,
       /^!\[(\S*)\]\((.*?)\)\s$/,
       writer => {
         const [, imageAlt, imageUrl] = writer.match
@@ -65,7 +67,7 @@ export default class ExtraFormat extends Plugin {
     const cmd = 'horizontalLine'
     if (!editor.commands.get(cmd)) return
     const pat = /^---\s$/
-    new BlockAutoformatEditing(editor, pat, () => {
+    new BlockAutoformatEditing(editor, this, pat, () => {
       const node = editor.model.document.selection.getFirstPosition().parent
       editor.model.enqueueChange(writer => {
         writer.remove(node)
